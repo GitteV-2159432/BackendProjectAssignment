@@ -1,6 +1,6 @@
 import express from 'express'
 import router from './routes/index.js'
-import setupSwaggerDocs from './swagger.js'
+import setupSwaggerDocs from './config/swagger.js'
 
 const app = express()
 
@@ -13,5 +13,7 @@ const PORT = process.env.PORT || 5000
 setupSwaggerDocs(app, PORT)
 
 app.listen(PORT, () =>
-    console.log(`Server running on http://localhost:${PORT}`)
+    console.log(
+        `API documentation running on http://localhost:${PORT}/api-docs`
+    )
 )
