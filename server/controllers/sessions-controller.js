@@ -1,5 +1,17 @@
-const getSessions = (req, res) => {
-  return res.json({ test: "test" });
-};
+const getSessions = async (req, res) => {
+    return res.status(500).json({ error: 'Route not implemented yet!' })
+}
 
-export { getSessions };
+const getSession = async (req, res) => {
+    return res.status(500).json({ error: 'Route not implemented yet!' })
+}
+
+const addSession = async (req, res) => {
+    return res.status(500).json({ error: 'Route not implemented yet!' })
+}
+
+const deleteSession = async (req, res) => {
+    return res.status(500).json({ error: 'Route not implemented yet!' })
+}
+
+export { getSessions, getSession, addSession, deleteSession }

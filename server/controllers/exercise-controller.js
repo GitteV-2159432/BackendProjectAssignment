@@ -2,7 +2,11 @@ import { fetchFromWger } from "../utils/wgerFetcher.js";
 
 const getExercises = async (req, res) => {
   try {
-      const { language = 2, category, limit } = req.query // 2 = English
+      const {
+          language = 2, // 2 = English
+          category,
+          limit,
+      } = req.query 
 
       const params = { language }
       if (category) params.category = category
