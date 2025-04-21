@@ -6,7 +6,6 @@ Backend Project for the course Web Framework Project in the module Backend Web D
 
 ```sh
 cd server
-npm i
-npm run seed
+npm install
 npm run dev
 ```

@@ -1,34 +1,61 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-const planSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  schedule: {
-    type: [String], // e.g. ['Monday', 'Wednesday', 'Friday']
-    default: [],
-  },
-  exercises: [
-    {
-      exerciseId: { type: Number, required: true },
-      sets: Number,
-      reps: Number,
-      notes: String,
+const planSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
     },
-  ],
-  public: {
-    type: Boolean,
-    default: false,
+    name: {
+      type: String,
+      required: true,
+    },
+    schedule: {
+      type: [String], // Optional: just a list of active days
+      default: [],
+    },
+    workouts: {
+      // Key: Day of the week, Value: reference to CustomWorkout
+      Monday: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CustomWorkout',
+      },
+      Tuesday: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CustomWorkout',
+      },
+      Wednesday: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CustomWorkout',
+      },
+      Thursday: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CustomWorkout',
+      },
+      Friday: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CustomWorkout',
+      },
+      Saturday: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CustomWorkout',
+      },
+      Sunday: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CustomWorkout',
+      },
+    },
+    public: {
+      type: Boolean,
+      default: false,
+    },
   },
-//   user: {
-//     type: Schema.Types.ObjectId,
-//     ref: 'User', // Optional: link to user if authentication is added
-//   },
-}, {
-  timestamps: true,
-});
+  {
+    timestamps: true,
+  }
+)
 
-const Plan = mongoose.model('Plan', planSchema);
+const Plan = mongoose.model('Plan', planSchema)
 
-export default Plan;
+export default Plan

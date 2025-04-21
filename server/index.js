@@ -4,15 +4,13 @@ import { configDotenv } from 'dotenv'
 import router from './routes/index.js'
 import setupSwaggerDocs from './config/swagger.js'
 import connectDB from './config/db.js'
-import { exerciseService } from './services/exerciseService.js'
 
 configDotenv()
 
 const app = express()
 const PORT = process.env.PORT || 5000
 
-connectDB()
-exerciseService.populateExercises()
+connectDB() 
 
 // Middleware
 app.use(express.json())
