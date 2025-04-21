@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-const sessionSchema = new mongoose.Schema({
+const workoutSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now,
@@ -14,8 +14,8 @@ const sessionSchema = new mongoose.Schema({
     },
   ],
   notes: String,
-});
+})
 
-const Session = mongoose.model('Session', sessionSchema);
+const Workout = mongoose.model('Workout', workoutSchema)
 
-export default Session;
+export default Workout
