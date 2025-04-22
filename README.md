@@ -17,6 +17,7 @@ Tech stack:
 - Express validator: validation
 - Swagger for API documentation
 - Axios for fetching
+- Passport.js for authentication
 
 ## Server setup
 
