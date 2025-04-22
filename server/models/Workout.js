@@ -1,20 +1,49 @@
 import mongoose from 'mongoose'
 
-const workoutSchema = new mongoose.Schema({
-  date: {
-    type: Date,
-    default: Date.now,
-  },
-  exercises: [
-    {
-      exerciseId: Number,
-      sets: Number,
-      reps: [Number],
-      weight: [Number],
+const workoutSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
     },
-  ],
-  notes: String,
-})
+    name: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      default: '',
+    },
+    exercises: [
+      {
+        exerciseId: {
+          type: Number, // Wger exercise ID
+          required: true,
+        },
+        sets: {
+          type: Number,
+          required: true,
+        },
+        reps: {
+          type: Number,
+          required: true,
+        },
+        notes: {
+          type: String,
+          default: '',
+        },
+      },
+    ],
+    public: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  {
+    timestamps: true,
+  }
+)
 
 const Workout = mongoose.model('Workout', workoutSchema)
 

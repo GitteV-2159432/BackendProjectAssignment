@@ -1,4 +1,4 @@
-import planService from '../services/planService.js'
+import planService from '../services/plan-service.js'
 
 const getPlans = async (req, res) => {
   return res.json(await planService.getAll())

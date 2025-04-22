@@ -1,18 +1,18 @@
-import { exerciseService } from '../services/exerciseService.js'
+import fetchFromWger from '../utils/wgerFetcher.js'
 
 const getExercises = async (req, res) => {
-  return res.json(await exerciseService.getAll())
-}
+  const { category, limit, offset } = req.query
 
-const getExercise = async (req, res) => {
-  const id = req.params.id
-
-  const exercise = await exerciseService.getById(id)
-  if (!exercise) {
-    return res.status(404).json({ error: `Exercise with id: ${id} not found!` })
+  try {
+    const data = await fetchFromWger('exerciseinfo', {
+      category,
+      limit,
+      offset,
+    })
+    return res.json(data)
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch exercises from Wger' })
   }
-
-  return res.json(exercise)
 }
 
-export { getExercises, getExercise }
+export { getExercises }

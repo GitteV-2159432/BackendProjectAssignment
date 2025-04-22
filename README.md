@@ -22,8 +22,7 @@ Tech stack:
 
 ```sh
 cd server
-npm i
-npm run seed
+npm install
 npm run dev
 ```
 

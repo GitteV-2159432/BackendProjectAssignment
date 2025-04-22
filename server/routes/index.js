@@ -1,12 +1,12 @@
 import express from 'express'
-import exerciseRoutes from './exerciseRoutes.js'
-import planRoutes from './planRoutes.js'
-import workoutRoutes from './workoutRoutes.js'
+import exerciseRoutes from './exercise-routes.js'
+import planRoutes from './plan-routes.js'
+import workoutLogRoutes from './workout-log-routes.js'
 
 const router = express.Router()
 
 router.use('/exercises', exerciseRoutes)
 router.use('/plans', planRoutes)
-router.use('/workouts', workoutRoutes)
+router.use('/workout-logs', workoutLogRoutes)
 
 export default router
