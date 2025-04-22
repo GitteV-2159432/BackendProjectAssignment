@@ -1,21 +1,23 @@
+import planService from '../services/planService.js'
+
 const getPlans = async (req, res) => {
- return res.status(500).json({error: "Route not implemented yet!"})
+  return res.json(await planService.getAll())
 }
 
 const getPlan = async (req, res) => {
-    return res.status(500).json({error: "Route not implemented yet!"})
+  // TODO
 }
 
 const addPlan = async (req, res) => {
-    return res.status(500).json({error: "Route not implemented yet!"})
+  // TODO
 }
 
 const updatePlan = async (req, res) => {
-    return res.status(500).json({error: "Route not implemented yet!"})
+  // TODO
 }
 
 const deletePlan = async (req, res) => {
-    return res.status(500).json({error: "Route not implemented yet!"})
+  // TODO
 }
 
 export { getPlans, getPlan, addPlan, updatePlan, deletePlan }
