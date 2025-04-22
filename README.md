@@ -9,4 +9,13 @@ Features
 - RESTful API for accessing workouts and plans
 - Admin interface for managing public plans and users
 
+Tech stack:
+- React for the frontend
+- Vite
+- MongoDB
+- Nodecache for caching categories and equipment
+- Express validator: validation
+- Swagger for API documentation
+- Axios for fetching
+
 ==> Backend Project for the course Web Framework Project in the module Backend Web Development at HAMK
