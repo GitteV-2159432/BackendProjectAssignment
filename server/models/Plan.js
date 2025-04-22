@@ -11,42 +11,46 @@ const planSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    schedule: {
-      type: [String], // Optional: just a list of active days
-      default: [],
+    description: {
+      type: String,
+      default: '',
     },
     workouts: {
-      // Key: Day of the week, Value: reference to CustomWorkout
+      // Key: Day of the week, Value: reference to Workout
       Monday: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'CustomWorkout',
+        ref: 'Workout',
       },
       Tuesday: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'CustomWorkout',
+        ref: 'Workout',
       },
       Wednesday: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'CustomWorkout',
+        ref: 'Workout',
       },
       Thursday: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'CustomWorkout',
+        ref: 'Workout',
       },
       Friday: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'CustomWorkout',
+        ref: 'Workout',
       },
       Saturday: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'CustomWorkout',
+        ref: 'Workout',
       },
       Sunday: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'CustomWorkout',
+        ref: 'Workout',
       },
     },
     public: {
+      type: Boolean,
+      default: false,
+    },
+    active: {
       type: Boolean,
       default: false,
     },
@@ -56,6 +60,6 @@ const planSchema = new mongoose.Schema(
   }
 )
 
-const Plan = mongoose.model('Plan', planSchema)
+const Plan = mongoose.model.Plan || mongoose.model('Plan', planSchema)
 
 export default Plan
