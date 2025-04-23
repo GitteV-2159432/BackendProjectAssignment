@@ -16,6 +16,12 @@ const router = express.Router()
  *   get:
  *     summary: Get all exercises
  *     tags: [Exercises]
+ *     parameters:
+ *       - in: query
+ *         name: categoryId
+ *         description: Category of exercise.
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: A list of exercises

@@ -227,6 +227,7 @@ const seedData = async () => {
           ],
         },
       ],
+      durationInMinutes: 120,
     },
     {
       userId: arne._id,
@@ -249,6 +250,7 @@ const seedData = async () => {
           sets: [{ reps: 12 }, { reps: 10 }],
         },
       ],
+      durationInMinutes: 60,
     },
     {
       userId: arne._id,
@@ -259,6 +261,7 @@ const seedData = async () => {
           sets: [{ reps: 15 }, { reps: 12 }],
         },
       ],
+      durationInMinutes: 80,
     },
   ])
 

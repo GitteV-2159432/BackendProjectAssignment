@@ -25,6 +25,7 @@ const workoutLogSchema = new mongoose.Schema(
       },
     ],
     notes: { type: String, default: '' },
+    durationInMinutes: { type: Number, required: true },
   },
   {
     timestamps: true,
