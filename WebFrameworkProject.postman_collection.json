@@ -279,11 +279,11 @@
 				{
 					"name": "bookmark",
 					"request": {
-						"method": "PATCH",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"bookmark\": false\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -306,8 +306,41 @@
 									"value": ""
 								}
 							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookmark",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						"description": "Single exercise is being bookmarked or bookmark is removed.\n\ntrue: bookmark excercise\n\nfalse: remove bookmark"
+						"url": {
+							"raw": "{{baseUrl}}/exercises/:id/bookmark",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"exercises",
+								":id",
+								"bookmark"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
 					},
 					"response": []
 				}
@@ -526,13 +559,37 @@
 					"response": []
 				},
 				{
+					"name": "workout",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/workouts/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workouts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "bookmark",
 					"request": {
-						"method": "PATCH",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"bookmark\": false\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -555,8 +612,41 @@
 									"value": ""
 								}
 							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookmark",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						"description": "Single workout is being bookmarked or bookmark is removed.\n\ntrue: bookmark workout\n\nfalse: remove bookmark"
+						"url": {
+							"raw": "{{baseUrl}}/workouts/:id/bookmark",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workouts",
+								":id",
+								"bookmark"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
 					},
 					"response": []
 				}
@@ -819,13 +909,37 @@
 					"response": []
 				},
 				{
+					"name": "plan",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/plans/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"plans",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "bookmark",
 					"request": {
-						"method": "PATCH",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"bookmark\": false\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -848,8 +962,41 @@
 									"value": ""
 								}
 							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bookmark",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						"description": "Single plan is being bookmarked or bookmark is removed.\n\ntrue: bookmark plan\n\nfalse: remove bookmark"
+						"url": {
+							"raw": "{{baseUrl}}/plans/:id/bookmark",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"plans",
+								":id",
+								"bookmark"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
 					},
 					"response": []
 				}
