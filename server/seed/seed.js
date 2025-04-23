@@ -11,6 +11,7 @@ import Plan from '../models/Plan.js'
 import { configDotenv } from 'dotenv'
 import connectDB from '../config/db.js'
 import bcrypt from 'bcrypt'
+import mongoose from 'mongoose'
 
 configDotenv()
 connectDB()
@@ -261,4 +262,10 @@ const seedData = async () => {
   console.log('Seed finished successfully.')
 }
 
-seedData().catch((err) => console.error('Seed failed:', err))
+try {
+  await seedData()
+} catch (error) {
+  console.error('Seed failed:', err)
+} finally {
+  mongoose.disconnect()
+}
