@@ -10,7 +10,7 @@ configDotenv()
 const app = express()
 const PORT = process.env.PORT || 5000
 
-connectDB() 
+connectDB()
 
 // Middleware
 app.use(express.json())
