@@ -31,28 +31,32 @@ const seedData = async () => {
 
   const users = await User.insertMany([
     {
-      name: 'elias',
+      firstName: 'Elias',
+      lastName: 'Sohm',
       email: 'elias@sample',
       passwordHash: await bcrypt.hash('banana1', 12),
     },
     {
-      name: 'francis',
+      firstName: 'Francis',
+      lastName: 'Denz',
       email: 'francis@sample',
       passwordHash: await bcrypt.hash('banana2', 12),
     },
     {
-      name: 'gitte',
+      firstName: 'Gitte',
+      lastName: 'Vandevenne',
       email: 'gitte@sample',
       passwordHash: await bcrypt.hash('banana3', 12),
     },
     {
-      name: 'arne',
+      firstName: 'Arne',
+      lastName: 'Vervaet',
       email: 'arne@sample',
       passwordHash: await bcrypt.hash('banana4', 12),
     },
   ])
 
-  const arne = users.find((u) => u.name === 'arne')
+  const arne = users.find((u) => u.firstName === 'Arne')
 
   const exercises = await Exercise.find({
     name: {
@@ -271,7 +275,7 @@ const seedData = async () => {
 try {
   await seedData()
 } catch (error) {
-  console.error('Seed failed:', err)
+  console.error('Seed failed:', error)
 } finally {
   mongoose.disconnect()
 }
