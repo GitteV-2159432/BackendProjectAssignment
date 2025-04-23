@@ -18,8 +18,8 @@ const workoutLogSchema = new mongoose.Schema(
         exerciseId: { type: mongoose.Types.ObjectId, required: true },
         sets: [
           {
-            reps: { type: [Number], default: [] },
-            weight: { type: [Number], default: [] },
+            reps: { type: Number },
+            weight: { type: Number },
           },
         ],
       },

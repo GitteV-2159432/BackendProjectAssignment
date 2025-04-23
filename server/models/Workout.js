@@ -19,9 +19,9 @@ const workoutSchema = new mongoose.Schema(
         sets: [
           {
             reps: { type: Number, required: true },
-            restSeconds: { type: Number, required: true },
           },
         ],
+        restSecondsBetweenSets: { type: Number, required: true },
         notes: {
           type: String,
           default: '',

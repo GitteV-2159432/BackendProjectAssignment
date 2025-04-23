@@ -85,4 +85,8 @@ exerciseService.populateExercises = async () => {
   }
 }
 
+exerciseService.getByCategory = async (categoryObjectId) => {
+  return await Exercise.find({ category: categoryObjectId })
+}
+
 export default exerciseService

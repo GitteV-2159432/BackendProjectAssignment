@@ -4,9 +4,6 @@ import { configDotenv } from 'dotenv'
 import router from './routes/index.js'
 import setupSwaggerDocs from './config/swagger.js'
 import connectDB from './config/db.js'
-import categoryService from './services/category-service.js'
-import muscleService from './services/muscle-service.js'
-import exerciseService from './services/exercise-service.js'
 
 configDotenv()
 
@@ -14,10 +11,6 @@ const app = express()
 const PORT = process.env.PORT || 5000
 
 connectDB()
-
-await categoryService.populateCategories()
-await muscleService.populateMuscles()
-await exerciseService.populateExercises()
 
 // Middleware
 app.use(express.json())
