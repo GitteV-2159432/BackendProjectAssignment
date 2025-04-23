@@ -28,4 +28,12 @@ npm run seed
 npm run dev
 ```
 
+## Client setup
+
+```sh
+cd client
+npm install
+npm run dev
+```
+
 ==> Backend Project for the course Web Framework Project in the module Backend Web Development at HAMK
