@@ -10,6 +10,7 @@ import Workout from '../models/Workout.js'
 import Plan from '../models/Plan.js'
 import { configDotenv } from 'dotenv'
 import connectDB from '../config/db.js'
+import bcrypt from 'bcrypt'
 
 configDotenv()
 connectDB()
@@ -28,10 +29,26 @@ const seedData = async () => {
   await exerciseService.populateExercises()
 
   const users = await User.insertMany([
-    { name: 'elias', email: 'elias@sample', passwordHash: 'banana1' },
-    { name: 'francis', email: 'francis@sample', passwordHash: 'banana2' },
-    { name: 'gitte', email: 'gitte@sample', passwordHash: 'banana3' },
-    { name: 'arne', email: 'arne@sample', passwordHash: 'banana4' },
+    {
+      name: 'elias',
+      email: 'elias@sample',
+      passwordHash: await bcrypt.hash('banana1', 12),
+    },
+    {
+      name: 'francis',
+      email: 'francis@sample',
+      passwordHash: await bcrypt.hash('banana2', 12),
+    },
+    {
+      name: 'gitte',
+      email: 'gitte@sample',
+      passwordHash: await bcrypt.hash('banana3', 12),
+    },
+    {
+      name: 'arne',
+      email: 'arne@sample',
+      passwordHash: await bcrypt.hash('banana4', 12),
+    },
   ])
 
   const arne = users.find((u) => u.name === 'arne')
