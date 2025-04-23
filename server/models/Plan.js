@@ -17,13 +17,13 @@ const planSchema = new mongoose.Schema(
     },
     workouts: {
       // Key: Day of the week, Value: reference to Workout
-      Monday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
-      Tuesday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
-      Wednesday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
-      Thursday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
-      Friday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
-      Saturday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
-      Sunday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
+      monday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
+      tuesday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
+      wednesday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
+      thursday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
+      friday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
+      saturday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
+      sunday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
     },
     public: {
       type: Boolean,
