@@ -1,0 +1,962 @@
+{
+	"info": {
+		"_postman_id": "4ecd0703-d267-4ac7-9407-c63150cd8db4",
+		"name": "WebFrameworkProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31011197"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"\",\r\n    \"lastname\": \"\",\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/auth/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "logged-in",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/logged-in",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"logged-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"\",\r\n    \"lastname\": \"\",\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "excercises",
+			"item": [
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "exercise",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"\",\r\n    \"category\": 0,\r\n    \"muscles\": [0, 1],\r\n    \"muscles_secondary\": [0, 1],\r\n    \"equipment\": [\"\", \"\"],\r\n    \"images\": [\"\", \"\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/excercises/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"excercises",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								},
+								"description": "Get single exercise by id."
+							},
+							"response": []
+						},
+						{
+							"name": "exercise",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/excercises/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"excercises",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "As a admin, you can delete workouts and plans."
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/exercises?categoryId&bookmark",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"exercises"
+							],
+							"query": [
+								{
+									"key": "categoryId",
+									"value": null
+								},
+								{
+									"key": "bookmark",
+									"value": null
+								}
+							]
+						},
+						"description": "categoryId: id of selected category\n\nbookmark: true or false"
+					},
+					"response": []
+				},
+				{
+					"name": "exercise",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/excercises/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"excercises",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Get single exercise by id."
+					},
+					"response": []
+				},
+				{
+					"name": "bookmark",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookmark\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/exercises/:id/bookmark",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"exercises",
+								":id",
+								"bookmark"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Single exercise is being bookmarked or bookmark is removed.\n\ntrue: bookmark excercise\n\nfalse: remove bookmark"
+					},
+					"response": []
+				}
+			],
+			"description": "After selecting a category, those exercises will be displayed. There are two tabs, the user can choose from: bookmarked exercises and all others. A user is able to bookmark an exercise and remove its bookmark at a later time."
+		},
+		{
+			"name": "workouts",
+			"item": [
+				{
+					"name": "exercises",
+					"item": [
+						{
+							"name": "all within workout",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/workouts/:id/exercises",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workouts",
+										":id",
+										"exercises"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "exercises to workout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"exercises\": [\r\n        {\r\n            \"exerciseId\": \"\",\r\n            \"sets\": [\r\n                {\r\n                    \"reps\": 2\r\n                }\r\n            ],\r\n            \"restSecondsBetweenSets\": 30,\r\n            \"notes\": \"\"\r\n        },\r\n        {\r\n            \"exerciseId\": \"\",\r\n            \"sets\": [\r\n                {\r\n                    \"reps\": 2\r\n                }\r\n            ],\r\n            \"restSecondsBetweenSets\": 30,\r\n            \"notes\": \"\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/workouts/:id/exercises",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workouts",
+										":id",
+										"exercises"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "exercise from workout",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/workouts/:id/exercises/:idDel",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workouts",
+										":id",
+										"exercises",
+										":idDel"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										},
+										{
+											"key": "idDel",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/workouts?public&bookmark",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workouts"
+							],
+							"query": [
+								{
+									"key": "public",
+									"value": null
+								},
+								{
+									"key": "bookmark",
+									"value": null
+								}
+							]
+						},
+						"description": "Get all workouts\n\n- public = false  \n    display all workouts the user has created\n    \n- public = true && bookmark = true  \n    display all public workouts that the user bookmarked\n    \n- public = true && bookmark = false  \n    display all public workouts that the user has not bookmarked"
+					},
+					"response": []
+				},
+				{
+					"name": "workout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/workouts/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workouts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Get single workout by id."
+					},
+					"response": []
+				},
+				{
+					"name": "workout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"\",\r\n    \"public\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/workouts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workouts"
+							]
+						},
+						"description": "Create a new workout."
+					},
+					"response": []
+				},
+				{
+					"name": "workout",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"\",\r\n    \"public\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/workouts/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workouts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Update selected workout."
+					},
+					"response": []
+				},
+				{
+					"name": "bookmark",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookmark\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/workouts/:id/bookmark",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workouts",
+								":id",
+								"bookmark"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Single workout is being bookmarked or bookmark is removed.\n\ntrue: bookmark workout\n\nfalse: remove bookmark"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "plans",
+			"item": [
+				{
+					"name": "workouts",
+					"item": [
+						{
+							"name": "all within plan",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/plans/:id/workouts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"plans",
+										":id",
+										"workouts"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "todays-workout",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/plans/:id/workouts/today",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"plans",
+										":id",
+										"workouts",
+										"today"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								},
+								"description": "For dashboard."
+							},
+							"response": []
+						},
+						{
+							"name": "workouts to plan",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"workouts\": \r\n    {\r\n        \"monday\": [],\r\n        \"tuesday\": [],\r\n        \"wednesday\": [],\r\n        \"thursday\": [],\r\n        \"friday\": [],\r\n        \"saturday\": [],\r\n        \"sunday\": []\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/plans/:id/workouts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"plans",
+										":id",
+										"workouts"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "workout",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/plans/:id/workouts/:idDel",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"plans",
+										":id",
+										"workouts",
+										":idDel"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										},
+										{
+											"key": "idDel",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/plans?public&bookmark",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"plans"
+							],
+							"query": [
+								{
+									"key": "public",
+									"value": null
+								},
+								{
+									"key": "bookmark",
+									"value": null
+								}
+							]
+						},
+						"description": "Get all plans\n\n- public = false  \n    display all plans the user has created and the current active one\n    \n- public = true && bookmark = true  \n    display all public plans that the user bookmarked and the current active one\n    \n- public = true && bookmark = false  \n    display all public plans that the user has not bookmarked, without the current active one"
+					},
+					"response": []
+				},
+				{
+					"name": "plan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/plans/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"plans",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Get single plan by id."
+					},
+					"response": []
+				},
+				{
+					"name": "active plan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/plans/active",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"plans",
+								"active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "plan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"\",\r\n    \"public\": false,\r\n    \"active\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/plans",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"plans"
+							]
+						},
+						"description": "Create a new workout.\n\n\"monday\": \\[ workoutIdOne, workoutIdTwo \\]"
+					},
+					"response": []
+				},
+				{
+					"name": "plan",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"\",\r\n    \"public\": false,\r\n    \"active\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/plans/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"plans",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Update selected plan."
+					},
+					"response": []
+				},
+				{
+					"name": "bookmark",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookmark\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/plans/:id/bookmark",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"plans",
+								":id",
+								"bookmark"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Single plan is being bookmarked or bookmark is removed.\n\ntrue: bookmark plan\n\nfalse: remove bookmark"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "workout-logs",
+			"item": [
+				{
+					"name": "past-progress",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/workout-logs/past-progress",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workout-logs",
+								"past-progress"
+							]
+						},
+						"description": "For dashboard graph.\n\nGetting a count of completed workouts for the past view weeks."
+					},
+					"response": []
+				},
+				{
+					"name": "latest-progress",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/workout-logs/latest-progress?workoutId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workout-logs",
+								"latest-progress"
+							],
+							"query": [
+								{
+									"key": "workoutId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "workout-logs",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"workoutId\": \"\",\r\n    \"exercises\": [\r\n        {\r\n            \"id\": \"\",\r\n            \"sets\": [\r\n                {\r\n                    \"reps\": 12,\r\n                    \"weight\": 12\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"notes\": \"\",\r\n    \"durationInMinutes\": 30 \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/workout-logs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"workout-logs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:5000/api",
+			"type": "string"
+		}
+	]
+}
