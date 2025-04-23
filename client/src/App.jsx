@@ -1,6 +1,6 @@
-// App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
@@ -11,7 +11,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route
+          <Route 
             path="/dashboard"
             element={
               <ProtectedRoute>
@@ -19,6 +19,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </AuthProvider>
