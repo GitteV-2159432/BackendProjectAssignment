@@ -24,6 +24,7 @@ Tech stack:
 ```sh
 cd server
 npm install
+npm run seed 
 npm run dev
 ```
 
