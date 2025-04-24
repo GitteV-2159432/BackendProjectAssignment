@@ -4,7 +4,6 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 import router from './routes/index.js'
-import setupSwaggerDocs from './config/swagger.js'
 import connectDB from './config/db.js'
 import cors from 'cors'
 import errorHandler from './middleware/error-handler.js'
@@ -35,14 +34,11 @@ app.use('/api', router)
 // Error handler middleware
 app.use(errorHandler)
 
-// Swagger docs
-setupSwaggerDocs(app, PORT)
-
 const filePath = path.join(__dirname, '../client/dist', 'index.html')
 console.log('Serving index.html from:', filePath)
 
 app.use(express.static(path.join(__dirname, '../client/dist')))
 
 app.listen(PORT, () =>
-  console.log(`API documentation running on http://localhost:${PORT}/api-docs`)
+  console.log(`Server running on http://localhost:${PORT}`)
 )
