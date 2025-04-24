@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "4ecd0703-d267-4ac7-9407-c63150cd8db4",
+		"_postman_id": "0fa42a5a-6fe2-49a7-ad76-f79b431a6045",
 		"name": "WebFrameworkProject",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "31011197"
+		"_exporter_id": "31011200"
 	},
 	"item": [
 		{
@@ -1011,37 +1011,327 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/workout-logs/past-progress",
+							"raw": "{{baseUrl}}/workout-logs/past-progress/?userId=6808d1c653beea420d3f4f84",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"workout-logs",
-								"past-progress"
+								"past-progress",
+								""
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "6808d1c653beea420d3f4f84"
+								}
 							]
 						},
 						"description": "For dashboard graph.\n\nGetting a count of completed workouts for the past view weeks."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/workout-logs/past-progress/?userId=6808d1c653beea420d3f4f84",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workout-logs",
+										"past-progress",
+										""
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "6808d1c653beea420d3f4f84"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "29"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d-Op4QRSEbKauX5Xfixm7wAYHUYSQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 24 Apr 2025 19:35:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"14\": 0,\n    \"15\": 1,\n    \"16\": 0,\n    \"17\": 4\n}"
+						},
+						{
+							"name": "Bad Request (userId to short)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/workout-logs/past-progress/?userId=6808d1c653beea420d3f4f8",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workout-logs",
+										"past-progress",
+										""
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "6808d1c653beea420d3f4f8"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "149"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"95-8LSuUFLUJotWR8i8XUkLINtpi3M\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 24 Apr 2025 19:36:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        {\n            \"type\": \"field\",\n            \"value\": \"6808d1c653beea420d3f4f8\",\n            \"msg\": \"userId must be exactly 24 characters long.\",\n            \"path\": \"userId\",\n            \"location\": \"query\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Bad Request (userId missing)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/workout-logs/past-progress/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workout-logs",
+										"past-progress",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "215"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d7-X6irx//0PHPId+ggNNAjHsXA5DQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 24 Apr 2025 19:36:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        {\n            \"type\": \"field\",\n            \"value\": \"\",\n            \"msg\": \"userId is required!\",\n            \"path\": \"userId\",\n            \"location\": \"body\"\n        },\n        {\n            \"type\": \"field\",\n            \"value\": \"\",\n            \"msg\": \"userId must be exactly 24 characters long.\",\n            \"path\": \"userId\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "User not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/workout-logs/past-progress/?userId=6808d1c653beea420d3f4f10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"workout-logs",
+										"past-progress",
+										""
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "6808d1c653beea420d3f4f10"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "327"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"147-VFzvAuzgkrx5seU8N9wOUCji+dU\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 24 Apr 2025 19:50:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"User not found!\",\n        \"stack\": \"Error: User not found!\\n    at getPastProgress (file:///home/elias/Documents/FHV/Exchange%20Vault/WebFrameworkProject/BackendProjectAssignment/server/controllers/workout-log-controller.js:11:11)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\"\n    }\n}"
+						}
+					]
 				},
 				{
-					"name": "latest-progress",
+					"name": "latest-log",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/workout-logs/latest-progress?workoutId",
+							"raw": "{{baseUrl}}/workout-logs/latest-log?userId=6808d1c653beea420d3f4f84&workoutId=6808d1c653beea420d3f4f90",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"workout-logs",
-								"latest-progress"
+								"latest-log"
 							],
 							"query": [
 								{
+									"key": "userId",
+									"value": "6808d1c653beea420d3f4f84"
+								},
+								{
 									"key": "workoutId",
-									"value": null
+									"value": "6808d1c653beea420d3f4f90"
 								}
 							]
 						}
@@ -1055,7 +1345,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"workoutId\": \"\",\r\n    \"exercises\": [\r\n        {\r\n            \"id\": \"\",\r\n            \"sets\": [\r\n                {\r\n                    \"reps\": 12,\r\n                    \"weight\": 12\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"notes\": \"\",\r\n    \"durationInMinutes\": 30 \r\n}",
+							"raw": "{\r\n    \"userId\": \"6808d1c653beea420d3f4f84\",\r\n    \"workoutId\": \"6808d1c653beea420d3f4f90\",\r\n    \"exercises\": [\r\n        {\r\n            \"exerciseId\": \"6808d1c653beea420d3f4f59\",\r\n            \"sets\": [\r\n                {\r\n                    \"reps\": 12,\r\n                    \"_id\": \"6808d1c653beea420d3f4fb4\"\r\n                },\r\n                {\r\n                    \"reps\": 12,\r\n                    \"_id\": \"6808d1c653beea420d3f4fb5\"\r\n                },\r\n                {\r\n                    \"reps\": 12,\r\n                    \"_id\": \"6808d1c653beea420d3f4fb6\"\r\n                }\r\n            ],\r\n            \"_id\": \"6808d1c653beea420d3f4fb3\"\r\n        },\r\n        {\r\n            \"exerciseId\": \"6808d1c653beea420d3f4f3b\",\r\n            \"sets\": [\r\n                {\r\n                    \"reps\": 10,\r\n                    \"weight\": 30,\r\n                    \"_id\": \"6808d1c653beea420d3f4fb8\"\r\n                },\r\n                {\r\n                    \"reps\": 8,\r\n                    \"weight\": 30,\r\n                    \"_id\": \"6808d1c653beea420d3f4fb9\"\r\n                },\r\n                {\r\n                    \"reps\": 6,\r\n                    \"weight\": 30,\r\n                    \"_id\": \"6808d1c653beea420d3f4fba\"\r\n                }\r\n            ],\r\n            \"_id\": \"6808d1c653beea420d3f4fb7\"\r\n        },\r\n        {\r\n            \"exerciseId\": \"6808d1c653beea420d3f4f7b\",\r\n            \"sets\": [\r\n                {\r\n                    \"reps\": 10,\r\n                    \"weight\": 90,\r\n                    \"_id\": \"6808d1c653beea420d3f4fbc\"\r\n                },\r\n                {\r\n                    \"reps\": 8,\r\n                    \"weight\": 90,\r\n                    \"_id\": \"6808d1c653beea420d3f4fbd\"\r\n                },\r\n                {\r\n                    \"reps\": 10,\r\n                    \"weight\": 80,\r\n                    \"_id\": \"6808d1c653beea420d3f4fbe\"\r\n                }\r\n            ],\r\n            \"_id\": \"6808d1c653beea420d3f4fbb\"\r\n        }\r\n    ],\r\n    \"notes\": \"Stronger than last time.\",\r\n    \"durationInMinutes\": 120\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -1,11 +1,17 @@
 import workoutLogService from '../services/workout-log-service.js'
 import httpError from '../utils/httpError.js'
 import toObjectId from '../utils/toObjectId.js'
+import User from '../models/User.js'
 
 const getPastProgress = async (req, res) => {
   const { userId } = req.query
+  const userObjectId = toObjectId(userId)
 
-  const pastProgress = await workoutLogService.countLogs(toObjectId(userId))
+  if (!(await User.findById(userObjectId))) {
+    throw new httpError(404, 'User not found!')
+  }
+
+  const pastProgress = await workoutLogService.countLogs(userObjectId)
   if (!pastProgress) {
     throw new httpError(
       500,
