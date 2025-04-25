@@ -1,7 +1,7 @@
 import express from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import User from '../models/User.js' // adjust path if needed
+import User from '../models/User.js'
 
 const router = express.Router()
 
@@ -20,7 +20,7 @@ router.post("/login", async (req, res) => {
   res.json({ token });
 });
 
-// POST /api/auth/register
+// POST /api/auth/register 
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -47,6 +47,5 @@ router.post("/register", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
-
 
 export default router;

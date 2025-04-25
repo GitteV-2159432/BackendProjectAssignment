@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const login = (token) => {
     localStorage.setItem("token", token);
     setToken(token);
+    console.log("Token set in localStorage:", token);
   };
 
   const logout = () => {
