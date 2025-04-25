@@ -28,7 +28,7 @@ const workoutSchema = new mongoose.Schema(
         },
       },
     ],
-    public: { type: Boolean, default: false },
+    isPublic: { type: Boolean, default: false },
   },
   {
     timestamps: true,

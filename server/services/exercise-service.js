@@ -2,7 +2,7 @@ import Category from '../models/Category.js'
 import Exercise from '../models/Exercise.js'
 import Muscle from '../models/Muscle.js'
 import fetchFromWger from '../utils/wgerFetcher.js'
-import { createGenericService } from './generic-service.js'
+import { createGenericService } from './components/generic-service.js'
 
 const exerciseService = createGenericService(Exercise)
 
