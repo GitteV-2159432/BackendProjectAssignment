@@ -25,11 +25,7 @@ const planSchema = new mongoose.Schema(
       saturday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
       sunday: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
     },
-    public: {
-      type: Boolean,
-      default: false,
-    },
-    active: {
+    isPublic: {
       type: Boolean,
       default: false,
     },

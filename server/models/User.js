@@ -24,17 +24,23 @@ const userSchema = new mongoose.Schema(
       enum: ['admin', 'user'],
       default: 'user',
     },
+    bookmarks: {
+      exercises: [mongoose.Types.ObjectId],
+      plans: [mongoose.Types.ObjectId],
+      workouts: [mongoose.Types.ObjectId],
+    },
+    activePlan: mongoose.Types.ObjectId,
   },
   {
     timestamps: true,
   }
 )
 
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
-  this.password = await bcrypt.hash(this.password, 12);
-  next();
-});
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next()
+  this.password = await bcrypt.hash(this.password, 12)
+  next()
+})
 
 const User = mongoose.model('User', userSchema)
 
