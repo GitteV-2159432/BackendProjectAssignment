@@ -1,26 +1,15 @@
-// pages/Dashboard.jsx
+import Navbar from "../components/NavBar";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 const Dashboard = () => {
-  return (<h1>Dashboard</h1>);
-  /*const [data, setData] = useState(null);
-  const { token } = useAuth();
+ 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch("http://localhost:5000/dashboard", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      const json = await res.json();
-      setData(json.message);
-    };
-
-    fetchData();
-  }, [token]);
-
-  return <div>{data ? <p>{data}</p> : <p>Loading...</p>}</div>;*/
+  return (
+    <div>
+      <h1>Dashboard</h1>
+    </div>
+  );
 };
 
 export default Dashboard;

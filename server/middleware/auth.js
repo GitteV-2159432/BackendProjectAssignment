@@ -1,3 +1,4 @@
+import passport from "passport";
 import { verify } from 'jsonwebtoken'
 
 const authMiddleware = (req, res, next) => {
@@ -16,3 +17,4 @@ const authMiddleware = (req, res, next) => {
 }
 
 export default authMiddleware
+
