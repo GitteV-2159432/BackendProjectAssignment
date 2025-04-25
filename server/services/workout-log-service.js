@@ -2,8 +2,7 @@ import mongoose from 'mongoose'
 import { addWeeks, startOfISOWeek, format } from 'date-fns'
 
 import WorkoutLog from '../models/Workout-Log.js'
-import { createGenericService } from './generic-service.js'
-import httpError from '../utils/httpError.js'
+import { createGenericService } from './components/generic-service.js'
 
 const workoutLogService = {}
 
