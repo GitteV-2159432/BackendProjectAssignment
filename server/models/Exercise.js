@@ -23,6 +23,7 @@ const exerciseSchema = new mongoose.Schema({
     },
   ],
   equipment: [{ type: String, default: '' }],
+  images: [{ type: String, default: '' }],
 })
 
 const Exercise =

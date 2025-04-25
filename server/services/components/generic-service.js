@@ -1,7 +1,7 @@
 export function createGenericService(Model) {
   return {
-    async getAll() {
-      return await Model.find()
+    async getAll(query) {
+      return await Model.find(query)
     },
 
     async getById(id) {

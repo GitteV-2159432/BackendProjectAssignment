@@ -29,12 +29,32 @@ const seedData = async () => {
   await muscleService.populateMuscles()
   await exerciseService.populateExercises()
 
+  const exercises = await Exercise.find({
+    name: {
+      $in: [
+        'Pull-ups',
+        'Deadlifts',
+        'Wall balls',
+        'Dumbbell Lunges Walking',
+        'Squats (Dumbbells)',
+        'Push-Ups | Decline',
+        'Bench Press',
+        'Suspended crossess',
+      ],
+    },
+  })
+
+  const getEx = (name) => exercises.find((ex) => ex.name === name)
+
   const users = await User.insertMany([
     {
       firstName: 'Elias',
       lastName: 'Sohm',
       email: 'elias@sample',
       passwordHash: await bcrypt.hash('banana1', 12),
+      bookmarks: {
+        exercises: [getEx('Pull-ups')._id, getEx('Deadlifts')._id],
+      },
     },
     {
       firstName: 'Francis',
@@ -58,23 +78,6 @@ const seedData = async () => {
 
   const arne = users.find((u) => u.firstName === 'Arne')
 
-  const exercises = await Exercise.find({
-    name: {
-      $in: [
-        'Pull-ups',
-        'Deadlifts',
-        'Wall balls',
-        'Dumbbell Lunges Walking',
-        'Squats (Dumbbells)',
-        'Push-Ups | Decline',
-        'Bench Press',
-        'Suspended crossess',
-      ],
-    },
-  })
-
-  const getEx = (name) => exercises.find((ex) => ex.name === name)
-
   if (exercises.length < 8) return console.error('Missing some exercises.')
 
   const [backday, legday, pushday, cardio] = await Workout.insertMany([
@@ -96,7 +99,7 @@ const seedData = async () => {
           notes: 'Back straight!',
         },
       ],
-      public: true,
+      isPublic: true,
     },
     {
       userId: arne._id,
@@ -120,7 +123,7 @@ const seedData = async () => {
           notes: 'Multijoint exercise.',
         },
       ],
-      public: false,
+      isPublic: false,
     },
     {
       userId: arne._id,
@@ -150,7 +153,7 @@ const seedData = async () => {
           notes: 'Squeeze hard.',
         },
       ],
-      public: true,
+      isPublic: true,
     },
     {
       userId: arne._id,
@@ -163,7 +166,7 @@ const seedData = async () => {
           restSecondsBetweenSets: 90,
         },
       ],
-      public: false,
+      isPublic: false,
     },
   ])
 
@@ -176,7 +179,7 @@ const seedData = async () => {
         monday: [backday._id, cardio._id],
         tuesday: [legday._id],
       },
-      public: true,
+      isPublic: true,
       active: true,
     },
     {
@@ -188,7 +191,7 @@ const seedData = async () => {
         wednesday: [pushday._id],
         friday: [legday._id],
       },
-      public: true,
+      isPublic: true,
       active: false,
     },
     {
@@ -200,7 +203,7 @@ const seedData = async () => {
         thursday: [pushday._id],
         saturday: [legday._id],
       },
-      public: false,
+      isPublic: false,
       active: true,
     },
   ])
