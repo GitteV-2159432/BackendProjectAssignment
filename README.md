@@ -13,9 +13,7 @@ Tech stack:
 - React for the frontend
 - Vite
 - MongoDB
-- Nodecache for caching categories and equipment
 - Express validator: validation
-- Swagger for API documentation
 - Axios for fetching
 - Passport.js for authentication
 
