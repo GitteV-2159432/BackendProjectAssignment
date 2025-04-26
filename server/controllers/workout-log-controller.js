@@ -1,49 +1,38 @@
 import workoutLogService from '../services/workout-log-service.js'
-import httpError from '../utils/httpError.js'
-import toObjectId from '../utils/toObjectId.js'
-import User from '../models/User.js'
+import HttpError from '../utils/httpError.js'
 
 const getPastProgress = async (req, res) => {
-  const { userId } = req.query
-  const userObjectId = toObjectId(userId)
-
-  if (!(await User.findById(userObjectId))) {
-    throw new httpError(404, 'User not found!')
-  }
-
-  const pastProgress = await workoutLogService.countLogs(userObjectId)
+  const pastProgress = await workoutLogService.countLogs(req.userObjectId)
   if (!pastProgress) {
-    throw new httpError(
-      500,
-      'Something went wrong, when counting past workouts.'
-    )
+    throw new HttpError(500, 'Error while counting past workouts.')
   }
 
   return res.json(pastProgress)
 }
 
 const getLatestLog = async (req, res) => {
-  const { userId, workoutId } = req.query
-
-  const log = await workoutLogService.getLatest(
-    toObjectId(userId),
-    toObjectId(workoutId)
+  const log = await workoutLogService.getWorkoutByQuery(
+    { userId: req.userObjectId, workoutId: req.workoutObjectId },
+    { date: -1 }
   )
-  if (!log) {
-    throw new httpError(404, 'No corresponding workout log found.')
-  }
 
   return res.json(log)
 }
 
 const addWorkoutLog = async (req, res) => {
-  const { userId, workoutId, exercises, notes, durationInMinutes, date } =
-    req.body
-  const data = { userId, workoutId, exercises, notes, durationInMinutes, date }
+  const { workoutId, exercises, notes, durationInMinutes, date } = req.body
+  const data = {
+    userId: req.userObjectId,
+    workoutId,
+    exercises,
+    notes,
+    durationInMinutes,
+    date,
+  }
 
   const newWorkoutLog = await workoutLogService.create(data)
   if (!newWorkoutLog) {
-    throw new httpError(500, 'Creation of workout log failed.')
+    throw new HttpError(500, 'Creation of workout log failed.')
   }
 
   return res.status(201).json(newWorkoutLog)
