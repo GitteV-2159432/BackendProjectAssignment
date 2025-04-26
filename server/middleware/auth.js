@@ -1,4 +1,5 @@
-import { verify } from 'jsonwebtoken'
+import jsonwebtoken from 'jsonwebtoken'
+const { verify } = jsonwebtoken
 
 const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization

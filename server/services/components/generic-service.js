@@ -1,11 +1,29 @@
+import HttpError from '../../utils/httpError.js'
+
 export function createGenericService(Model) {
+  const modelName = Model.modelName || 'Document'
+
   return {
-    async getAll(query) {
-      return await Model.find(query)
+    async getAll(query, sortQuery) {
+      return await Model.find(query).sort(sortQuery)
     },
 
     async getById(id) {
-      return await Model.findById(id)
+      const document = await Model.findById(id)
+      if (!document) {
+        throw new HttpError(404, `${modelName} not found.`)
+      }
+
+      return document
+    },
+
+    async getWorkoutByQuery(query, sortQuery) {
+      const document = await Model.findOne(query).sort(sortQuery)
+      if (!document) {
+        throw new HttpError(404, `${modelName} not found.`)
+      }
+
+      return document
     },
 
     async create(data) {
