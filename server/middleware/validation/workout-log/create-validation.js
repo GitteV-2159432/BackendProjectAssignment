@@ -1,18 +1,18 @@
-import { check } from 'express-validator'
-import objectIdValidation from '../objectIdValidation.js'
+import { body } from 'express-validator'
+
+import objectIdValidation from '../object-id-validation.js'
 
 const createValidation = () => {
   return [
-    ...objectIdValidation('userId'),
     ...objectIdValidation('workoutId'),
 
-    check('exercises')
+    body('exercises')
       .isArray({ min: 1 })
       .withMessage(`Exercises has to be non-empty array.`),
 
     ...objectIdValidation('exercises.*.exerciseId'),
 
-    check('durationInMinutes')
+    body('durationInMinutes')
       .trim()
       .escape()
       .notEmpty()

@@ -33,6 +33,6 @@ const workoutLogSchema = new mongoose.Schema(
 )
 
 const WorkoutLog =
-  mongoose.model.WorkoutLog || mongoose.model('WorkoutLog', workoutLogSchema)
+  mongoose.models.WorkoutLog || mongoose.model('WorkoutLog', workoutLogSchema)
 
 export default WorkoutLog
