@@ -6,12 +6,19 @@ import {
   getPlans,
   updatePlan,
 } from '../controllers/plan-controller.js'
+import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
 import validate from '../middleware/validation/validation.js'
-import { validateGetAllQueryParams } from '../middleware/validation/queryParamValidation.js'
+import { validateGetAllQueryParams } from '../middleware/validation/query-param-validation.js'
+import { query } from 'express-validator'
 
 const router = express.Router()
 
-router.get('/', [...validateGetAllQueryParams(), validate], getPlans)
+router.get(
+  '/',
+  userIdToObjectId,
+  [...validateGetAllQueryParams(), validate],
+  getPlans
+)
 
 router.get('/:id', getPlan)
 
