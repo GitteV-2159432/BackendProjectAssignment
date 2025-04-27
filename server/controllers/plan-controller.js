@@ -1,12 +1,18 @@
 import { sanitizeBooleanQueryParam } from '../middleware/sanitization/query-param-sanitization.js'
 import planService from '../services/plan-service.js'
 import userService from '../services/user-service.js'
+import HttpError from '../utils/httpError.js'
+import mongoose from 'mongoose'
 
 const getPlans = async (req, res) => {
   const isPublic = sanitizeBooleanQueryParam(req.query.isPublic)
   const bookmark = sanitizeBooleanQueryParam(req.query.bookmark)
 
   const filter = { isPublic }
+
+  if (!isPublic) {
+    filter.userId = req.userObjectId
+  }
 
   if (isPublic && bookmark) {
     filter._id = {
@@ -18,11 +24,19 @@ const getPlans = async (req, res) => {
 }
 
 const getPlan = async (req, res) => {
-  // TODO
+  const plan = await planService.getById(req.params.id)
+
+  if (!plan.userId.equals(req.userObjectId)) {
+    throw new HttpError(403, 'You do not have permission to access this plan.')
+  }
+
+  return res.json(plan)
 }
 
 const addPlan = async (req, res) => {
-  // TODO
+  return res.json(
+    await planService.create({ ...req.body, userId: req.userObjectId })
+  )
 }
 
 const updatePlan = async (req, res) => {

@@ -1,25 +1,19 @@
-import { check } from 'express-validator'
+import { body } from 'express-validator'
 
 const validateBoolean = (name, isRequired) => {
+  let validator = body(name)
+
   if (isRequired) {
-    return [
-      check(name)
-        .exists()
-        .withMessage(`${name} is required.`)
-        .bail()
-        .isBoolean()
-        .withMessage(`${name} must be true or false.`)
-        .toBoolean(),
-    ]
+    validator = validator.exists().withMessage(`${name} is required.`).bail()
+  } else {
+    validator = validator.optional()
   }
 
-  return [
-    check(name)
-      .optional()
-      .isBoolean()
-      .withMessage(`${name} must be true or false.`)
-      .toBoolean(),
-  ]
+  validator = validator
+    .isBoolean()
+    .withMessage(`${name} must be true or false.`)
+
+  return validator.toBoolean()
 }
 
 export default validateBoolean
