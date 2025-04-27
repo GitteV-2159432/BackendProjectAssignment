@@ -6,6 +6,6 @@ const categorySchema = new mongoose.Schema({
 })
 
 const Category =
-  mongoose.model.Category || mongoose.model('Category', categorySchema)
+  mongoose.models.Category || mongoose.model('Category', categorySchema)
 
 export default Category
