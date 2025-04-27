@@ -17,6 +17,7 @@ const createValidation = () => {
       .escape()
       .notEmpty()
       .withMessage("durationInMinutes can't be empty.")
+      .bail()
       .isInt({ min: 1 })
       .withMessage(`durationInMinutes has to be a number.`),
   ]
