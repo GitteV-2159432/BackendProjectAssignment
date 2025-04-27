@@ -1,6 +1,6 @@
 import HttpError from '../../utils/httpError.js'
 
-export function createGenericService(Model) {
+export default function createGenericService(Model) {
   const modelName = Model.modelName || 'Document'
 
   return {

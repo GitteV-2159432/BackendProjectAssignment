@@ -8,6 +8,7 @@ const objectIdValidation = (idName) => {
       .escape()
       .notEmpty()
       .withMessage(`${idName} can't be empty.`)
+      .bail()
       .custom((id) => mongoose.Types.ObjectId.isValid(id))
       .withMessage(`Invalid ${idName} format.`)
       .bail() // stops execution of current chain if there's an error

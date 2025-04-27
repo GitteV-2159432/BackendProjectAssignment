@@ -1,5 +1,5 @@
 import Category from '../models/Category.js'
-import { createGenericService } from './components/generic-service.js'
+import createGenericService from './components/generic-service.js'
 import fetchFromWger from '../utils/wgerFetcher.js'
 
 const categoryService = createGenericService(Category)
