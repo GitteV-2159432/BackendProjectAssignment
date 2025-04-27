@@ -1,5 +1,7 @@
-import passport from "passport";
-import { verify } from 'jsonwebtoken'
+import passport from "passport"; 
+
+import jsonwebtoken from 'jsonwebtoken'
+const { verify } = jsonwebtoken 
 
 const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization

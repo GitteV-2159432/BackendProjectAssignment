@@ -212,6 +212,7 @@ const seedData = async () => {
     {
       userId: arne._id,
       workoutId: legday._id,
+      date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
       exercises: [
         {
           exerciseId: getEx('Wall balls')._id,
@@ -239,6 +240,7 @@ const seedData = async () => {
     {
       userId: arne._id,
       workoutId: pushday._id,
+      date: new Date(Date.now() - 24 * 60 * 60 * 1000),
       exercises: [
         {
           exerciseId: getEx('Push-Ups | Decline')._id,
@@ -262,6 +264,7 @@ const seedData = async () => {
     {
       userId: arne._id,
       workoutId: cardio._id,
+      date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
       exercises: [
         {
           exerciseId: getEx('Wall balls')._id,

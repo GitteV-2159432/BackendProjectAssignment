@@ -5,27 +5,35 @@ import {
   getPastProgress,
 } from '../controllers/workout-log-controller.js'
 import validate from '../middleware/validation/validation.js'
-import objectIdValidation from '../middleware/validation/objectIdValidation.js'
-import createValidation from '../middleware/validation/workout-log/createValidation.js'
+import createValidation from '../middleware/validation/workout-log/create-validation.js'
+import authMiddleware from '../middleware/auth.js'
+import objectIdValidation from '../middleware/validation/object-id-validation.js'
+import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
 
 const router = express.Router()
 
 router.get(
-  '/past-progress',
-  [...objectIdValidation('userId'), validate],
+  '/weekly-count',
+  authMiddleware,
+  userIdToObjectId,
+  [...objectIdValidation('workoutId'), validate],
   getPastProgress
 )
 
 router.get(
   '/latest-log',
-  [
-    ...objectIdValidation('userId'),
-    ...objectIdValidation('workoutId'),
-    validate,
-  ],
+  authMiddleware,
+  userIdToObjectId,
+  [...objectIdValidation('workoutId'), validate],
   getLatestLog
 )
 
-router.post('/', [...createValidation(), validate], addWorkoutLog)
+router.post(
+  '/',
+  authMiddleware,
+  userIdToObjectId,
+  [...createValidation(), validate],
+  addWorkoutLog
+)
 
 export default router

@@ -8,6 +8,6 @@ const muscleSchema = new mongoose.Schema({
   image_url_secondary: { type: String, default: '' },
 })
 
-const Muscle = mongoose.model.Muscle || mongoose.model('Muscle', muscleSchema)
+const Muscle = mongoose.models.Muscle || mongoose.model('Muscle', muscleSchema)
 
 export default Muscle

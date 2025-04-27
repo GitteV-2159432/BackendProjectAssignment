@@ -4,9 +4,7 @@ import { addWeeks, startOfISOWeek, format } from 'date-fns'
 import WorkoutLog from '../models/Workout-Log.js'
 import { createGenericService } from './components/generic-service.js'
 
-const workoutLogService = {}
-
-workoutLogService.create = createGenericService(WorkoutLog).create
+const workoutLogService = createGenericService(WorkoutLog)
 
 /**
  * Returns the number of workout logs per ISO calendar week for a given user,
@@ -24,12 +22,12 @@ workoutLogService.countLogs = async (userId, weeks = 3) => {
     {
       $match: {
         userId: userId,
-        createdAt: { $gte: nWeeksAgo },
+        date: { $gte: nWeeksAgo },
       },
     },
     {
       $addFields: {
-        isoWeek: { $isoWeek: '$createdAt' },
+        isoWeek: { $isoWeek: '$date' },
       },
     },
     {
@@ -60,22 +58,6 @@ workoutLogService.countLogs = async (userId, weeks = 3) => {
   }
 
   return fullWeeks
-}
-
-/**
- * Retrieves the most recent workout log for a specific user and workout.
- *
- * @param {mongoose.Types.ObjectId} userId - The user's ObjectId.
- * @param {mongoose.Types.ObjectId} workoutId - The workout's ObjectId.
- * @returns {Promise<WorkoutLog>} The latest matching workout log, or null if none found.
- */
-workoutLogService.getLatest = async (userId, workoutId) => {
-  const workoutLog = await WorkoutLog.findOne({
-    userId: userId,
-    workoutId: workoutId,
-  }).sort({ createdAt: -1 })
-
-  return workoutLog
 }
 
 export default workoutLogService
