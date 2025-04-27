@@ -8,7 +8,7 @@ const userIdToObjectId = async (req, res, next) => {
     try {
       const userObjectId = new mongoose.Types.ObjectId(String(req.user.userId))
       if (!(await User.findById(userObjectId))) {
-        throw new HttpError(404, 'User not found!')
+        throw new HttpError(404, 'User not found.')
       }
 
       req.userObjectId = userObjectId

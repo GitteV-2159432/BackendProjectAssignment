@@ -170,6 +170,15 @@ const seedData = async () => {
     },
   ])
 
+  await User.updateOne(
+    { _id: arne._id },
+    {
+      $set: {
+        'bookmarks.workouts': [backday._id, pushday._id],
+      },
+    }
+  )
+
   await Plan.insertMany([
     {
       userId: arne._id,
