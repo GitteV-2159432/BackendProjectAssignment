@@ -1,7 +1,9 @@
 import planService from '../services/plan-service.js'
 
 const getPlans = async (req, res) => {
-  return res.json(await planService.getAll())
+  const { isPublic, bookmark } = req.query
+
+  return res.json(await planService.getAll({ isPublic, bookmark }))
 }
 
 const getPlan = async (req, res) => {

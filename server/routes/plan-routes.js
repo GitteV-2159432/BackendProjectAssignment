@@ -6,10 +6,12 @@ import {
   getPlans,
   updatePlan,
 } from '../controllers/plan-controller.js'
+import validate from '../middleware/validation/validation.js'
+import { validateGetAllQueryParams } from '../middleware/validation/queryParamValidation.js'
 
 const router = express.Router()
 
-router.get('/', getPlans)
+router.get('/', [...validateGetAllQueryParams(), validate], getPlans)
 
 router.get('/:id', getPlan)
 
