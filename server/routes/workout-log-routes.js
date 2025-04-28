@@ -26,11 +26,6 @@ router.get(
   getLatestLog
 )
 
-router.post(
-  '/',
-  userIdToObjectId,
-  [...createValidation(), validate],
-  addWorkoutLog
-)
+router.post('/', userIdToObjectId, createValidation(), validate, addWorkoutLog)
 
 export default router
