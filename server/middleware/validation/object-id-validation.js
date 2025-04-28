@@ -1,7 +1,8 @@
 import mongoose from 'mongoose'
 import { check } from 'express-validator'
 
-const objectIdValidation = (idName) => {
+
+const validateObjectId = (idName) => {
   return check(idName)
     .trim()
     .escape()
@@ -14,4 +15,4 @@ const objectIdValidation = (idName) => {
     .customSanitizer((id) => new mongoose.Types.ObjectId(String(id)))
 }
 
-export default objectIdValidation
+export default validateObjectId

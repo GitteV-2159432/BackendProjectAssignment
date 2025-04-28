@@ -1,5 +1,3 @@
-import passport from "passport"; 
-
 import jsonwebtoken from 'jsonwebtoken'
 const { verify } = jsonwebtoken 
 
