@@ -21,7 +21,12 @@ router.get(
     getExercises
 )
 
-router.get('/:id', getExercise)
+router.get( 
+    '/:id',
+    userIdToObjectId,
+    [validateObjectId('id'), validate],
+    getExercise
+)
 
 router.post('/:id/bookmark', addBookmark)
 

@@ -26,7 +26,11 @@ const getExercises = async (req, res) => {
 }
 
 const getExercise = async (req, res) => {
-  //TODO
+  const exercise = await exerciseService.getById(
+    req.params.id,
+  )
+
+  return res.json(exercise)
 }
 
 const addBookmark = async (req, res) => {

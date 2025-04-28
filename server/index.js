@@ -7,7 +7,6 @@ import mongoSanitize from 'mongo-sanitize'
 
 import router from './routes/index.js'
 import connectDB from './config/db.js'
-import cors from 'cors'
 import passport from './config/passportConfig.js'
 import errorHandler from './middleware/error-handler.js'
 
