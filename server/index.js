@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url'
 import router from './routes/index.js'
 import connectDB from './config/db.js'
 import cors from 'cors'
-import passport from "./config/passportConfig.js";
+import passport from './config/passportConfig.js'
 import errorHandler from './middleware/error-handler.js'
 
 configDotenv()
@@ -14,7 +14,7 @@ configDotenv()
 const app = express()
 const PORT = process.env.PORT || 5000
 
-app.use(passport.initialize());
+app.use(passport.initialize())
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
