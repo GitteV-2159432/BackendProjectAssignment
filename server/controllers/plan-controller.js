@@ -14,9 +14,15 @@ const getPlans = async (req, res) => {
     filter.userId = req.userObjectId
   }
 
-  if (isPublic && bookmark) {
-    filter._id = {
-      $in: (await userService.getById(req.userObjectId)).bookmarks.plans,
+  if (isPublic) {
+    if (bookmark) {
+      filter._id = {
+        $in: (await userService.getById(req.userObjectId)).bookmarks.plans,
+      }
+    } else {
+      filter._id = {
+        $nin: (await userService.getById(req.userObjectId)).bookmarks.plans,
+      }
     }
   }
 
@@ -26,7 +32,7 @@ const getPlans = async (req, res) => {
 const getPlan = async (req, res) => {
   const plan = await planService.getById(req.params.id)
 
-  if (!plan.userId.equals(req.userObjectId)) {
+  if (!plan.isPublic && !plan.userId.equals(req.userObjectId)) {
     throw new HttpError(403, 'You do not have permission to access this plan.')
   }
 
@@ -34,9 +40,7 @@ const getPlan = async (req, res) => {
 }
 
 const addPlan = async (req, res) => {
-  return res.json(
-    await planService.create({ ...req.body, userId: req.userObjectId })
-  )
+  // TODO
 }
 
 const updatePlan = async (req, res) => {

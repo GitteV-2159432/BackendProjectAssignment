@@ -10,7 +10,7 @@ import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
 import validateObjectId from '../middleware/validation/object-id-validation.js'
 import validate from '../middleware/validation/validation.js'
 import { validateGetAllQueryParams } from '../middleware/validation/query-param-validation.js'
-import validateCreation from '../middleware/validation/plan/create-validation.js'
+import validateCreate from '../middleware/validation/plan/create-validation.js'
 
 const router = express.Router()
 
@@ -28,7 +28,7 @@ router.get(
   getPlan
 )
 
-router.post('/', userIdToObjectId, [...validateCreation(), validate], addPlan)
+router.post('/', userIdToObjectId, [...validateCreate(), validate], addPlan)
 
 router.put('/:id', updatePlan)
 
