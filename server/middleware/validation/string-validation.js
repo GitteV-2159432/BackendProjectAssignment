@@ -7,7 +7,7 @@ const validateString = (name, maxLength, isRequired) => {
     validator = validator
       .trim()
       .escape()
-      .isEmpty()
+      .notEmpty()
       .withMessage(`${name} is required.`)
       .bail()
   } else {
