@@ -4,13 +4,13 @@ import objectIdValidation from '../object-id-validation.js'
 
 const createValidation = () => {
   return [
-    ...objectIdValidation('workoutId'),
+    objectIdValidation('workoutId'),
 
     body('exercises')
       .isArray({ min: 1 })
       .withMessage(`Exercises has to be non-empty array.`),
 
-    ...objectIdValidation('exercises.*.exerciseId'),
+    objectIdValidation('exercises.*.exerciseId'),
 
     body('durationInMinutes')
       .trim()

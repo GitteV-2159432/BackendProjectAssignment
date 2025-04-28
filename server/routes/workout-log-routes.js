@@ -15,22 +15,19 @@ const router = express.Router()
 router.get(
   '/weekly-count',
   userIdToObjectId,
-  [...objectIdValidation('workoutId'), validate],
+  objectIdValidation('workoutId'),
+  validate,
   getPastProgress
 )
 
 router.get(
   '/latest-log',
   userIdToObjectId,
-  [...objectIdValidation('workoutId'), validate],
+  objectIdValidation('workoutId'),
+  validate,
   getLatestLog
 )
 
-router.post(
-  '/',
-  userIdToObjectId,
-  [...createValidation(), validate],
-  addWorkoutLog
-)
+router.post('/', userIdToObjectId, createValidation(), validate, addWorkoutLog)
 
 export default router
