@@ -1,4 +1,5 @@
 import { query } from 'express-validator'
+import validateObjectId from './object-id-validation.js'
 
 /**
  * Validates the query parameters for the "get all" API request for workouts and plans.
@@ -40,4 +41,31 @@ const validateGetAllQueryParams = () => {
   return [isPublicValidation, bookmarkValidation]
 }
 
-export { validateGetAllQueryParams }
+
+/**
+ * Validates the query parameters for the "get all" API request for Exercises.
+ * This function checks for the presence and validity of the query parameters (bookmark, categoryId).
+ *
+ * 'bookmark' must be a boolean.
+ * 'categoryId' must be a valid ObjectId.
+ *
+ * @returns {ValidationChain[]} An array of validation chains for the query parameters.
+ */
+const validateGetAllExercisesQueryParams = () => {
+  const bookmarkValidation = query('bookmark')
+    .optional()
+    .custom((bookmark) => {
+      const isValid = ['true', '1', 'on', 'false', '0', 'off'].includes(
+        String(bookmark).toLowerCase()
+      )
+      if (!isValid) throw new Error('bookmark must be true or false.')
+
+      return true
+    })
+    .toBoolean()
+  const categoryIdValidation = validateObjectId('categoryId').optional()
+
+  return [bookmarkValidation, categoryIdValidation]
+}
+
+export { validateGetAllQueryParams, validateGetAllExercisesQueryParams }

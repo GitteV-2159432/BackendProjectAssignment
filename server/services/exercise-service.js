@@ -85,11 +85,4 @@ exerciseService.populateExercises = async () => {
   }
 }
 
-exerciseService.getAll = async (categoryObjectId) => {
-  const exercises = categoryObjectId
-    ? await Exercise.find({ category: categoryObjectId })
-    : await Exercise.find()
-  return exercises
-}
-
 export default exerciseService
