@@ -1,7 +1,9 @@
 import { body } from 'express-validator'
 
 const validateString = (name, maxLength, isRequired) => {
-  let validator = body(name)
+  let validator = body(name).if(
+    (value, { req }) => req.method === 'POST' || value !== undefined
+  )
 
   if (isRequired) {
     validator = validator
