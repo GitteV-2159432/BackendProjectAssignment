@@ -17,7 +17,7 @@ export default function createGenericService(Model) {
       return document
     },
 
-    async getWorkoutByQuery(query, sortQuery) {
+    async getByQuery(query, sortQuery) {
       const document = await Model.findOne(query).sort(sortQuery)
       if (!document) {
         throw new HttpError(404, `${modelName} not found.`)
