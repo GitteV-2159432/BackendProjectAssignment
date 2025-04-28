@@ -7,7 +7,9 @@ import {
   updatePlan,
   getActivePlan,
   setActivePlan,
-  unsetActivePlan,
+  removeActivePlan,
+  bookmarkPlan,
+  unbookmarkPlan,
 } from '../controllers/plan-controller.js'
 import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
 import validateObjectId from '../middleware/validation/object-id-validation.js'
@@ -31,7 +33,21 @@ router.delete(
   '/:id/mark-active',
   userIdToObjectId,
   [validateObjectId('id'), validate],
-  unsetActivePlan
+  removeActivePlan
+)
+
+router.post(
+  '/:id/bookmark',
+  userIdToObjectId,
+  [validateObjectId('id'), validate],
+  bookmarkPlan
+)
+
+router.delete(
+  '/:id/bookmark',
+  userIdToObjectId,
+  [validateObjectId('id'), validate],
+  unbookmarkPlan
 )
 
 router.get(
