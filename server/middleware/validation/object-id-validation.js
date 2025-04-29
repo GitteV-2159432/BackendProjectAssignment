@@ -1,18 +1,26 @@
 import mongoose from 'mongoose'
 import { check } from 'express-validator'
 
-
-const validateObjectId = (idName) => {
-  return check(idName)
+const validateObjectId = (idName, { required = true } = {}) => {
+  const validator = check(idName)
     .trim()
     .escape()
-    .notEmpty()
-    .withMessage(`${idName} can't be empty.`)
-    .bail()
+
+  if (required) {
+    validator.notEmpty()
+      .withMessage(`${idName} can't be empty.`)
+      .bail()
+  } else {
+    validator.optional({ checkFalsy: true })
+  }
+
+  validator
     .custom((id) => mongoose.Types.ObjectId.isValid(id))
     .withMessage(`Invalid ${idName} format.`)
-    .bail() // stops execution of current chain if there's an error
+    .bail()
     .customSanitizer((id) => new mongoose.Types.ObjectId(String(id)))
+
+  return validator
 }
 
 export default validateObjectId

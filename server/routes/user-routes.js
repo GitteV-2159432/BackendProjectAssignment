@@ -1,50 +1,42 @@
 import express from 'express'
 import {
-    getExercises,
-    getExercise,
-    addBookmark,
-    deleteBookmark,
-    deleteExercise,
-    updateExercise
-} from '../controllers/exercise-controller.js'
+    getUsers, 
+    getUser,
+    deleteUser,
+    updateUser
+} from '../controllers/user-controller.js'
 import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
 import validateObjectId from '../middleware/validation/object-id-validation.js'
 import validate from '../middleware/validation/validation.js'
-import { validateGetAllExercisesQueryParams } from '../middleware/validation/query-param-validation.js'
-import validateUpdate from '../middleware/validation/exercise/update-validation.js'
+import validateUpdate from '../middleware/validation/user/update-validation.js'
 
 const router = express.Router()
 
 router.get(
     '/',
     userIdToObjectId,
-    [...validateGetAllExercisesQueryParams(), validate],
-    getExercises
+    getUsers
 )
 
 router.get( 
     '/:id',
     userIdToObjectId,
     [validateObjectId('id'), validate],
-    getExercise
+    getUser
 )
-
-router.post('/:id/bookmark', addBookmark)
-
-router.delete('/:id/bookmark', deleteBookmark)
 
 router.delete(
     '/:id',
     userIdToObjectId,
     [validateObjectId('id'), validate],
-    deleteExercise
+    deleteUser
 )
 
 router.patch(
     '/:id',
     userIdToObjectId,
     [...validateUpdate(), validate],
-    updateExercise
+    updateUser
 )
 
 export default router

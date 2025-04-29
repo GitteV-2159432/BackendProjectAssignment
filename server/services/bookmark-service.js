@@ -12,7 +12,7 @@ const createBookmarkService = (Model) => {
 
     if (!document.isPublic) {
       throw new HttpError(
-        400,
+        403,
         `Only public ${modelNamePl.toLowerCase()} can be bookmarked.`
       )
     }

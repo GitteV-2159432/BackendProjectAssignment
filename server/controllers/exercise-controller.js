@@ -1,8 +1,67 @@
+import { sanitizeBooleanQueryParam, sanitizeObjectIdQueryParam } from '../middleware/sanitization/query-param-sanitization.js'
 import exerciseService from '../services/exercise-service.js'
+import userService from '../services/user-service.js'
+import HttpError from '../utils/httpError.js'
+import mongoose from 'mongoose'
 
 const getExercises = async (req, res) => {
-  const { categoryId } = req.query
-  return res.json(await exerciseService.getAll(categoryId))
+  const categoryId = sanitizeObjectIdQueryParam(req.query.categoryId)
+  const bookmark = sanitizeBooleanQueryParam(req.query.bookmark)
+
+  const filter = {}
+
+  filter.category = new mongoose.Types.ObjectId(categoryId);
+
+  if (bookmark) {
+    filter._id = {
+      $in: (await userService.getById(req.userObjectId)).bookmarks.plans,
+    }
+  } else {
+    filter._id = {
+      $nin: (await userService.getById(req.userObjectId)).bookmarks.plans,
+    }
+  }
+
+  return res.json(await exerciseService.getAll(filter))
 }
 
-export { getExercises }
+const getExercise = async (req, res) => {
+  const exercise = await exerciseService.getById(
+    req.params.id,
+  )
+
+  return res.json(exercise)
+}
+
+const addBookmark = async (req, res) => {
+  //TODO
+}
+
+const deleteBookmark = async (req, res) => { 
+  //TODO
+}
+
+const deleteExercise = async (req, res) => {
+  await exerciseService.checkPermission(req.params.id, req.userObjectId)
+  await exerciseService.remove(req.params.id)
+
+  return res.status(204).send()
+}
+
+const updateExercise = async (req, res) => {
+  await exerciseService.checkPermission(req.params.id, req.userObjectId);
+  
+  const updatedExercise = await exerciseService.update(req.params.id, {
+    name: req.body.name,
+    description: req.body.description,
+    category: req.body.category,
+    muscles: req.body.muscles,
+    muscles_secondary: req.body.muscles_secondary,
+    equipment: req.body.equipment,
+    images: req.body.images,
+  })
+  
+  return res.json(updatedExercise)
+}
+
+export { getExercises, getExercise, addBookmark, deleteBookmark, deleteExercise, updateExercise }

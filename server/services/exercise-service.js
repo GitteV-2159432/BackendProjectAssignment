@@ -3,6 +3,7 @@ import Exercise from '../models/Exercise.js'
 import Muscle from '../models/Muscle.js'
 import fetchFromWger from '../utils/wgerFetcher.js'
 import createGenericService from './components/generic-service.js'
+import HttpError from '../utils/httpError.js'
 
 const exerciseService = createGenericService(Exercise)
 
@@ -85,11 +86,17 @@ exerciseService.populateExercises = async () => {
   }
 }
 
-exerciseService.getAll = async (categoryObjectId) => {
-  const exercises = categoryObjectId
-    ? await Exercise.find({ category: categoryObjectId })
-    : await Exercise.find()
-  return exercises
+exerciseService.checkPermission = async (modelId, userId) => {
+  const document = await exerciseService.getById(modelId)
+
+  // Check user Type
+  /*
+  if (!document.userId.equals(userId)) {
+    throw new HttpError(
+      403,
+      `You do not have permission to access this ${modelName.toLowerCase()}.`
+    )
+  }*/
 }
 
-export default exerciseService
+export default exerciseService 
