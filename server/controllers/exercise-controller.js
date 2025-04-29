@@ -42,11 +42,26 @@ const deleteBookmark = async (req, res) => {
 }
 
 const deleteExercise = async (req, res) => {
-  //TODO
+  await exerciseService.checkPermission(req.params.id, req.userObjectId)
+  await exerciseService.remove(req.params.id)
+
+  return res.status(204).send()
 }
 
 const updateExercise = async (req, res) => {
-  //TODO
+  await exerciseService.checkPermission(req.params.id, req.userObjectId);
+  
+  const updatedExercise = await exerciseService.update(req.params.id, {
+    name: req.body.name,
+    description: req.body.description,
+    category: req.body.category,
+    muscles: req.body.muscles,
+    muscles_secondary: req.body.muscles_secondary,
+    equipment: req.body.equipment,
+    images: req.body.images,
+  })
+  
+  return res.json(updatedExercise)
 }
 
 export { getExercises, getExercise, addBookmark, deleteBookmark, deleteExercise, updateExercise }

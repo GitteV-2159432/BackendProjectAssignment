@@ -85,4 +85,17 @@ exerciseService.populateExercises = async () => {
   }
 }
 
-export default exerciseService
+exerciseService.checkPermission = async (modelId, userId) => {
+  const document = await exerciseService.getById(modelId)
+
+  // Check user Type
+  /*
+  if (!document.userId.equals(userId)) {
+    throw new HttpError(
+      403,
+      `You do not have permission to access this ${modelName.toLowerCase()}.`
+    )
+  }*/
+}
+
+export default exerciseService 
