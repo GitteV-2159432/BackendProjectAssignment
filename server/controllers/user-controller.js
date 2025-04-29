@@ -2,6 +2,8 @@ import { sanitizeBooleanQueryParam, sanitizeObjectIdQueryParam } from '../middle
 import userService from '../services/user-service.js'
 import mongoose from 'mongoose'
 
+
+// GET /api/users
 const getUsers = async (req, res) => {  
   //Check if the user is an admin 
   await userService.checkPermission(req.userObjectId)
@@ -16,6 +18,7 @@ const getUsers = async (req, res) => {
   }))
 }
 
+// GET /api/users/:id
 const getUser = async (req, res) => {
   //Check if the user is an admin or the user is the same as the one being requested
   await userService.checkPermission(req.userObjectId, req.params.id)
@@ -43,10 +46,13 @@ const getUser = async (req, res) => {
   }
 }
 
-
+// DELETE /api/users/:id
 const deleteUser = async (req, res) => {
-  await exerciseService.checkPermission(req.params.id, req.userObjectId)
-  await exerciseService.remove(req.params.id)
+  //Check if the user is an admin or the user is the same as the one being deleted
+  await userService.checkPermission(req.userObjectId, req.params.id)
+
+  //Delete the user
+  await userService.remove(req.params.id)
 
   return res.status(204).send()
 }
