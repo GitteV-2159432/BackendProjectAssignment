@@ -9,6 +9,7 @@ import {
   getWorkout,
   getWorkoutExercises,
   getWorkouts,
+  patchWorkout,
   unbookmarkWorkout,
 } from '../controllers/workout-controller.js'
 import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
@@ -21,9 +22,15 @@ import validateExercise from '../middleware/validation/workout-and-plan/exercise
 
 const router = express.Router()
 
-const checkObjectPermission = async (req, res, next) => {
-  await workoutService.checkPermission(req.params.id, req.userObjectId)
-  next()
+const checkObjectPermission = (readAccess = false) => {
+  return async (req, res, next) => {
+    await workoutService.checkPermission(
+      req.params.id,
+      req.userObjectId,
+      readAccess
+    )
+    next()
+  }
 }
 
 router.get('/', userIdToObjectId, getWorkouts)
@@ -32,7 +39,7 @@ router.get(
   '/:id',
   userIdToObjectId,
   [validateObjectId('id'), validate],
-  checkObjectPermission,
+  checkObjectPermission(true),
   getWorkout
 )
 
@@ -42,15 +49,15 @@ router.patch(
   '/:id',
   userIdToObjectId,
   [...validateUpdate(), validate],
-  checkObjectPermission,
-  addWorkout
+  checkObjectPermission(),
+  patchWorkout
 )
 
 router.delete(
   '/:id',
   userIdToObjectId,
   [validateObjectId('id'), validate],
-  checkObjectPermission,
+  checkObjectPermission(),
   deleteWorkout
 )
 
@@ -58,7 +65,7 @@ router.post(
   '/:id/bookmark',
   userIdToObjectId,
   [validateObjectId('id'), validate],
-  checkObjectPermission,
+  checkObjectPermission(true),
   bookmarkWorkout
 )
 
@@ -66,7 +73,7 @@ router.delete(
   '/:id/bookmark',
   userIdToObjectId,
   [validateObjectId('id'), validate],
-  checkObjectPermission,
+  checkObjectPermission(true),
   unbookmarkWorkout
 )
 
@@ -74,7 +81,7 @@ router.get(
   '/:id/exercises',
   userIdToObjectId,
   [validateObjectId('id'), validate],
-  checkObjectPermission,
+  checkObjectPermission(true),
   getWorkoutExercises
 )
 
@@ -82,7 +89,7 @@ router.post(
   '/:id/exercises',
   userIdToObjectId,
   [...validateExercise(), validate],
-  checkObjectPermission,
+  checkObjectPermission(),
   addWorkoutExercises
 )
 
@@ -90,7 +97,7 @@ router.delete(
   '/:id/exercises/:idDel',
   userIdToObjectId,
   [validateObjectId('id'), validateObjectId('idDel'), validate],
-  checkObjectPermission,
+  checkObjectPermission(),
   deleteWorkoutExercise
 )
 

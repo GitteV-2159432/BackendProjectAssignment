@@ -41,7 +41,7 @@ const patchWorkout = async (req, res) => {
   const updatedWorkout = await workoutService.update(req.params.id, {
     name: req.body.name,
     description: req.body.description,
-    isPublic: req.body.description,
+    isPublic: req.body.isPublic,
   })
 
   return res.json(updatedWorkout)
@@ -49,7 +49,7 @@ const patchWorkout = async (req, res) => {
 
 const deleteWorkout = async (req, res) => {
   await workoutService.remove(req.params.id)
-  return res.statusCode(204)
+  return res.sendStatus(204)
 }
 
 const bookmarkWorkout = async (req, res) => {
@@ -65,7 +65,7 @@ const unbookmarkWorkout = async (req, res) => {
 }
 
 const getWorkoutExercises = async (req, res) => {
-  return res.json(await workoutService.getWorkoutExercises())
+  return res.json(await workoutService.getWorkoutExercises(req.params.id))
 }
 
 const addWorkoutExercises = async (req, res) => {

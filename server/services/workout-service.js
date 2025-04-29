@@ -30,11 +30,8 @@ workoutService.addWorkoutExercises = async (workoutId, exercises) => {
 }
 
 workoutService.removeExercise = async (workoutId, exerciseId) => {
-  if (
-    !(await workoutService
-      .getWorkoutExercises(workoutId)
-      .find((ex) => ex._id === exerciseId))
-  ) {
+  const workoutExercises = await workoutService.getWorkoutExercises(workoutId)
+  if (!workoutExercises.find((ex) => ex._id.equals(exerciseId))) {
     throw new HttpError(404, 'Workout exercise not found.')
   }
 

@@ -77,104 +77,139 @@ const seedData = async () => {
   ])
 
   const arne = users.find((u) => u.firstName === 'Arne')
+  const elias = users.find((u) => u.firstName === 'Elias')
 
   if (exercises.length < 8) return console.error('Missing some exercises.')
 
-  const [backday, legday, pushday, cardio] = await Workout.insertMany([
-    {
-      userId: arne._id,
-      name: 'Backday',
-      description: 'Workout for shredding your back muscles.',
-      exercises: [
-        {
-          exerciseId: getEx('Pull-ups')._id,
-          sets: [{ reps: 10 }, { reps: 10 }, { reps: 10 }],
-          restSecondsBetweenSets: 150,
-          notes: 'Shoulders back.',
-        },
-        {
-          exerciseId: getEx('Deadlifts')._id,
-          sets: [{ reps: 10 }, { reps: 10 }, { reps: 10 }],
-          restSecondsBetweenSets: 180,
-          notes: 'Back straight!',
-        },
-      ],
-      isPublic: true,
-    },
-    {
-      userId: arne._id,
-      name: 'Legday',
-      description: 'Workout for getting a fat ass.',
-      exercises: [
-        {
-          exerciseId: getEx('Wall balls')._id,
-          sets: [{ reps: 10 }, { reps: 10 }, { reps: 10 }],
-          restSecondsBetweenSets: 150,
-        },
-        {
-          exerciseId: getEx('Dumbbell Lunges Walking')._id,
-          sets: [{ reps: 10 }, { reps: 10 }, { reps: 10 }],
-          restSecondsBetweenSets: 150,
-        },
-        {
-          exerciseId: getEx('Squats (Dumbbells)')._id,
-          sets: [{ reps: 10 }, { reps: 10 }, { reps: 10 }],
-          restSecondsBetweenSets: 150,
-          notes: 'Multijoint exercise.',
-        },
-      ],
-      isPublic: false,
-    },
-    {
-      userId: arne._id,
-      name: 'Pushday',
-      description: 'Targeting chest, triceps, and shoulders.',
-      exercises: [
-        {
-          exerciseId: getEx('Push-Ups | Decline')._id,
-          sets: [{ reps: 12 }, { reps: 10 }, { reps: 8 }],
-          restSecondsBetweenSets: 90,
-          notes: 'Feet elevated.',
-        },
-        {
-          exerciseId: getEx('Bench Press')._id,
-          sets: [
-            { reps: 10, weight: 60 },
-            { reps: 8, weight: 70 },
-            { reps: 6, weight: 75 },
-          ],
-          restSecondsBetweenSets: 180,
-          notes: 'Controlled reps.',
-        },
-        {
-          exerciseId: getEx('Suspended crossess')._id,
-          sets: [{ reps: 12 }, { reps: 10 }],
-          restSecondsBetweenSets: 120,
-          notes: 'Squeeze hard.',
-        },
-      ],
-      isPublic: true,
-    },
-    {
-      userId: arne._id,
-      name: 'Cardio Madness',
-      description: 'Short but brutal cardio session.',
-      exercises: [
-        {
-          exerciseId: getEx('Wall balls')._id,
-          sets: [{ reps: 15 }, { reps: 12 }],
-          restSecondsBetweenSets: 90,
-        },
-      ],
-      isPublic: false,
-    },
-  ])
+  const [backday, legday, pushday, cardio, backdayElias, cardioElias] =
+    await Workout.insertMany([
+      {
+        userId: arne._id,
+        name: 'Backday',
+        description: 'Workout for shredding your back muscles.',
+        exercises: [
+          {
+            exerciseId: getEx('Pull-ups')._id,
+            sets: [{ reps: 10 }, { reps: 10 }, { reps: 10 }],
+            restSecondsBetweenSets: 150,
+            notes: 'Shoulders back.',
+          },
+          {
+            exerciseId: getEx('Deadlifts')._id,
+            sets: [{ reps: 10 }, { reps: 10 }, { reps: 10 }],
+            restSecondsBetweenSets: 180,
+            notes: 'Back straight!',
+          },
+        ],
+        isPublic: true,
+      },
+      {
+        userId: arne._id,
+        name: 'Legday',
+        description: 'Workout for getting a fat ass.',
+        exercises: [
+          {
+            exerciseId: getEx('Wall balls')._id,
+            sets: [{ reps: 10 }, { reps: 10 }, { reps: 10 }],
+            restSecondsBetweenSets: 150,
+          },
+          {
+            exerciseId: getEx('Dumbbell Lunges Walking')._id,
+            sets: [{ reps: 10 }, { reps: 10 }, { reps: 10 }],
+            restSecondsBetweenSets: 150,
+          },
+          {
+            exerciseId: getEx('Squats (Dumbbells)')._id,
+            sets: [{ reps: 10 }, { reps: 10 }, { reps: 10 }],
+            restSecondsBetweenSets: 150,
+            notes: 'Multijoint exercise.',
+          },
+        ],
+        isPublic: false,
+      },
+      {
+        userId: arne._id,
+        name: 'Pushday',
+        description: 'Targeting chest, triceps, and shoulders.',
+        exercises: [
+          {
+            exerciseId: getEx('Push-Ups | Decline')._id,
+            sets: [{ reps: 12 }, { reps: 10 }, { reps: 8 }],
+            restSecondsBetweenSets: 90,
+            notes: 'Feet elevated.',
+          },
+          {
+            exerciseId: getEx('Bench Press')._id,
+            sets: [
+              { reps: 10, weight: 60 },
+              { reps: 8, weight: 70 },
+              { reps: 6, weight: 75 },
+            ],
+            restSecondsBetweenSets: 180,
+            notes: 'Controlled reps.',
+          },
+          {
+            exerciseId: getEx('Suspended crossess')._id,
+            sets: [{ reps: 12 }, { reps: 10 }],
+            restSecondsBetweenSets: 120,
+            notes: 'Squeeze hard.',
+          },
+        ],
+        isPublic: true,
+      },
+      {
+        userId: arne._id,
+        name: 'Cardio Madness',
+        description: 'Short but brutal cardio session.',
+        exercises: [
+          {
+            exerciseId: getEx('Wall balls')._id,
+            sets: [{ reps: 15 }, { reps: 12 }],
+            restSecondsBetweenSets: 90,
+          },
+        ],
+        isPublic: false,
+      },
+      {
+        userId: elias._id,
+        name: 'Backday',
+        description: 'Workout for wide back.',
+        exercises: [
+          {
+            exerciseId: getEx('Pull-ups')._id,
+            sets: [{ reps: 10 }, { reps: 10 }, { reps: 10 }],
+            restSecondsBetweenSets: 150,
+            notes: 'Shoulders back.',
+          },
+          {
+            exerciseId: getEx('Deadlifts')._id,
+            sets: [{ reps: 10 }, { reps: 10 }, { reps: 10 }],
+            restSecondsBetweenSets: 180,
+            notes: 'Back straight!',
+          },
+        ],
+        isPublic: true,
+      },
+      {
+        userId: elias._id,
+        name: 'Cardio',
+        description: 'Short but brutal cardio session.',
+        exercises: [
+          {
+            exerciseId: getEx('Wall balls')._id,
+            sets: [{ reps: 15 }, { reps: 12 }],
+            restSecondsBetweenSets: 90,
+          },
+        ],
+        isPublic: false,
+      },
+    ])
 
   await User.updateOne(
     { _id: arne._id },
     {
       $set: {
-        'bookmarks.workouts': [backday._id, pushday._id],
+        'bookmarks.workouts': [backday._id, pushday._id, backdayElias.id],
       },
     }
   )
