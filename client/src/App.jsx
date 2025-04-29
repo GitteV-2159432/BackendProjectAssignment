@@ -1,9 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
-import { AuthProvider } from "./context/AuthContext";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Login from './pages/Login.jsx'
+import Register from './pages/Register.jsx'
+import Dashboard from './pages/Dashboard.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
+import { AuthProvider } from './context/AuthContext.jsx'
+import Workouts from './pages/Workouts.jsx'
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route 
+          <Route
             path="/dashboard"
             element={
               <ProtectedRoute>
@@ -20,10 +21,11 @@ function App() {
             }
           />
           <Route path="/register" element={<Register />} />
+          <Route path="/workouts" element={<Workouts />} />
         </Routes>
       </Router>
     </AuthProvider>
-  );
+  )
 }
 
-export default App;
+export default App
