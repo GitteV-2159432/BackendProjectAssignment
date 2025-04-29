@@ -27,9 +27,7 @@ const createBookmarkService = (Model) => {
     userId
   ) => {
     await userService.update(userId, {
-      bookmarks: {
-        [modelNamePl.toLowerCase()]: modifiedModelBookmarkIds,
-      },
+      [`bookmarks.${modelNamePl.toLowerCase()}`]: modifiedModelBookmarkIds,
     })
   }
 
@@ -37,8 +35,8 @@ const createBookmarkService = (Model) => {
     async setBookmark(modelId, userId) {
       const modelBookmarkIds = await getModelBookmarkIds(modelId, userId)
       const modifiedModelBookmarkIds = modelBookmarkIds.includes(modelId)
-        ? [...modelBookmarkIds, modelId]
-        : modelBookmarkIds
+        ? modelBookmarkIds
+        : [...modelBookmarkIds, modelId]
 
       await setModifiedModelBookmarkIds(modifiedModelBookmarkIds, userId)
 
