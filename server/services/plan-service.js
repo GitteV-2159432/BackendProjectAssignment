@@ -1,9 +1,11 @@
 import Plan from '../models/Plan.js'
 import createGenericService from './components/generic-service.js'
+import createBookmarkService from './bookmark-service.js'
 import userService from './user-service.js'
 import HttpError from '../utils/httpError.js'
 
 const planService = createGenericService(Plan)
+const bookmarkService = createBookmarkService(Plan)
 
 planService.getActive = async (userId) => {
   const activePlanId = await getActivePlanId(userId)
@@ -22,7 +24,7 @@ planService.setActive = async (planId, userId) => {
   return plan
 }
 
-planService.unsetActive = async (planId, userId) => {
+planService.removeActive = async (planId, userId) => {
   await planService.getByIdWithPermissionCheck(planId, userId)
 
   const activePlanId = await getActivePlanId(userId)
@@ -48,6 +50,14 @@ planService.getByIdWithPermissionCheck = async (planId, userId) => {
   }
 
   return plan
+}
+
+planService.setBookmark = async (planId, userId) => {
+  return await bookmarkService.setBookmark(planId, userId)
+}
+
+planService.removeBookmark = async (planId, userId) => {
+  return await bookmarkService.removeBookmark(planId, userId)
 }
 
 const getActivePlanId = async (userId) => {

@@ -1,7 +1,6 @@
 import { sanitizeBooleanQueryParam } from '../middleware/sanitization/query-param-sanitization.js'
 import planService from '../services/plan-service.js'
 import userService from '../services/user-service.js'
-import HttpError from '../utils/httpError.js'
 
 const getPlans = async (req, res) => {
   const isPublic = sanitizeBooleanQueryParam(req.query.isPublic)
@@ -14,18 +13,13 @@ const getPlans = async (req, res) => {
   }
 
   if (isPublic) {
-    if (bookmark) {
-      filter._id = {
-        $in: (await userService.getById(req.userObjectId)).bookmarks.plans,
-      }
-    } else {
-      filter._id = {
-        $nin: (await userService.getById(req.userObjectId)).bookmarks.plans,
-      }
+    filter._id = {
+      [bookmark ? '$in' : '$nin']: (await userService.getById(req.userObjectId))
+        .bookmarks.plans,
     }
   }
 
-  return res.json(await planService.getAll(filter))
+  return res.json(await planService.getAll(filter, { name: 1 }))
 }
 
 const getPlan = async (req, res) => {
@@ -75,9 +69,21 @@ const setActivePlan = async (req, res) => {
   return res.json(await planService.setActive(req.params.id, req.userObjectId))
 }
 
-const unsetActivePlan = async (req, res) => {
-  await planService.unsetActive(req.params.id, req.userObjectId)
+const removeActivePlan = async (req, res) => {
+  await planService.removeActive(req.params.id, req.userObjectId)
   return res.status(204).send()
+}
+
+const bookmarkPlan = async (req, res) => {
+  return res.json(
+    await planService.setBookmark(req.params.id, req.userObjectId)
+  )
+}
+
+const unbookmarkPlan = async (req, res) => {
+  return res.json(
+    await planService.removeBookmark(req.params.id, req.userObjectId)
+  )
 }
 
 export {
@@ -88,5 +94,7 @@ export {
   deletePlan,
   getActivePlan,
   setActivePlan,
-  unsetActivePlan,
+  removeActivePlan,
+  bookmarkPlan,
+  unbookmarkPlan,
 }
