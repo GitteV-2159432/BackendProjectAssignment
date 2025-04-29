@@ -3,6 +3,7 @@ import Exercise from '../models/Exercise.js'
 import Muscle from '../models/Muscle.js'
 import fetchFromWger from '../utils/wgerFetcher.js'
 import createGenericService from './components/generic-service.js'
+import HttpError from '../utils/httpError.js'
 
 const exerciseService = createGenericService(Exercise)
 

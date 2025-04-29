@@ -74,6 +74,13 @@ const seedData = async () => {
       email: 'arne@sample',
       passwordHash: await bcrypt.hash('banana4', 12),
     },
+    {
+      firstName: 'Admin',
+      lastName: 'Admin',
+      email: 'admin@sample',
+      type: 'admin',
+      passwordHash: await bcrypt.hash('Admin', 12),
+    },
   ])
 
   const arne = users.find((u) => u.firstName === 'Arne')
