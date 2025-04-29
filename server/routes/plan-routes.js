@@ -10,11 +10,18 @@ import {
   removeActivePlan,
   bookmarkPlan,
   unbookmarkPlan,
+  getWorkouts,
+  addWorkouts,
+  removeWorkout,
+  getTodaysWorkout,
 } from '../controllers/plan-controller.js'
 import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
 import validateObjectId from '../middleware/validation/object-id-validation.js'
 import validate from '../middleware/validation/validation.js'
-import { validateGetAllQueryParams } from '../middleware/validation/query-param-validation.js'
+import {
+  validateDayQueryParam,
+  validateGetAllQueryParams,
+} from '../middleware/validation/query-param-validation.js'
 import validateCreate from '../middleware/validation/workout-and-plan/create-validation.js'
 import validateUpdate from '../middleware/validation/workout-and-plan/update-validation.js'
 
@@ -79,5 +86,23 @@ router.delete(
   [validateObjectId('id'), validate],
   deletePlan
 )
+
+router.get(
+  '/:id/workouts',
+  userIdToObjectId,
+  [validateObjectId('id'), validate],
+  getWorkouts
+)
+
+router.post(
+  '/:id/workouts',
+  userIdToObjectId,
+  [validateObjectId('id'), validateDayQueryParam, validate],
+  addWorkouts
+)
+
+router.delete('/:id/workouts/:id', removeWorkout)
+
+router.get('/:id/workouts/today', getTodaysWorkout)
 
 export default router

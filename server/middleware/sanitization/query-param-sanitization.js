@@ -8,4 +8,12 @@ const sanitizeObjectIdQueryParam = (value) => {
   return new mongoose.Types.ObjectId(String(value))
 }
 
-export { sanitizeBooleanQueryParam, sanitizeObjectIdQueryParam }
+const sanitizeDayQueryParam = (value) => {
+  return value.trim().toLowerCase()
+}
+
+export {
+  sanitizeBooleanQueryParam,
+  sanitizeObjectIdQueryParam,
+  sanitizeDayQueryParam,
+}

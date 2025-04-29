@@ -7,6 +7,10 @@ import HttpError from '../utils/httpError.js'
 const planService = createGenericService(Plan)
 const bookmarkService = createBookmarkService(Plan)
 
+const getActivePlanId = async (userId) => {
+  return (await userService.getById(userId)).activePlan
+}
+
 planService.getActive = async (userId) => {
   const activePlanId = await getActivePlanId(userId)
   if (!activePlanId) {
@@ -43,10 +47,7 @@ planService.getByIdWithPermissionCheck = async (planId, userId) => {
   const plan = await planService.getById(planId)
 
   if (!plan.isPublic && !plan.userId.equals(userId)) {
-    throw new HttpError(
-      403,
-      'You do not have permission to activate this plan.'
-    )
+    throw new HttpError(403, 'You do not have permission to access this plan.')
   }
 
   return plan
@@ -60,8 +61,40 @@ planService.removeBookmark = async (planId, userId) => {
   return await bookmarkService.removeBookmark(planId, userId)
 }
 
-const getActivePlanId = async (userId) => {
-  return (await userService.getById(userId)).activePlan
+planService.getWorkouts = async (planId, userId) => {
+  const plan = await planService.getByIdWithPermissionCheck(planId, userId)
+  return plan.workouts
+  // todo: object zruck gea, ned nur ids
+  // todo: getWorkouts per day?
+}
+
+planService.addWorkouts = async (planId, workoutIds, day, userId) => {
+  const plan = await planService.getByIdWithPermissionCheck(planId, userId)
+
+  let workoutIdsToAdd = []
+  let workoutIdsFailed = []
+
+  for (const workoutId of workoutIds) {
+    if (!plan.workouts[day].includes(workoutId)) {
+      workoutIdsToAdd.push(workoutId)
+    } else {
+      workoutIdsFailed.push(workoutId)
+    }
+  }
+
+  const updatedPlan = await planService.update(planId, {
+    workouts: {
+      [day]: [...plan.workouts[day], ...workoutIdsToAdd],
+    },
+  })
+
+  // todo: getWorkoutsOfDay
+  return {
+    workouts: {
+      [day]: updatedPlan.workouts[day],
+    },
+    failed: workoutIdsFailed,
+  }
 }
 
 export default planService

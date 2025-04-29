@@ -25,12 +25,16 @@ const validateGetAllQueryParams = () => {
       )
 
       if (isPublic) {
-        if (bookmark === undefined) throw new Error('bookmark is required.')
+        if (bookmark === undefined) {
+          throw new Error('bookmark is required.')
+        }
 
         const isValid = ['true', '1', 'on', 'false', '0', 'off'].includes(
           String(bookmark).toLowerCase()
         )
-        if (!isValid) throw new Error('bookmark must be true or false.')
+        if (!isValid) {
+          throw new Error('bookmark must be true or false.')
+        }
       }
 
       return true
@@ -40,4 +44,28 @@ const validateGetAllQueryParams = () => {
   return [isPublicValidation, bookmarkValidation]
 }
 
-export { validateGetAllQueryParams }
+const validateDayQueryParam = () => {
+  return query('day')
+    .trim()
+    .escape()
+    .notEmpty()
+    .withMessage(`day is required.`)
+    .bail()
+    .custom((value) => {
+      const days = [
+        'moday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+      ]
+
+      if (!days.includes(value.trim().toLowerCase())) {
+        throw new Error('day has to be one of the seven weekdays.')
+      }
+    })
+}
+
+export { validateGetAllQueryParams, validateDayQueryParam }

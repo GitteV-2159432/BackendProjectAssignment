@@ -36,7 +36,9 @@ const createBookmarkService = (Model) => {
   return {
     async setBookmark(modelId, userId) {
       const modelBookmarkIds = await getModelBookmarkIds(modelId, userId)
-      const modifiedModelBookmarkIds = [...modelBookmarkIds, modelId]
+      const modifiedModelBookmarkIds = modelBookmarkIds.includes(modelId)
+        ? [...modelBookmarkIds, modelId]
+        : modelBookmarkIds
 
       await setModifiedModelBookmarkIds(modifiedModelBookmarkIds, userId)
 

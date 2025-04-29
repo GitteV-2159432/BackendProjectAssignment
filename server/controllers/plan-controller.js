@@ -1,4 +1,7 @@
-import { sanitizeBooleanQueryParam } from '../middleware/sanitization/query-param-sanitization.js'
+import {
+  sanitizeBooleanQueryParam,
+  sanitizeDayQueryParam,
+} from '../middleware/sanitization/query-param-sanitization.js'
 import planService from '../services/plan-service.js'
 import userService from '../services/user-service.js'
 
@@ -86,6 +89,27 @@ const unbookmarkPlan = async (req, res) => {
   )
 }
 
+const getWorkouts = async (req, res) => {
+  return res.json(
+    await planService.getWorkouts(req.params.id, req.userObjectId)
+  )
+}
+
+const addWorkouts = async (req, res) => {
+  return res.json(
+    await planService.addWorkouts(
+      req.params.id,
+      req.body.workoutIds,
+      sanitizeDayQueryParam(req.query.day),
+      req.userObjectId
+    )
+  )
+}
+
+const removeWorkout = async (req, res) => {}
+
+const getTodaysWorkout = async (req, res) => {}
+
 export {
   getPlans,
   getPlan,
@@ -97,4 +121,8 @@ export {
   removeActivePlan,
   bookmarkPlan,
   unbookmarkPlan,
+  getWorkouts,
+  addWorkouts,
+  removeWorkout,
+  getTodaysWorkout,
 }
