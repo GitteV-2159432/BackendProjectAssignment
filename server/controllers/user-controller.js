@@ -57,20 +57,22 @@ const deleteUser = async (req, res) => {
   return res.status(204).send()
 }
 
+
+// PATCH /api/users/:id
 const updateUser = async (req, res) => {
-  await exerciseService.checkPermission(req.params.id, req.userObjectId);
-  
-  const updatedExercise = await exerciseService.update(req.params.id, {
-    name: req.body.name,
-    description: req.body.description,
-    category: req.body.category,
-    muscles: req.body.muscles,
-    muscles_secondary: req.body.muscles_secondary,
-    equipment: req.body.equipment,
-    images: req.body.images,
+  //Check if the user is an admin or the user is the same as the one being updated
+  await userService.checkPermission(req.userObjectId, req.params.id)
+
+  const updatedUser = await userService.update(req.params.id, {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    passwordHash: req.body.passwordHash,
+    type: req.body.type,
   })
+
   
-  return res.json(updatedExercise)
+  return res.json(updatedUser)
 }
 
 export { getUsers, getUser, deleteUser, updateUser }

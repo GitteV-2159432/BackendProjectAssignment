@@ -8,6 +8,7 @@ import {
 import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
 import validateObjectId from '../middleware/validation/object-id-validation.js'
 import validate from '../middleware/validation/validation.js'
+import validateUpdate from '../middleware/validation/user/update-validation.js'
 
 const router = express.Router()
 
@@ -31,5 +32,11 @@ router.delete(
     deleteUser
 )
 
+router.patch(
+    '/:id',
+    userIdToObjectId,
+    [...validateUpdate(), validate],
+    updateUser
+)
 
 export default router

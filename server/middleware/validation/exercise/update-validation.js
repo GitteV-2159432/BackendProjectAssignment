@@ -1,7 +1,5 @@
 import validateObjectId from '../object-id-validation.js'
 import validateString from '../string-validation.js'
-import validate from '../validation.js'
-
 
 const validateUpdate = () => {
   return [
