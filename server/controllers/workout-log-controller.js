@@ -11,7 +11,7 @@ const getPastProgress = async (req, res) => {
 }
 
 const getLatestLog = async (req, res) => {
-  const log = await workoutLogService.getWorkoutByQuery(
+  const log = await workoutLogService.getByQuery(
     { userId: req.userObjectId, workoutId: req.query.workoutId },
     { date: -1 }
   )

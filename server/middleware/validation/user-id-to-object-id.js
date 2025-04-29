@@ -4,7 +4,6 @@ import User from '../../models/User.js'
 import HttpError from '../../utils/httpError.js'
 
 const userIdToObjectId = async (req, res, next) => {
-  console.log(req)
   if (req.user && req.user.userId) {
     try {
       const userObjectId = new mongoose.Types.ObjectId(String(req.user.userId))

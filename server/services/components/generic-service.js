@@ -48,10 +48,14 @@ export default function createGenericService(Model) {
       return await Model.findByIdAndDelete(id)
     },
 
-    async checkPermission(modelId, userId) {
-      const document = await this.getById(modelId)
+    async checkPermission(modelId, userId, readAccess = false) {
+      const doc = await this.getById(modelId)
+      const isOwner = doc.userId.equals(userId)
 
-      if (!document.userId.equals(userId)) {
+      if (
+        (readAccess && !doc.isPublic && !isOwner) ||
+        (!readAccess && !isOwner)
+      ) {
         throw new HttpError(
           403,
           `You do not have permission to access this ${modelName.toLowerCase()}.`
