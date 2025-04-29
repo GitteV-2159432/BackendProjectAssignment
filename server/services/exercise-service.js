@@ -3,8 +3,10 @@ import Exercise from '../models/Exercise.js'
 import Muscle from '../models/Muscle.js'
 import fetchFromWger from '../utils/wgerFetcher.js'
 import createGenericService from './components/generic-service.js'
+import createBookmarkService from './bookmark-service.js'
 
 const exerciseService = createGenericService(Exercise)
+const bookmarkService = createBookmarkService(Exercise)
 
 exerciseService.populateExercises = async () => {
   const exerciseCount = await Exercise.countDocuments()
@@ -96,6 +98,14 @@ exerciseService.checkPermission = async (modelId, userId) => {
       `You do not have permission to access this ${modelName.toLowerCase()}.`
     )
   }*/
+}
+
+exerciseService.setBookmark = async (exerciseId, userId) => {
+  return await bookmarkService.setBookmark(exerciseId, userId)
+}
+
+exerciseService.removeBookmark = async (exerciseId, userId) => {
+  return await bookmarkService.removeBookmark(exerciseId, userId)
 }
 
 export default exerciseService 
