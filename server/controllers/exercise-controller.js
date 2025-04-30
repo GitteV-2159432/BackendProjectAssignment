@@ -33,12 +33,16 @@ const getExercise = async (req, res) => {
   return res.json(exercise)
 }
 
-const addBookmark = async (req, res) => {
-  //TODO
+const bookmarkExercise = async (req, res) => {
+  return res.json(
+    await exerciseService.setBookmark(req.params.id, req.userObjectId)
+  )
 }
 
-const deleteBookmark = async (req, res) => { 
-  //TODO
+const unbookmarkExercise = async (req, res) => { 
+  return res.json(
+    await exerciseService.removeBookmark(req.params.id, req.userObjectId)
+  )
 }
 
 const deleteExercise = async (req, res) => {
@@ -64,4 +68,4 @@ const updateExercise = async (req, res) => {
   return res.json(updatedExercise)
 }
 
-export { getExercises, getExercise, addBookmark, deleteBookmark, deleteExercise, updateExercise }
+export { getExercises, getExercise, bookmarkExercise, unbookmarkExercise, deleteExercise, updateExercise }
