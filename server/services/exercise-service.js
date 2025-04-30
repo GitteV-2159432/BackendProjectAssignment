@@ -3,9 +3,11 @@ import Exercise from '../models/Exercise.js'
 import Muscle from '../models/Muscle.js'
 import fetchFromWger from '../utils/wgerFetcher.js'
 import createGenericService from './components/generic-service.js'
+import createBookmarkService from './bookmark-service.js'
 import HttpError from '../utils/httpError.js'
 
 const exerciseService = createGenericService(Exercise)
+const bookmarkService = createBookmarkService(Exercise)
 
 exerciseService.populateExercises = async () => {
   const exerciseCount = await Exercise.countDocuments()
@@ -86,17 +88,20 @@ exerciseService.populateExercises = async () => {
   }
 }
 
-exerciseService.checkPermission = async (modelId, userId) => {
-  const document = await exerciseService.getById(modelId)
+exerciseService.checkPermission = async (currentUserId) => {
+  // Check if user is admin
+  const currentUser = await userService.getById(currentUserId)
+  if (currentUser.role !== 'admin') {
+    throw new HttpError(403, 'Admin permission required.')
+  }
+}
 
-  // Check user Type
-  /*
-  if (!document.userId.equals(userId)) {
-    throw new HttpError(
-      403,
-      `You do not have permission to access this ${modelName.toLowerCase()}.`
-    )
-  }*/
+exerciseService.setBookmark = async (exerciseId, userId) => {
+  return await bookmarkService.setBookmark(exerciseId, userId)
+}
+
+exerciseService.removeBookmark = async (exerciseId, userId) => {
+  return await bookmarkService.removeBookmark(exerciseId, userId)
 }
 
 export default exerciseService 
