@@ -3,7 +3,7 @@ import Navbar from "../components/navbar/NavBar.jsx";
 
 const Layout = () => {
     return (
-        <div className = "App">
+        <div style={{ display: 'flex', minHeight: '100vh' }}>
             <Navbar />
             <Outlet />
         </div>  
