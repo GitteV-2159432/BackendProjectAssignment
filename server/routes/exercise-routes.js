@@ -2,8 +2,8 @@ import express from 'express'
 import {
     getExercises,
     getExercise,
-    addBookmark,
-    deleteBookmark,
+    bookmarkExercise,
+    unbookmarkExercise,
     deleteExercise,
     updateExercise
 } from '../controllers/exercise-controller.js'
@@ -29,9 +29,19 @@ router.get(
     getExercise
 )
 
-router.post('/:id/bookmark', addBookmark)
+router.post(
+    '/:id/bookmark',
+    userIdToObjectId,
+    [validateObjectId('id'), validate],
+    bookmarkExercise
+)
 
-router.delete('/:id/bookmark', deleteBookmark)
+router.delete(
+    '/:id/bookmark',
+    userIdToObjectId,
+    [validateObjectId('id'), validate],
+    unbookmarkExercise
+)
 
 router.delete(
     '/:id',
