@@ -1,6 +1,7 @@
 import '../styles/home.css';
 import Logo from '../components/icons/logo.jsx'
 import { Link } from 'react-router-dom';
+
 const Home = () => {
     return (
       <div className="home-container">
