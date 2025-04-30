@@ -20,7 +20,7 @@ const Login = () => {
     const data = await res.json()
     if (res.ok) {
       login(data.token)
-      navigate('/dashboard')
+      navigate('/')
     } else {
       alert(data.message)
     }
@@ -28,7 +28,6 @@ const Login = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Navbar></Navbar>
       <h2>Login</h2>
       <input
         value={email}

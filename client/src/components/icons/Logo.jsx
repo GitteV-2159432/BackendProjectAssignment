@@ -8,18 +8,18 @@ const Logo = () => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <rect width="140" height="140" fill="url(#pattern0_7_4)" />
+      <rect width="140" height="140" fill="url(#pattern0_15_164)" />
       <defs>
         <pattern
-          id="pattern0_7_4"
+          id="pattern0_15_164"
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"
         >
-          <use xlinkHref="#image0_7_4" transform="scale(0.002)" />
+          <use xlinkHref="#image0_15_164" transform="scale(0.002)" />
         </pattern>
         <image
-          id="image0_7_4"
+          id="image0_15_164"
           width="500"
           height="500"
           preserveAspectRatio="none"
