@@ -88,17 +88,12 @@ exerciseService.populateExercises = async () => {
   }
 }
 
-exerciseService.checkPermission = async (modelId, userId) => {
-  const document = await exerciseService.getById(modelId)
-
-  // Check user Type
-  /*
-  if (!document.userId.equals(userId)) {
-    throw new HttpError(
-      403,
-      `You do not have permission to access this ${modelName.toLowerCase()}.`
-    )
-  }*/
+exerciseService.checkPermission = async (currentUserId) => {
+  // Check if user is admin
+  const currentUser = await userService.getById(currentUserId)
+  if (currentUser.role !== 'admin') {
+    throw new HttpError(403, 'Admin permission required.')
+  }
 }
 
 exerciseService.setBookmark = async (exerciseId, userId) => {

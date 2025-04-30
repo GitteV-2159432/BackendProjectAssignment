@@ -46,14 +46,16 @@ const unbookmarkExercise = async (req, res) => {
 }
 
 const deleteExercise = async (req, res) => {
-  await exerciseService.checkPermission(req.params.id, req.userObjectId)
+  // Check if user is admin
+  await exerciseService.checkPermission(req.userObjectId)
   await exerciseService.remove(req.params.id)
 
   return res.status(204).send()
 }
 
 const updateExercise = async (req, res) => {
-  await exerciseService.checkPermission(req.params.id, req.userObjectId);
+  // Check if user is admin
+  await exerciseService.checkPermission(req.userObjectId);
   
   const updatedExercise = await exerciseService.update(req.params.id, {
     name: req.body.name,
