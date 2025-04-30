@@ -9,30 +9,29 @@ import Workouts from './pages/Workouts.jsx'
 import Home from './pages/Home.jsx'
 import Account from './pages/Account.jsx'
 import Navbar from './components/navbar/NavBar.jsx'
+import Layout from './pages/Layout.jsx'
 
 function App() {
   return (
     <AuthProvider>
       <Router>
-        <div style={{ display: 'flex', minHeight: '100vh' }}>
-          <Navbar />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Layout />} >
+              <Route path="dashboard" element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }/>
+              <Route path="plans" element={<Plans />} />
+              <Route path="workouts" element={<Workouts />} />
+              <Route path="account" element={<Account />} />
+            </Route>
 
-
-            <Route path="/dashboard" element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-            />
+            <Route index element={<Home />} />  
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/plans" element={<Plans />} />
-            <Route path="/workouts" element={<Workouts />} />
-            <Route path="/account" element={<Account />} />
+            
           </Routes>
-        </div>
       </Router>
     </AuthProvider>
   )
