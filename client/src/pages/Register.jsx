@@ -39,7 +39,6 @@ const Register = () => {
 
   return (
     <form onSubmit={handleRegister}>
-      <Navbar></Navbar>
       <h2>Register</h2>
       <input
         type="text"

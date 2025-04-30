@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import Logo from '../components/Logo.jsx'
 import Cards from '../components/Cards.jsx'
 
 const Workouts = () => {
@@ -20,7 +19,6 @@ const Workouts = () => {
 
   return (
     <>
-      <Logo />
       <h1>Workouts</h1>
       <Cards items={workouts} />
     </>
