@@ -6,7 +6,7 @@ import WorkoutsIcon from '../icons/WorkoutsIcon.jsx'
 import AccountIcon from '../icons/AccountIcon.jsx'
 
 const navElements = [
-  { title: 'Dashboard', icon: DashboardIcon, to: '/' },
+  { title: 'Dashboard', icon: DashboardIcon, to: '/dashboard' },
   { title: 'Plans', icon: PlansIcon, to: '/plans' },
   { title: 'Workouts', icon: WorkoutsIcon, to: '/workouts' },
   { title: 'Account', icon: AccountIcon, to: '/account' },
