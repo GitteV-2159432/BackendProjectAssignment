@@ -29,16 +29,16 @@ const createBookmarkService = (Model) => {
     userId
   ) => {
     await userService.update(userId, {
-      bookmarks: {
-        [modelNamePl.toLowerCase()]: modifiedModelBookmarkIds,
-      },
+      [`bookmarks.${modelNamePl.toLowerCase()}`]: modifiedModelBookmarkIds,
     })
   }
 
   return {
     async setBookmark(modelId, userId) {
       const modelBookmarkIds = await getModelBookmarkIds(modelId, userId)
-      const modifiedModelBookmarkIds = [...modelBookmarkIds, modelId]
+      const modifiedModelBookmarkIds = modelBookmarkIds.includes(modelId)
+        ? modelBookmarkIds
+        : [...modelBookmarkIds, modelId]
 
       await setModifiedModelBookmarkIds(modifiedModelBookmarkIds, userId)
 
@@ -76,6 +76,7 @@ const createBookmarkService = (Model) => {
 
       await setModifiedModelBookmarkIds(modifiedModelBookmarkIds, userId)
 
+      if(modelName != "Exercise"){
       return modelService.getAll(
         {
           isPublic: true,
@@ -87,6 +88,18 @@ const createBookmarkService = (Model) => {
         },
         { name: 1 }
       )
+    } else{
+      return modelService.getAll(
+        {
+          _id: {
+            $in: (await userService.getById(userId)).bookmarks[
+              modelNamePl.toLowerCase()
+            ],
+          },
+        },
+        { name: 1 }
+      )
+    }
     },
   }
 }

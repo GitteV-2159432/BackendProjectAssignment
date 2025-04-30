@@ -1,11 +1,21 @@
 import workoutService from '../services/workout-service.js'
 import userService from '../services/user-service.js'
+import { sanitizeBooleanQueryParam } from '../middleware/sanitization/query-param-sanitization.js'
 
 const getWorkouts = async (req, res) => {
-  const filter = { isPublic: req.query.isPublic }
-  if (req.query.isPublic && req.query.bookmark) {
+  const isPublic = sanitizeBooleanQueryParam(req.query.isPublic)
+  const bookmark = sanitizeBooleanQueryParam(req.query.bookmark)
+
+  const filter = { isPublic }
+
+  if (!isPublic) {
+    filter.userId = req.userObjectId
+  }
+
+  if (isPublic) {
     filter._id = {
-      $in: (await userService.getById(req.userObjectId)).bookmarks.workouts,
+      [bookmark ? '$in' : '$nin']: (await userService.getById(req.userObjectId))
+        .bookmarks.workouts,
     }
   }
 
@@ -16,21 +26,58 @@ const getWorkout = async (req, res) => {
   return res.json(await workoutService.getById(req.params.id))
 }
 
-const addWorkout = async (req, res) => {}
+const addWorkout = async (req, res) => {
+  const data = {
+    userId: req.userObjectId,
+    name: req.body.name,
+    description: req.body.description,
+    isPublic: req.body.isPublic,
+  }
 
-const patchWorkout = async (req, res) => {}
+  return res.status(201).json(await workoutService.create(data))
+}
 
-const deleteWorkout = async (req, res) => {}
+const patchWorkout = async (req, res) => {
+  const updatedWorkout = await workoutService.update(req.params.id, {
+    name: req.body.name,
+    description: req.body.description,
+    isPublic: req.body.isPublic,
+  })
 
-const bookmarkWorkout = async (req, res) => {}
+  return res.json(updatedWorkout)
+}
 
-const unbookmarkWorkout = async (req, res) => {}
+const deleteWorkout = async (req, res) => {
+  await workoutService.remove(req.params.id)
+  return res.sendStatus(204)
+}
 
-const getWorkoutExercises = async (req, res) => {}
+const bookmarkWorkout = async (req, res) => {
+  return res.json(
+    await workoutService.bookmark(req.params.id, req.userObjectId)
+  )
+}
 
-const addWorkoutExercise = async (req, res) => {}
+const unbookmarkWorkout = async (req, res) => {
+  return res.json(
+    await workoutService.unbookmark(req.params.id, req.userObjectId)
+  )
+}
 
-const deleteWorkoutExercise = async (req, res) => {}
+const getWorkoutExercises = async (req, res) => {
+  return res.json(await workoutService.getWorkoutExercises(req.params.id))
+}
+
+const addWorkoutExercises = async (req, res) => {
+  return res.json(
+    await workoutService.addWorkoutExercises(req.params.id, req.body.exercises)
+  )
+}
+
+const deleteWorkoutExercise = async (req, res) => {
+  await workoutService.removeExercise(req.params.id, req.params.idDel)
+  return res.sendStatus(204)
+}
 
 export {
   getWorkouts,
@@ -41,6 +88,6 @@ export {
   bookmarkWorkout,
   unbookmarkWorkout,
   getWorkoutExercises,
-  addWorkoutExercise,
+  addWorkoutExercises,
   deleteWorkoutExercise,
 }

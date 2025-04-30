@@ -1,7 +1,7 @@
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from '../context/AuthContext'
 
 const Navbar = () => {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuth()
 
   return (
     <nav>
@@ -14,7 +14,7 @@ const Navbar = () => {
         <span>Not logged in</span>
       )}
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

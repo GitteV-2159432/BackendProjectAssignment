@@ -4,12 +4,12 @@ export default function createGenericService(Model) {
   const modelName = Model.modelName || 'Document'
 
   return {
-    async getAll(query, sortQuery) {
-      return await Model.find(query).sort(sortQuery)
+    async getAll(query, sortQuery, projection) {
+      return await Model.find(query, projection).sort(sortQuery)
     },
 
-    async getById(id) {
-      const document = await Model.findById(id)
+    async getById(id, projection = {}) {
+      const document = await Model.findById(id, projection)
       if (!document) {
         throw new HttpError(404, `${modelName} not found.`)
       }
@@ -48,10 +48,14 @@ export default function createGenericService(Model) {
       return await Model.findByIdAndDelete(id)
     },
 
-    async checkPermission(modelId, userId) {
-      const document = await this.getById(modelId)
+    async checkPermission(modelId, userId, readAccess = false) {
+      const doc = await this.getById(modelId)
+      const isOwner = doc.userId.equals(userId)
 
-      if (!document.userId.equals(userId)) {
+      if (
+        (readAccess && !doc.isPublic && !isOwner) ||
+        (!readAccess && !isOwner)
+      ) {
         throw new HttpError(
           403,
           `You do not have permission to access this ${modelName.toLowerCase()}.`
