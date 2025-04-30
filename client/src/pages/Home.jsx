@@ -1,5 +1,5 @@
 import '../styles/home.css';
-import Logo from '../components/Logo.jsx'
+import Logo from '../components/icons/logo.jsx'
 
 const Home = () => {
   return (
