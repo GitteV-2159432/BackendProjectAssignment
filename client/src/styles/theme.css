@@ -1,0 +1,16 @@
+:root {
+    --darkest-color: #070707;
+    --dark_2-color: #40434E;
+    --pink-color: #C297B8;
+    --pink_2-color:#FDCFF3;
+    --off-white-color: #FAF9F6;
+    --font-main: work-sans, sans-serif;
+    --font-secondary: Fatface, sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    background-color: var(--darkest-color);
+    color: var(--pink-color);
+  }

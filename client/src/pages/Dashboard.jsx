@@ -1,4 +1,4 @@
-import Navbar from '../components/NavBar'
+
 import { useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 
