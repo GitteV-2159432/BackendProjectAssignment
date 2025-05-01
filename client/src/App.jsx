@@ -1,37 +1,67 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Login from './pages/Login.jsx'
-import Register from './pages/Register.jsx'
-import Dashboard from './pages/Dashboard.jsx'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
-import Plans from './pages/Plans.jsx'
-import Workouts from './pages/Workouts.jsx'
-import Home from './pages/Home.jsx'
 import Account from './pages/Account.jsx'
-import Navbar from './components/navbar/NavBar.jsx'
+import Dashboard from './pages/Dashboard.jsx'
+import Exercises from './pages/Exercises.jsx'
+import Home from './pages/Home.jsx'
 import Layout from './pages/Layout.jsx'
+import Login from './pages/Login.jsx'
+import Plans from './pages/Plans.jsx'
+import Register from './pages/Register.jsx'
+import Workouts from './pages/Workouts.jsx'
 
 function App() {
   return (
     <AuthProvider>
       <Router>
-          <Routes>
-            <Route path="/" element={<Layout />} >
-              <Route path="dashboard" element={
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Layout />}>
+            <Route
+              path="dashboard"
+              element={
                 <ProtectedRoute>
                   <Dashboard />
                 </ProtectedRoute>
-              }/>
-              <Route path="plans" element={<Plans />} />
-              <Route path="workouts" element={<Workouts />} />
-              <Route path="account" element={<Account />} />
-            </Route>
-
-            <Route index element={<Home />} />  
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            
-          </Routes>
+              }
+            />
+            <Route
+              path="plans"
+              element={
+                <ProtectedRoute>
+                  <Plans />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="workouts"
+              element={
+                <ProtectedRoute>
+                  <Workouts />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="exercises"
+              element={
+                <ProtectedRoute>
+                  <Exercises />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="account"
+              element={
+                <ProtectedRoute>
+                  <Account />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
+        </Routes>
       </Router>
     </AuthProvider>
   )

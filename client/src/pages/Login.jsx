@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import '../styles/auth.css';
-import Logo from '../components/icons/logo.jsx'
-import { Link } from 'react-router-dom';
-
+import '../styles/auth.css'
+import Logo from '../components/icons/Logo.jsx'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -48,11 +47,25 @@ const Login = () => {
         </div>
         <div className="content-wrapper">
           <form onSubmit={handleSubmit}>
-          <h1>Login</h1>
-             <label for="email">E-mail</label>
-             <input id="email" name="email" type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <h1>Login</h1>
+            <label for="email">E-mail</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="E-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <label for="password">Password</label>
-            <input id="password" name="password" type="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)}/>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <button type="submit">Sign in</button>
           </form>
         </div>
