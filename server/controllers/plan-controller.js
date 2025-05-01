@@ -1,34 +1,25 @@
-import { sanitizeBooleanQueryParam } from '../middleware/sanitization/query-param-sanitization.js'
+import {
+  sanitizeStringQueryParam,
+  sanitizeDayQueryParam,
+} from '../middleware/sanitization/query-param-sanitization.js'
 import planService from '../services/plan-service.js'
 import userService from '../services/user-service.js'
+import { getQueryFromFilterParameters, mapModelDTO } from '../utils/get-all.js'
 
 const getPlans = async (req, res) => {
-  const isPublic = sanitizeBooleanQueryParam(req.query.isPublic)
-  const bookmark = sanitizeBooleanQueryParam(req.query.bookmark)
+  const filter = sanitizeStringQueryParam(req.query.filter)
+  const query = await getQueryFromFilterParameters(filter, req.userObjectId)
 
-  const filter = { isPublic }
-
-  if (!isPublic) {
-    filter.userId = req.userObjectId
+  let plans = await planService.getAll(query, { name: 1 })
+  if (filter === 'public') {
+    plans = await mapModelDTO(plans, 'plans', req.userObjectId)
   }
 
-  if (isPublic) {
-    filter._id = {
-      [bookmark ? '$in' : '$nin']: (await userService.getById(req.userObjectId))
-        .bookmarks.plans,
-    }
-  }
-
-  return res.json(await planService.getAll(filter, { name: 1 }))
+  return res.json(plans)
 }
 
 const getPlan = async (req, res) => {
-  const plan = await planService.getByIdWithPermissionCheck(
-    req.params.id,
-    req.userObjectId
-  )
-
-  return res.json(plan)
+  return res.json(await planService.getById(req.params.id))
 }
 
 const addPlan = async (req, res) => {
@@ -86,6 +77,40 @@ const unbookmarkPlan = async (req, res) => {
   )
 }
 
+const getWorkouts = async (req, res) => {
+  return res.json(
+    await planService.getWorkouts(
+      req.params.id,
+      sanitizeDayQueryParam(req.query.day)
+    )
+  )
+}
+
+const addWorkouts = async (req, res) => {
+  return res.json(
+    await planService.addWorkouts(
+      req.params.id,
+      [...new Set(req.body.workoutIds)], // remove duplicates
+      sanitizeDayQueryParam(req.query.day),
+      req.userObjectId
+    )
+  )
+}
+
+const removeWorkout = async (req, res) => {
+  await planService.removeWorkout(
+    req.params.id,
+    req.params.idDel,
+    sanitizeDayQueryParam(req.query.day)
+  )
+
+  return res.status(204).send()
+}
+
+const getTodaysWorkouts = async (req, res) => {
+  return res.json(await planService.getTodaysWorkouts(req.userObjectId))
+}
+
 export {
   getPlans,
   getPlan,
@@ -97,4 +122,8 @@ export {
   removeActivePlan,
   bookmarkPlan,
   unbookmarkPlan,
+  getWorkouts,
+  addWorkouts,
+  removeWorkout,
+  getTodaysWorkouts,
 }

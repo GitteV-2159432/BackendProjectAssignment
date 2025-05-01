@@ -19,6 +19,7 @@ import validateCreate from '../middleware/validation/workout-and-plan/create-val
 import validateUpdate from '../middleware/validation/workout-and-plan/update-validation.js'
 import workoutService from '../services/workout-service.js'
 import validateExercise from '../middleware/validation/workout-and-plan/exercise-validation.js'
+import { validateGetAllFilterQueryParam } from '../middleware/validation/query-param-validation.js'
 
 const router = express.Router()
 
@@ -33,7 +34,12 @@ const checkObjectPermission = (readAccess = false) => {
   }
 }
 
-router.get('/', userIdToObjectId, getWorkouts)
+router.get(
+  '/',
+  userIdToObjectId,
+  [validateGetAllFilterQueryParam(), validate],
+  getWorkouts
+)
 
 router.get(
   '/:id',

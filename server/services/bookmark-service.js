@@ -1,6 +1,6 @@
 import createGenericService from './components/generic-service.js'
 import userService from './user-service.js'
-import HttpError from '../utils/httpError.js'
+import HttpError from '../utils/http-error.js'
 
 const createBookmarkService = (Model) => {
   const modelName = Model.modelName || 'Document'
@@ -10,7 +10,7 @@ const createBookmarkService = (Model) => {
   const getModelBookmarkIds = async (modelId, userId) => {
     const document = await modelService.getById(modelId)
 
-    if(modelName != "Exercise"){
+    if (modelName != 'Exercise') {
       if (!document.isPublic) {
         throw new HttpError(
           400,
@@ -42,7 +42,7 @@ const createBookmarkService = (Model) => {
 
       await setModifiedModelBookmarkIds(modifiedModelBookmarkIds, userId)
 
-      if(modelName != "Exercise"){
+      if (modelName != 'Exercise') {
         return modelService.getAll(
           {
             isPublic: true,
@@ -54,7 +54,7 @@ const createBookmarkService = (Model) => {
           },
           { name: 1 }
         )
-      } else{
+      } else {
         return modelService.getAll(
           {
             _id: {
@@ -76,30 +76,30 @@ const createBookmarkService = (Model) => {
 
       await setModifiedModelBookmarkIds(modifiedModelBookmarkIds, userId)
 
-      if(modelName != "Exercise"){
-      return modelService.getAll(
-        {
-          isPublic: true,
-          _id: {
-            $in: (await userService.getById(userId)).bookmarks[
-              modelNamePl.toLowerCase()
-            ],
+      if (modelName != 'Exercise') {
+        return modelService.getAll(
+          {
+            isPublic: true,
+            _id: {
+              $in: (await userService.getById(userId)).bookmarks[
+                modelNamePl.toLowerCase()
+              ],
+            },
           },
-        },
-        { name: 1 }
-      )
-    } else{
-      return modelService.getAll(
-        {
-          _id: {
-            $in: (await userService.getById(userId)).bookmarks[
-              modelNamePl.toLowerCase()
-            ],
+          { name: 1 }
+        )
+      } else {
+        return modelService.getAll(
+          {
+            _id: {
+              $in: (await userService.getById(userId)).bookmarks[
+                modelNamePl.toLowerCase()
+              ],
+            },
           },
-        },
-        { name: 1 }
-      )
-    }
+          { name: 1 }
+        )
+      }
     },
   }
 }

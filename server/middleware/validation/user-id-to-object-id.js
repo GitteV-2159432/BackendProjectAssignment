@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 import User from '../../models/User.js'
-import HttpError from '../../utils/httpError.js'
+import HttpError from '../../utils/http-error.js'
 
 const userIdToObjectId = async (req, res, next) => {
   if (req.user && req.user.userId) {

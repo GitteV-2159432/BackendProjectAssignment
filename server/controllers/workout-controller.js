@@ -1,12 +1,15 @@
 import workoutService from '../services/workout-service.js'
-import queryFromFilterParameters from '../utils/query-from-filter-parameter.js'
+import { getQueryFromFilterParameters } from '../utils/get-all.js'
 
 const getWorkouts = async (req, res) => {
-  const query = await queryFromFilterParameters(
-    req.query.filter,
-    req.userObjectId
-  )
-  const workouts = await workoutService.getAll(query)
+  const filter = sanitizeStringQueryParam(req.query.filter)
+  const query = await getQueryFromFilterParameters(filter, req.userObjectId)
+
+  let workouts = await workoutService.getAll(query)
+  if (filter === 'public') {
+    workouts = await mapModelDTO(workouts, 'plans', req.userObjectId)
+  }
+
   return res.json(workouts)
 }
 

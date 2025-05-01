@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import Workout from '../models/Workout.js'
 import createGenericService from './components/generic-service.js'
-import HttpError from '../utils/httpError.js'
+import HttpError from '../utils/http-error.js'
 import createBookmarkService from './bookmark-service.js'
 
 const workoutService = createGenericService(Workout)

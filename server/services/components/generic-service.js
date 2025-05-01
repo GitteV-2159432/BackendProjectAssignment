@@ -1,4 +1,4 @@
-import HttpError from '../../utils/httpError.js'
+import HttpError from '../../utils/http-error.js'
 
 export default function createGenericService(Model) {
   const modelName = Model.modelName || 'Document'
