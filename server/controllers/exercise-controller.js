@@ -1,7 +1,10 @@
-import { sanitizeBooleanQueryParam, sanitizeObjectIdQueryParam } from '../middleware/sanitization/query-param-sanitization.js'
+import {
+  sanitizeBooleanQueryParam,
+  sanitizeObjectIdQueryParam,
+} from '../middleware/sanitization/query-param-sanitization.js'
 import exerciseService from '../services/exercise-service.js'
 import userService from '../services/user-service.js'
-import HttpError from '../utils/httpError.js'
+import HttpError from '../utils/http-error.js'
 import mongoose from 'mongoose'
 
 const getExercises = async (req, res) => {
@@ -10,7 +13,7 @@ const getExercises = async (req, res) => {
 
   const filter = {}
 
-  filter.category = new mongoose.Types.ObjectId(categoryId);
+  filter.category = new mongoose.Types.ObjectId(categoryId)
 
   if (bookmark) {
     filter._id = {
@@ -26,9 +29,7 @@ const getExercises = async (req, res) => {
 }
 
 const getExercise = async (req, res) => {
-  const exercise = await exerciseService.getById(
-    req.params.id,
-  )
+  const exercise = await exerciseService.getById(req.params.id)
 
   return res.json(exercise)
 }
@@ -39,7 +40,7 @@ const bookmarkExercise = async (req, res) => {
   )
 }
 
-const unbookmarkExercise = async (req, res) => { 
+const unbookmarkExercise = async (req, res) => {
   return res.json(
     await exerciseService.removeBookmark(req.params.id, req.userObjectId)
   )
@@ -55,8 +56,8 @@ const deleteExercise = async (req, res) => {
 
 const updateExercise = async (req, res) => {
   // Check if user is admin
-  await exerciseService.checkPermission(req.userObjectId);
-  
+  await exerciseService.checkPermission(req.userObjectId)
+
   const updatedExercise = await exerciseService.update(req.params.id, {
     name: req.body.name,
     description: req.body.description,
@@ -66,8 +67,15 @@ const updateExercise = async (req, res) => {
     equipment: req.body.equipment,
     images: req.body.images,
   })
-  
+
   return res.json(updatedExercise)
 }
 
-export { getExercises, getExercise, bookmarkExercise, unbookmarkExercise, deleteExercise, updateExercise }
+export {
+  getExercises,
+  getExercise,
+  bookmarkExercise,
+  unbookmarkExercise,
+  deleteExercise,
+  updateExercise,
+}

@@ -31,23 +31,15 @@ const validateGetAllFilterQueryParam = () => {
  *
  * @returns {ValidationChain} A validation chain for the query parameter.
  */
-const validateDayQueryParam = (isRequired) => {
-  let validator = query('day')
-
-  if (isRequired) {
-    validator = validator
-      .trim()
-      .toLowerCase()
-      .notEmpty()
-      .withMessage(`'day' is required.`)
-      .bail()
-  } else {
-    validator = validator.optional()
-  }
-
-  validator = validator
+const validateDayQueryParam = () => {
+  return query('day')
+    .trim()
+    .toLowerCase()
+    .notEmpty()
+    .withMessage(`'day' is required.`)
+    .bail()
     .isIn([
-      'moday',
+      'monday',
       'tuesday',
       'wednesday',
       'thursday',
@@ -56,8 +48,6 @@ const validateDayQueryParam = (isRequired) => {
       'sunday',
     ])
     .withMessage(`'day' has to be one of the seven weekdays.`)
-
-  return validator
 }
 
 /**

@@ -1,5 +1,5 @@
 import workoutLogService from '../services/workout-log-service.js'
-import HttpError from '../utils/httpError.js'
+import HttpError from '../utils/http-error.js'
 
 const getPastProgress = async (req, res) => {
   const pastProgress = await workoutLogService.countLogs(req.userObjectId)

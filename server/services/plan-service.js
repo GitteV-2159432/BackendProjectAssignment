@@ -3,7 +3,8 @@ import createGenericService from './components/generic-service.js'
 import createBookmarkService from './bookmark-service.js'
 import userService from './user-service.js'
 import workoutService from './workout-service.js'
-import HttpError from '../utils/httpError.js'
+import HttpError from '../utils/http-error.js'
+import mongoose from 'mongoose'
 
 const planService = createGenericService(Plan)
 const bookmarkService = createBookmarkService(Plan)
@@ -79,6 +80,16 @@ planService.addWorkouts = async (planId, workoutIds, day, userId) => {
     }
   }
 
+  const notWorkoutIds = workoutIds
+    .map((id) => new mongoose.Types.ObjectId(id))
+    .filter(
+      (id) =>
+        !workoutIdsToAdd.some((addedId) => addedId.equals(id)) &&
+        !workoutIdsFailed.some((failedId) => failedId.equals(id))
+    )
+
+  workoutIdsFailed.push(...notWorkoutIds)
+
   await planService.update(planId, {
     $addToSet: { [`workouts.${day}`]: { $each: workoutIdsToAdd } }, // $addToSet: avoids duplicates
   })
@@ -91,21 +102,17 @@ planService.addWorkouts = async (planId, workoutIds, day, userId) => {
   }
 }
 
-planService.removeWorkout = async (planId, workoutId) => {
-  const plan = await planService.getById(planId)
+planService.removeWorkout = async (planId, workoutId, day) => {
+  await planService.getById(planId) // for check, if plan exists
 
-  for (const [day, workoutIds] in plan.workouts) {
-    if (workoutIds.includes(workoutId)) {
-      await planService.update(planId, {
-        $pull: { [`workouts.${day}`]: workoutId },
-      })
-      break
-    }
-  }
+  await planService.update(planId, {
+    $pull: { [`workouts.${day}`]: workoutId },
+  })
 }
 
 planService.getTodaysWorkouts = async (userId) => {
-  const activePlan = await getActivePlanId(userId)
+  const activePlan = await planService.getById(await getActivePlanId(userId))
+  console.log(activePlan)
   const dayIndex = new Date().getDay() - 1
 
   const day = [
@@ -118,9 +125,13 @@ planService.getTodaysWorkouts = async (userId) => {
     'sunday',
   ][dayIndex]
 
-  return await workoutService.getAll(activePlan._id, {
-    $in: activePlan.workouts[day],
-  })
+  return activePlan !== null
+    ? await workoutService.getAll({
+        _id: {
+          $in: activePlan.workouts[day],
+        },
+      })
+    : []
 }
 
 export default planService

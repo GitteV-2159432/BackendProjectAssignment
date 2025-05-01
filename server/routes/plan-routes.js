@@ -15,7 +15,6 @@ import {
   removeWorkout,
   getTodaysWorkouts,
 } from '../controllers/plan-controller.js'
-import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
 import validateObjectId from '../middleware/validation/object-id-validation.js'
 import validate from '../middleware/validation/validation.js'
 import {
@@ -40,6 +39,8 @@ const checkObjectPermission = (readAccess = false) => {
 }
 
 router.get('/active', getActivePlan)
+
+router.get('/active/workouts/today', getTodaysWorkouts)
 
 router.post(
   '/:id/mark-active',
@@ -84,29 +85,28 @@ router.delete(
 
 router.get(
   '/:id/workouts',
-  [validateObjectId('id'), validateDayQueryParam(false), validate],
+  [validateObjectId('id'), validateDayQueryParam(), validate],
   checkObjectPermission(true),
   getWorkouts
 )
 
 router.post(
   '/:id/workouts',
-  [validateObjectId('id'), validateDayQueryParam(true), validate],
+  [validateObjectId('id'), validateDayQueryParam(), validate],
   checkObjectPermission(),
   addWorkouts
 )
 
 router.delete(
   '/:id/workouts/:idDel',
-  [validateObjectId('id'), validateObjectId('idDel'), validate],
+  [
+    validateObjectId('id'),
+    validateObjectId('idDel'),
+    validateDayQueryParam(),
+    validate,
+  ],
   checkObjectPermission(),
   removeWorkout
-)
-
-router.get(
-  '/:id/workouts/today',
-  [validateObjectId('id'), validate],
-  getTodaysWorkouts
 )
 
 export default router

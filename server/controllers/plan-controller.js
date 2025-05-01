@@ -4,42 +4,15 @@ import {
 } from '../middleware/sanitization/query-param-sanitization.js'
 import planService from '../services/plan-service.js'
 import userService from '../services/user-service.js'
+import { getQueryFromFilterParameters, mapModelDTO } from '../utils/get-all.js'
 
 const getPlans = async (req, res) => {
   const filter = sanitizeStringQueryParam(req.query.filter)
-
-  const query = {}
-  let bookmarkedPlanIds = []
-
-  if (filter === 'personal') {
-    query.userId = req.userObjectId
-  }
-
-  if (filter === 'bookmarked' || filter === 'public') {
-    bookmarkedPlanIds = (await userService.getById(req.userObjectId)).bookmarks
-      .plans
-  }
-
-  if (filter === 'bookmarked') {
-    query._id = {
-      $in: bookmarkedPlanIds,
-    }
-  }
-
-  if (filter === 'public') {
-    query.isPublic = true
-  }
+  const query = await getQueryFromFilterParameters(filter, req.userObjectId)
 
   let plans = await planService.getAll(query, { name: 1 })
-
-  // todo
   if (filter === 'public') {
-    plans = plans.map((plan) => {
-      return {
-        ...plan,
-        bookmarked: bookmarkedPlanIds.includes(plan._id),
-      }
-    })
+    plans = await mapModelDTO(plans, 'plans', req.userObjectId)
   }
 
   return res.json(plans)
@@ -117,7 +90,7 @@ const addWorkouts = async (req, res) => {
   return res.json(
     await planService.addWorkouts(
       req.params.id,
-      req.body.workoutIds,
+      [...new Set(req.body.workoutIds)], // remove duplicates
       sanitizeDayQueryParam(req.query.day),
       req.userObjectId
     )
@@ -125,7 +98,11 @@ const addWorkouts = async (req, res) => {
 }
 
 const removeWorkout = async (req, res) => {
-  await planService.removeWorkout(req.params.id, req.params.idDel)
+  await planService.removeWorkout(
+    req.params.id,
+    req.params.idDel,
+    sanitizeDayQueryParam(req.query.day)
+  )
 
   return res.status(204).send()
 }

@@ -1,6 +1,6 @@
 import userService from '../services/user-service.js'
 
-const queryFromFilterParameters = async (filter, userId) => {
+const getQueryFromFilterParameters = async (filter, userId) => {
   let query = {}
 
   switch (filter) {
@@ -22,4 +22,15 @@ const queryFromFilterParameters = async (filter, userId) => {
   return query
 }
 
-export default queryFromFilterParameters
+const mapModelDTO = async (documents, modelName, userId) => {
+  let bookmarkedIds = (await userService.getById(userId)).bookmarks[modelName]
+
+  return documents.map((doc) => {
+    return {
+      ...doc._doc,
+      bookmarked: bookmarkedIds.includes(doc._id),
+    }
+  })
+}
+
+export { getQueryFromFilterParameters, mapModelDTO }
