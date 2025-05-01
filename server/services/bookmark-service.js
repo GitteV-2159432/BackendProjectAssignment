@@ -10,11 +10,13 @@ const createBookmarkService = (Model) => {
   const getModelBookmarkIds = async (modelId, userId) => {
     const document = await modelService.getById(modelId)
 
-    if (!document.isPublic) {
-      throw new HttpError(
-        403,
-        `Only public ${modelNamePl.toLowerCase()} can be bookmarked.`
-      )
+    if(modelName != "Exercise"){
+      if (!document.isPublic) {
+        throw new HttpError(
+          400,
+          `Only public ${modelNamePl.toLowerCase()} can be bookmarked.`
+        )
+      }
     }
 
     return (await userService.getById(userId)).bookmarks[
@@ -40,17 +42,30 @@ const createBookmarkService = (Model) => {
 
       await setModifiedModelBookmarkIds(modifiedModelBookmarkIds, userId)
 
-      return modelService.getAll(
-        {
-          isPublic: true,
-          _id: {
-            $nin: (await userService.getById(userId)).bookmarks[
-              modelNamePl.toLowerCase()
-            ],
+      if(modelName != "Exercise"){
+        return modelService.getAll(
+          {
+            isPublic: true,
+            _id: {
+              $nin: (await userService.getById(userId)).bookmarks[
+                modelNamePl.toLowerCase()
+              ],
+            },
           },
-        },
-        { name: 1 }
-      )
+          { name: 1 }
+        )
+      } else{
+        return modelService.getAll(
+          {
+            _id: {
+              $in: (await userService.getById(userId)).bookmarks[
+                modelNamePl.toLowerCase()
+              ],
+            },
+          },
+          { name: 1 }
+        )
+      }
     },
 
     async removeBookmark(modelId, userId) {
@@ -61,6 +76,7 @@ const createBookmarkService = (Model) => {
 
       await setModifiedModelBookmarkIds(modifiedModelBookmarkIds, userId)
 
+      if(modelName != "Exercise"){
       return modelService.getAll(
         {
           isPublic: true,
@@ -72,6 +88,18 @@ const createBookmarkService = (Model) => {
         },
         { name: 1 }
       )
+    } else{
+      return modelService.getAll(
+        {
+          _id: {
+            $in: (await userService.getById(userId)).bookmarks[
+              modelNamePl.toLowerCase()
+            ],
+          },
+        },
+        { name: 1 }
+      )
+    }
     },
   }
 }

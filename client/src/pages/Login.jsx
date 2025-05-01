@@ -1,42 +1,77 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import Navbar from "../components/NavBar";
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
+import '../styles/auth.css'
+import Logo from '../components/icons/Logo.jsx'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { login } = useAuth();
-  const navigate = useNavigate();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const { login } = useAuth()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const res = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-    });
-      
+    const res = await fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    })
 
-    const data = await res.json();
+    const data = await res.json()
     if (res.ok) {
-      login(data.token);
-      navigate("/dashboard");
+      login(data.token)
+      navigate('/dashboard')
     } else {
-      alert(data.message);
+      alert(data.message)
     }
-  };
+  }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Navbar></Navbar>
-      <h2>Login</h2>
-      <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-      <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
-      <button type="submit">Login</button>
-    </form>
-  );
-};
+    <div className="auth-container">
+      <header className="top-bar">
+        <div className="top-buttons">
+          <Link to="/login" className="sign-in-link">
+            Sign in
+          </Link>
+          <Link to="/register" className="sign-up-btn">
+            Sign up
+          </Link>
+        </div>
+      </header>
+      <main className="main-content">
+        <div className="logo-wrapper">
+          <Logo />
+        </div>
+        <div className="content-wrapper">
+          <form onSubmit={handleSubmit}>
+            <h1>Login</h1>
+            <label for="email">E-mail</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="E-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label for="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button type="submit">Sign in</button>
+          </form>
+        </div>
+      </main>
+    </div>
+  )
+}
 
-export default Login;
+export default Login

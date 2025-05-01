@@ -1,45 +1,44 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const navigate = useNavigate();
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const navigate = useNavigate()
 
   const handleRegister = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
+      alert('Passwords do not match!')
+      return
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
-      });
+      })
 
-      const data = await res.json();
+      const data = await res.json()
 
       if (res.ok) {
-        alert("User created! You can now log in.");
-        navigate("/login");
+        alert('User created! You can now log in.')
+        navigate('/login')
       } else {
-        alert(data.message || "Registration failed");
+        alert(data.message || 'Registration failed')
       }
     } catch (err) {
-      console.error("Registration error:", err);
-      alert("Something went wrong");
+      console.error('Registration error:', err)
+      alert('Something went wrong')
     }
-  };
+  }
 
   return (
     <form onSubmit={handleRegister}>
-      <Navbar></Navbar>
       <h2>Register</h2>
       <input
         type="text"
@@ -71,6 +70,6 @@ const Register = () => {
       />
       <button type="submit">Sign Up</button>
     </form>
-  );
+  )
 }
-export default Register;
+export default Register

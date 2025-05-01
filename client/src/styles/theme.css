@@ -1,0 +1,26 @@
+:root {
+    --darkest-color: #070707;
+    --darkest-rgb: 7, 7, 7;
+
+    --dark_2-color: #40434e;
+    --dark_2-rgb: 64, 67, 78;
+
+    --pink-color: #c297b8;
+    --pink-color-rgb: 194, 151, 184;
+
+    --pink_2-color:#fdcff3;
+    --pink_2-rgb:253, 207, 243;
+
+    --off-white-color: #faf9f6;
+    --off-white-rgb: 250, 249, 246;
+
+    --font-main: work-sans, sans-serif;
+    --font-secondary: Fatface, serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    background-color: var(--darkest-color);
+    color: var(--off-white-color);
+  }

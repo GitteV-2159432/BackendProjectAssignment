@@ -33,23 +33,29 @@ const getExercise = async (req, res) => {
   return res.json(exercise)
 }
 
-const addBookmark = async (req, res) => {
-  //TODO
+const bookmarkExercise = async (req, res) => {
+  return res.json(
+    await exerciseService.setBookmark(req.params.id, req.userObjectId)
+  )
 }
 
-const deleteBookmark = async (req, res) => { 
-  //TODO
+const unbookmarkExercise = async (req, res) => { 
+  return res.json(
+    await exerciseService.removeBookmark(req.params.id, req.userObjectId)
+  )
 }
 
 const deleteExercise = async (req, res) => {
-  await exerciseService.checkPermission(req.params.id, req.userObjectId)
+  // Check if user is admin
+  await exerciseService.checkPermission(req.userObjectId)
   await exerciseService.remove(req.params.id)
 
   return res.status(204).send()
 }
 
 const updateExercise = async (req, res) => {
-  await exerciseService.checkPermission(req.params.id, req.userObjectId);
+  // Check if user is admin
+  await exerciseService.checkPermission(req.userObjectId);
   
   const updatedExercise = await exerciseService.update(req.params.id, {
     name: req.body.name,
@@ -64,4 +70,4 @@ const updateExercise = async (req, res) => {
   return res.json(updatedExercise)
 }
 
-export { getExercises, getExercise, addBookmark, deleteBookmark, deleteExercise, updateExercise }
+export { getExercises, getExercise, bookmarkExercise, unbookmarkExercise, deleteExercise, updateExercise }

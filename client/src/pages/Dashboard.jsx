@@ -1,15 +1,7 @@
-import Navbar from "../components/NavBar";
-import { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext";
+import PageContainer from '../components/PageContainer'
 
 const Dashboard = () => {
- 
+  return <PageContainer heading={'Dashboard'}></PageContainer>
+}
 
-  return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
-  );
-};
-
-export default Dashboard;
+export default Dashboard
