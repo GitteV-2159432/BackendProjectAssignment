@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useAuth } from '../context/AuthContext'
+import useAuth from '../context/useAuth.js'
 import fetchWithAuth from '../utils/fetchWithAuth.js'
 import Cards from './Cards.jsx'
 import PageContainer from './PageContainer.jsx'
@@ -16,7 +16,7 @@ const CardPageContainer = ({ heading, endpoint }) => {
         res.result ? setItems(res.result) : setItems([])
       }
     )
-  }, [activeTab])
+  }, [activeTab, endpoint, logout])
 
   const handleMoreButtonClicked = (e, id) => {
     console.log(id)

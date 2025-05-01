@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
-import '../styles/auth.css'
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../components/icons/Logo.jsx'
-import { Link } from 'react-router-dom'
+import useAuth from '../context/useAuth.js'
+import '../styles/auth.css'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -48,7 +47,7 @@ const Login = () => {
         <div className="content-wrapper">
           <form onSubmit={handleSubmit}>
             <h1>Login</h1>
-            <label for="email">E-mail</label>
+            <label htmlFor="email">E-mail</label>
             <input
               id="email"
               name="email"
@@ -57,7 +56,7 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               id="password"
               name="password"
