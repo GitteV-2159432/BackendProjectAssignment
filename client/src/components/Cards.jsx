@@ -1,6 +1,6 @@
 import Card from './Card.jsx'
 
-const Cards = ({ items }) => {
+const Cards = ({ items, onMoreButtonClicked }) => {
   return (
     <div className="flex">
       {items &&
@@ -10,6 +10,7 @@ const Cards = ({ items }) => {
               key={item._id}
               name={item.name}
               description={item.description}
+              onMoreButtonClicked={(e) => onMoreButtonClicked(e, item._id)}
             />
           )
         })}

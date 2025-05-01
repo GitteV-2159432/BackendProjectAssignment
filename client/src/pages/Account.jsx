@@ -1,9 +1,7 @@
+import PageContainer from '../components/PageContainer'
+
 const Account = () => {
-  return (
-    <>
-      <h1>Account</h1>
-    </>
-  )
+  return <PageContainer heading={'Account'}></PageContainer>
 }
 
 export default Account

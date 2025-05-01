@@ -1,9 +1,7 @@
+import CardPageContainer from '../components/CardPageContainer.jsx'
+
 const Plans = () => {
-  return (
-    <>
-      <h1>Plans</h1>
-    </>
-  )
+  return <CardPageContainer heading={'Plans'} endpoint={'/plans'} />
 }
 
 export default Plans
