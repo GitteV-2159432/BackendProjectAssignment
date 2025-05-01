@@ -1,26 +1,11 @@
-import userService from '../services/user-service.js'
 import workoutService from '../services/workout-service.js'
+import queryFromFilterParameters from '../utils/query-from-filter-parameter.js'
 
 const getWorkouts = async (req, res) => {
-  const userId = req.userObjectId
-  let query = {}
-
-  switch (req.query.filter) {
-    case 'personal':
-      query.userId = userId
-      break
-
-    case 'bookmarked':
-      const user = await userService.getById(userId)
-      query._id = { $in: user.bookmarks.workouts }
-      break
-
-    case 'public':
-      query.isPublic = true
-      query.userId = { $ne: userId }
-      break
-  }
-
+  const query = await queryFromFilterParameters(
+    req.query.filter,
+    req.userObjectId
+  )
   const workouts = await workoutService.getAll(query)
   return res.json(workouts)
 }
