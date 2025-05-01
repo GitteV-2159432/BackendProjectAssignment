@@ -4,7 +4,7 @@ import workoutService from '../services/workout-service.js'
 const getWorkouts = async (req, res) => {
   const userId = req.userObjectId
   let query = {}
-  console.log(req.query.filter)
+
   switch (req.query.filter) {
     case 'personal':
       query.userId = userId
@@ -20,8 +20,6 @@ const getWorkouts = async (req, res) => {
       query.userId = { $ne: userId }
       break
   }
-
-  console.log(query)
 
   const workouts = await workoutService.getAll(query)
   return res.json(workouts)

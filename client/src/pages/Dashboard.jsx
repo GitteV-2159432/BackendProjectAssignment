@@ -1,11 +1,7 @@
-import { useEffect, useState } from 'react'
+import PageContainer from '../components/PageContainer'
 
 const Dashboard = () => {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
-  )
+  return <PageContainer heading={'Dashboard'}></PageContainer>
 }
 
 export default Dashboard

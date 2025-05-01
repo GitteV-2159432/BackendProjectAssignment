@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import fetchWithAuth from '../utils/fetchWithAuth.js'
 import Cards from './Cards.jsx'
+import PageContainer from './PageContainer.jsx'
 import Tabs from './Tabs.jsx'
 
 const CardPageContainer = ({ heading, endpoint }) => {
@@ -17,16 +18,19 @@ const CardPageContainer = ({ heading, endpoint }) => {
     )
   }, [activeTab])
 
+  const handleMoreButtonClicked = (e, id) => {
+    console.log(id)
+  }
+
   return (
-    <div className="w-full mx-5 mt-4">
-      <h1 className="font-medium text-center text-9xl">{heading}</h1>
+    <PageContainer heading={heading}>
       <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
       {items?.length > 0 ? (
-        <Cards items={items} />
+        <Cards items={items} onMoreButtonClicked={handleMoreButtonClicked} />
       ) : (
-        <p>{`No ${heading} available.`}</p>
+        <p className="text-center">{`No ${activeTab} ${heading.toLowerCase()} available...`}</p>
       )}
-    </div>
+    </PageContainer>
   )
 }
 
