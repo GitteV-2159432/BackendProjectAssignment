@@ -15,10 +15,10 @@ const Tabs = ({ activeTab, setActiveTab }) => {
         Personal
       </button>
       <button
-        onClick={() => setActiveTab('bookmarks')}
-        className={tabStyle('bookmarks')}
+        onClick={() => setActiveTab('bookmarked')}
+        className={tabStyle('bookmarked')}
       >
-        Bookmarked
+        Bookmarks
       </button>
       <button
         onClick={() => setActiveTab('public')}

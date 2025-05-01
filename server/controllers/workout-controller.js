@@ -1,25 +1,30 @@
-import workoutService from '../services/workout-service.js'
 import userService from '../services/user-service.js'
-import { sanitizeBooleanQueryParam } from '../middleware/sanitization/query-param-sanitization.js'
+import workoutService from '../services/workout-service.js'
 
 const getWorkouts = async (req, res) => {
-  const isPublic = sanitizeBooleanQueryParam(req.query.isPublic)
-  const bookmark = sanitizeBooleanQueryParam(req.query.bookmark)
+  const userId = req.userObjectId
+  let query = {}
+  console.log(req.query.filter)
+  switch (req.query.filter) {
+    case 'personal':
+      query.userId = userId
+      break
 
-  const filter = { isPublic }
+    case 'bookmarked':
+      const user = await userService.getById(userId)
+      query._id = { $in: user.bookmarks.workouts }
+      break
 
-  if (!isPublic) {
-    filter.userId = req.userObjectId
+    case 'public':
+      query.isPublic = true
+      query.userId = { $ne: userId }
+      break
   }
 
-  if (isPublic) {
-    filter._id = {
-      [bookmark ? '$in' : '$nin']: (await userService.getById(req.userObjectId))
-        .bookmarks.workouts,
-    }
-  }
+  console.log(query)
 
-  return res.json(await workoutService.getAll(filter))
+  const workouts = await workoutService.getAll(query)
+  return res.json(workouts)
 }
 
 const getWorkout = async (req, res) => {
@@ -80,14 +85,14 @@ const deleteWorkoutExercise = async (req, res) => {
 }
 
 export {
-  getWorkouts,
-  getWorkout,
   addWorkout,
-  patchWorkout,
-  deleteWorkout,
-  bookmarkWorkout,
-  unbookmarkWorkout,
-  getWorkoutExercises,
   addWorkoutExercises,
+  bookmarkWorkout,
+  deleteWorkout,
   deleteWorkoutExercise,
+  getWorkout,
+  getWorkoutExercises,
+  getWorkouts,
+  patchWorkout,
+  unbookmarkWorkout,
 }
