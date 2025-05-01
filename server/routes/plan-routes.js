@@ -13,96 +13,100 @@ import {
   getWorkouts,
   addWorkouts,
   removeWorkout,
-  getTodaysWorkout,
+  getTodaysWorkouts,
 } from '../controllers/plan-controller.js'
 import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
 import validateObjectId from '../middleware/validation/object-id-validation.js'
 import validate from '../middleware/validation/validation.js'
 import {
   validateDayQueryParam,
-  validateGetAllQueryParams,
+  validateGetAllFilterQueryParam,
 } from '../middleware/validation/query-param-validation.js'
 import validateCreate from '../middleware/validation/workout-and-plan/create-validation.js'
 import validateUpdate from '../middleware/validation/workout-and-plan/update-validation.js'
+import planService from '../services/plan-service.js'
 
 const router = express.Router()
 
-router.get('/active', userIdToObjectId, getActivePlan)
+const checkObjectPermission = (readAccess = false) => {
+  return async (req, res, next) => {
+    await planService.checkPermission(
+      req.params.id,
+      req.userObjectId,
+      readAccess
+    )
+    next()
+  }
+}
+
+router.get('/active', getActivePlan)
 
 router.post(
   '/:id/mark-active',
-  userIdToObjectId,
   [validateObjectId('id'), validate],
+  checkObjectPermission(true),
   setActivePlan
 )
 
 router.delete(
   '/:id/mark-active',
-  userIdToObjectId,
   [validateObjectId('id'), validate],
   removeActivePlan
 )
 
-router.post(
-  '/:id/bookmark',
-  userIdToObjectId,
-  [validateObjectId('id'), validate],
-  bookmarkPlan
-)
+router.post('/:id/bookmark', [validateObjectId('id'), validate], bookmarkPlan)
 
 router.delete(
   '/:id/bookmark',
-  userIdToObjectId,
   [validateObjectId('id'), validate],
   unbookmarkPlan
 )
 
-router.get(
-  '/',
-  userIdToObjectId,
-  [...validateGetAllQueryParams(), validate],
-  getPlans
-)
+router.get('/', [validateGetAllFilterQueryParam(), validate], getPlans)
 
 router.get(
   '/:id',
-  userIdToObjectId,
   [validateObjectId('id'), validate],
+  checkObjectPermission(true),
   getPlan
 )
 
-router.post('/', userIdToObjectId, [...validateCreate(), validate], addPlan)
+router.post('/', [...validateCreate(), validate], addPlan)
 
-router.patch(
-  '/:id',
-  userIdToObjectId,
-  [...validateUpdate(), validate],
-  updatePlan
-)
+router.patch('/:id', [...validateUpdate(), validate], updatePlan)
 
 router.delete(
   '/:id',
-  userIdToObjectId,
   [validateObjectId('id'), validate],
+  checkObjectPermission(),
   deletePlan
 )
 
 router.get(
   '/:id/workouts',
-  userIdToObjectId,
-  [validateObjectId('id'), validate],
+  [validateObjectId('id'), validateDayQueryParam(false), validate],
+  checkObjectPermission(true),
   getWorkouts
 )
 
 router.post(
   '/:id/workouts',
-  userIdToObjectId,
-  [validateObjectId('id'), validateDayQueryParam, validate],
+  [validateObjectId('id'), validateDayQueryParam(true), validate],
+  checkObjectPermission(),
   addWorkouts
 )
 
-router.delete('/:id/workouts/:id', removeWorkout)
+router.delete(
+  '/:id/workouts/:idDel',
+  [validateObjectId('id'), validateObjectId('idDel'), validate],
+  checkObjectPermission(),
+  removeWorkout
+)
 
-router.get('/:id/workouts/today', getTodaysWorkout)
+router.get(
+  '/:id/workouts/today',
+  [validateObjectId('id'), validate],
+  getTodaysWorkouts
+)
 
 export default router

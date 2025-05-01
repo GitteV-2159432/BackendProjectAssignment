@@ -7,11 +7,12 @@ import workoutRoutes from './workout-routes.js'
 import authRoutes from './auth.js'
 import userRoutes from './user-routes.js'
 import authMiddleware from '../middleware/auth.js'
+import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
 
 const router = express.Router()
 
 router.use('/exercises', authMiddleware, exerciseRoutes)
-router.use('/plans', authMiddleware, planRoutes)
+router.use('/plans', authMiddleware, userIdToObjectId, planRoutes)
 router.use('/workouts', authMiddleware, workoutRoutes)
 router.use('/workout-logs', authMiddleware, workoutLogRoutes)
 router.use('/auth', authRoutes)
