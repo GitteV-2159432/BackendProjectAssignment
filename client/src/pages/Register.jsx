@@ -1,8 +1,11 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import Logo from '../components/icons/Logo.jsx'
+import '../styles/auth.css'
 
 const Register = () => {
-  const [name, setName] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -20,7 +23,7 @@ const Register = () => {
       const res = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ firstName,lastName, email, password }),
       })
 
       const data = await res.json()
@@ -38,38 +41,86 @@ const Register = () => {
   }
 
   return (
-    <form onSubmit={handleRegister}>
-      <h2>Register</h2>
-      <input
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Sign Up</button>
-    </form>
+    <div className="auth-container">
+      <header className="top-bar">
+        <div className="top-buttons">
+          <Link to="/login" className="sign-in-link">
+            Sign in
+          </Link>
+          <Link to="/register" className="sign-up-btn">
+            Sign up
+          </Link>
+        </div>
+      </header>
+      <main className="main-content">
+        <div className="logo-wrapper">
+          <Logo />
+        </div>
+        <div className="content-wrapper">
+          <form onSubmit={handleRegister}>
+            <h1>Register</h1>
+            <div className="input-row">
+            <input
+              id="firstName"
+              name="firstName"
+              type="text"
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+            
+            <input
+              id="lastName"
+              name="lastName"
+              type="text"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+            </div>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <div className="input-row">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+            </div>
+            <button type="submit">Sign Up</button>
+          </form>
+        </div>
+
+      </main>
+    </div>
   )
 }
+/*
+<label htmlFor="firstName">First Name</label>
+<label htmlFor="lastName">Last Name</label>
+<label htmlFor="email">E-mail</label>
+<label htmlFor="Password">Password</label> 
+*/
 export default Register

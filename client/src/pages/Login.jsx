@@ -47,7 +47,7 @@ const Login = () => {
         <div className="content-wrapper">
           <form onSubmit={handleSubmit}>
             <h1>Login</h1>
-            <label htmlFor="email">E-mail</label>
+            <h2>Welcome back! Please log in.</h2>
             <input
               id="email"
               name="email"
@@ -56,7 +56,6 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label htmlFor="password">Password</label>
             <input
               id="password"
               name="password"
@@ -66,11 +65,17 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <button type="submit">Sign in</button>
+            <p>Don't have an account? <Link className='form-link' to="/register">Sign up</Link></p>
           </form>
         </div>
       </main>
     </div>
   )
 }
+
+/**
+ * <label htmlFor="email">E-mail</label>
+ * <label htmlFor="password">Password</label>
+ */
 
 export default Login
