@@ -24,7 +24,7 @@ const fetchWithAuth = async (
   logout,
   { method = 'GET', body = null, headers = {}, query = {} } = {}
 ) => {
-  const token = localStorage.getItem('token')
+  const token = sessionStorage.getItem('token')
 
   const queryString = new URLSearchParams(query).toString()
   const url =

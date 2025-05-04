@@ -9,7 +9,7 @@ const Tabs = ({ activeTab, setActiveTab }) => {
     }`
 
   return (
-    <div className="flex justify-center mt-12 mb-5 space-x-4">
+    <div className="flex justify-center mb-5 space-x-4">
       <button
         onClick={() => setActiveTab(tabs.personal)}
         className={tabStyle(tabs.personal)}

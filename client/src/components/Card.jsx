@@ -10,7 +10,7 @@ const Card = ({ name, description, isActive, bookmarked }) => {
       <div className="relative w-full h-full px-5 py-3.5 bg-[#40434E]">
         <button
           onClick={() => setDisplayOverlay(true)}
-          className="absolute flex items-center justify-center w-8 h-8 top-2.5 right-2"
+          className="absolute w-8 h-8 top-1 right-1 flex items-center justify-center rounded-full hover:bg-[#C297B840]"
         >
           <MoreIcon />
         </button>
@@ -26,7 +26,11 @@ const Card = ({ name, description, isActive, bookmarked }) => {
         </div>
       </div>
       {displayOverlay && (
-        <CardOverlay isActive={isActive} bookmarked={bookmarked} />
+        <CardOverlay
+          isActive={isActive}
+          bookmarked={bookmarked}
+          onClose={() => setDisplayOverlay(false)}
+        />
       )}
     </li>
   )

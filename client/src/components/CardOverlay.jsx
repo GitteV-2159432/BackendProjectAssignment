@@ -11,19 +11,22 @@ import { useCard } from '../context/CardContext'
 import tabs from '../enums/tabs'
 import endpoints from '../enums/endpoints'
 
-const CardOverlay = ({ isActive, bookmarked }) => {
+const CardOverlay = ({ isActive, bookmarked, onClose }) => {
   const { activeTab, endpoint, higherLevelEndpoint } = useCard()
 
   return (
     <>
       <div className="absolute bg-[#070707] opacity-70 w-full h-full top-0 right-0"></div>
-      <div className="absolute bg-[#FDCFF3] w-3/4 h-full top-0 right-0">
-        <div className="flex flex-col">
-          <button className="absolute w-8 h-8 top-2.5 right-1">
+      <div className="absolute bg-[#FDCFF3] w-3/5 h-full top-0 right-0">
+        <div>
+          <button
+            onClick={onClose}
+            className="absolute w-8 h-8 top-1 right-1 flex items-center justify-center rounded-full hover:bg-[#C297B8]"
+          >
             <CloseIcon />
           </button>
 
-          <ul className="flex flex-col">
+          <ul className="absolute w-full mt-6">
             {/* add to workout or plan */}
             {(activeTab === tabs.exercises || activeTab === tabs.workouts) && (
               <CardOverlayItem

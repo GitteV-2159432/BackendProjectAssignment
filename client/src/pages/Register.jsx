@@ -11,7 +11,7 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const navigate = useNavigate()
-  const token = localStorage.getItem('token')
+  const token = sessionStorage.getItem('token')
 
   const handleRegister = async (e) => {
     e.preventDefault()
@@ -25,7 +25,7 @@ const Register = () => {
       const res = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName,lastName, email, password }),
+        body: JSON.stringify({ firstName, lastName, email, password }),
       })
 
       const data = await res.json()
@@ -53,24 +53,24 @@ const Register = () => {
           <form onSubmit={handleRegister}>
             <h1>Register</h1>
             <div className="input-row">
-            <input
-              id="firstName"
-              name="firstName"
-              type="text"
-              placeholder="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-            />
-            <input
-              id="lastName"
-              name="lastName"
-              type="text"
-              placeholder="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-            />
+              <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+              />
             </div>
             <input
               id="email"
@@ -82,29 +82,28 @@ const Register = () => {
               required
             />
             <div className="input-row">
-            <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <input
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
             </div>
             <button type="submit">Sign Up</button>
           </form>
         </div>
-
       </main>
     </div>
   )

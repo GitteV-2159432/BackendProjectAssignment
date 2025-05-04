@@ -1,7 +1,7 @@
 const CardOverlayItem = ({ icon, label }) => {
   return (
-    <li className="h-1/4 p-2.5 hover:bg-[#a787a0] rounded-2xl">
-      <button className="flex items-center gap-3 text-base text-[#070707]">
+    <li className="px-3.5 py-2">
+      <button className="flex items-center gap-3 text-base text-[#070707] hover:cursor-pointer">
         {icon}
         {label}
       </button>
