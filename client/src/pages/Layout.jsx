@@ -1,12 +1,18 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/navbar/NavBar.jsx";
+import TopBar from "../components/TopBar.jsx";
 
 const Layout = () => {
     return (
-        <div style={{ display: 'flex', minHeight: '100vh' }}>
+        <div className="flex h-screen">
             <Navbar />
-            <Outlet />
-        </div>  
+            <div className="flex flex-col flex-grow">
+                <TopBar />
+                <main className="flex-grow overflow-auto">
+                    <Outlet />
+                </main>
+            </div>
+        </div>
     );
 };
 
