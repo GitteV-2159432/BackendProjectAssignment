@@ -1,4 +1,5 @@
 import userService from '../services/user-service.js'
+import planService from '../services/plan-service.js'
 
 const getQueryFromFilterParameters = async (filter, userId) => {
   let query = {}
@@ -33,4 +34,15 @@ const mapModelDTO = async (documents, modelName, userId) => {
   })
 }
 
-export { getQueryFromFilterParameters, mapModelDTO }
+const mapPlanDTO = async (documents, userId) => {
+  const activePlanId = (await planService.getActive(userId))._id
+
+  return documents.map((doc) => {
+    return {
+      ...doc._doc,
+      isActive: doc._id.equals(activePlanId),
+    }
+  })
+}
+
+export { getQueryFromFilterParameters, mapModelDTO, mapPlanDTO }

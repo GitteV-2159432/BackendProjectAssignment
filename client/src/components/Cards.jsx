@@ -1,8 +1,8 @@
 import Card from './Card.jsx'
 
-const Cards = ({ items, onMoreButtonClicked }) => {
+const Cards = ({ items }) => {
   return (
-    <div className="flex">
+    <ul className="flex gap-6">
       {items &&
         items.map((item) => {
           return (
@@ -10,11 +10,12 @@ const Cards = ({ items, onMoreButtonClicked }) => {
               key={item._id}
               name={item.name}
               description={item.description}
-              onMoreButtonClicked={(e) => onMoreButtonClicked(e, item._id)}
+              isActive={item.isActive}
+              bookmarked={item.bookmarked}
             />
           )
         })}
-    </div>
+    </ul>
   )
 }
 

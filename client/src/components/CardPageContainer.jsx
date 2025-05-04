@@ -4,9 +4,11 @@ import fetchWithAuth from '../utils/fetchWithAuth.js'
 import Cards from './Cards.jsx'
 import PageContainer from './PageContainer.jsx'
 import Tabs from './Tabs.jsx'
+import { CardProvider } from '../context/CardContext.jsx'
+import tabs from '../enums/tabs.js'
 
 const CardPageContainer = ({ heading, endpoint }) => {
-  const [activeTab, setActiveTab] = useState('personal')
+  const [activeTab, setActiveTab] = useState(tabs.personal)
   const [items, setItems] = useState()
   const { logout } = useAuth()
 
@@ -18,19 +20,17 @@ const CardPageContainer = ({ heading, endpoint }) => {
     )
   }, [activeTab, endpoint, logout])
 
-  const handleMoreButtonClicked = (e, id) => {
-    console.log(id)
-  }
-
   return (
-    <PageContainer heading={heading}>
-      <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-      {items?.length > 0 ? (
-        <Cards items={items} onMoreButtonClicked={handleMoreButtonClicked} />
-      ) : (
-        <p className="text-center">{`No ${activeTab} ${heading.toLowerCase()} available...`}</p>
-      )}
-    </PageContainer>
+    <CardProvider activeTab={activeTab} endpoint={endpoint}>
+      <PageContainer heading={heading}>
+        <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+        {items?.length > 0 ? (
+          <Cards items={items} />
+        ) : (
+          <p className="text-center">{`No ${activeTab} ${heading.toLowerCase()} available...`}</p>
+        )}
+      </PageContainer>
+    </CardProvider>
   )
 }
 

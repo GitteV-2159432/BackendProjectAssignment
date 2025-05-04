@@ -1,7 +1,7 @@
 import NavbarItem from './NavbarItem.jsx'
 
 const NavbarItemsList = ({ items }) => (
-  <ul className="flex flex-col w-full gap-4">
+  <ul className="flex flex-col w-full gap-10">
     {items.map((item) => (
       <li key={item.to}>
         <NavbarItem {...item} />
