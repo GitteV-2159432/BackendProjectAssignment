@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../components/icons/Logo.jsx'
+import TopBar from '../components/TopBar.jsx'
 import '../styles/auth.css'
 
 const Register = () => {
@@ -43,16 +44,7 @@ const Register = () => {
 
   return (
     <div className="auth-container">
-      <header className="top-bar">
-        <div className="top-buttons">
-          <Link to="/login" className="sign-in-link">
-            Sign in
-          </Link>
-          <Link to="/register" className="sign-up-btn">
-            Sign up
-          </Link>
-        </div>
-      </header>
+      <TopBar />
       <main className="main-content">
         <div className="logo-wrapper">
           <Logo />
