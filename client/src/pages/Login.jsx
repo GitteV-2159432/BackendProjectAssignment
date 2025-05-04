@@ -3,11 +3,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../components/icons/Logo.jsx'
 import useAuth from '../context/useAuth.js'
 import '../styles/auth.css'
+import TopBar from '../components/TopBar.jsx'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { login } = useAuth()
+  const { login, token } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
@@ -30,16 +31,7 @@ const Login = () => {
 
   return (
     <div className="auth-container">
-      <header className="top-bar">
-        <div className="top-buttons">
-          <Link to="/login" className="sign-in-link">
-            Sign in
-          </Link>
-          <Link to="/register" className="sign-up-btn">
-            Sign up
-          </Link>
-        </div>
-      </header>
+      <TopBar />
       <main className="main-content">
         <div className="logo-wrapper">
           <Logo />
@@ -47,7 +39,7 @@ const Login = () => {
         <div className="content-wrapper">
           <form onSubmit={handleSubmit}>
             <h1>Login</h1>
-            <label htmlFor="email">E-mail</label>
+            <h2>Welcome back! Please log in.</h2>
             <input
               id="email"
               name="email"
@@ -56,7 +48,6 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label htmlFor="password">Password</label>
             <input
               id="password"
               name="password"
@@ -66,11 +57,17 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <button type="submit">Sign in</button>
+            <p>Don't have an account? <Link className='form-link' to="/register">Sign up</Link></p>
           </form>
         </div>
       </main>
     </div>
   )
 }
+
+/**
+ * <label htmlFor="email">E-mail</label>
+ * <label htmlFor="password">Password</label>
+ */
 
 export default Login

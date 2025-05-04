@@ -1,5 +1,5 @@
 import Muscle from '../models/Muscle.js'
-import fetchFromWger from '../utils/wgerFetcher.js'
+import fetchFromWger from '../utils/wger-fetcher.js'
 import createGenericService from './components/generic-service.js'
 
 const muscleService = createGenericService(Muscle)
