@@ -1,4 +1,4 @@
-.home-container {
+.home-container { 
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@
   background-color: var(--pink-color);
 }
 
-.main-content {
+.Home__main-content {
   flex-grow: 1;
   display: flex;
   flex-direction: row;
@@ -45,12 +45,12 @@
   gap: 5rem;
 }
 
-.logo-wrapper {
+.Home__logo-wrapper {
   width: 500px;
   height: 350px;
 }
 
-.content-wrapper {
+.Home__content-wrapper {
   max-width: 600px;
   display: flex;
   flex-direction: column;

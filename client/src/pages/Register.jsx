@@ -10,6 +10,7 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const navigate = useNavigate()
+  const token = localStorage.getItem('token')
 
   const handleRegister = async (e) => {
     e.preventDefault()
@@ -69,7 +70,6 @@ const Register = () => {
               onChange={(e) => setFirstName(e.target.value)}
               required
             />
-            
             <input
               id="lastName"
               name="lastName"
