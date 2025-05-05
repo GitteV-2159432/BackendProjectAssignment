@@ -1,33 +1,85 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { CardProvider } from '../context/CardContext.jsx'
 import useAuth from '../context/useAuth.js'
+import tabs from '../enums/tabs.js'
 import fetchWithAuth from '../utils/fetchWithAuth.js'
 import Cards from './Cards.jsx'
 import PageContainer from './PageContainer.jsx'
 import Tabs from './Tabs.jsx'
-import { CardProvider } from '../context/CardContext.jsx'
-import tabs from '../enums/tabs.js'
+import CategorySelect from './category-select/CategorySelect.jsx'
 
 const CardPageContainer = ({ heading, endpoint }) => {
-  const [activeTab, setActiveTab] = useState(tabs.personal)
-  const [items, setItems] = useState()
+  const location = useLocation()
+  const [activeTab, setActiveTab] = useState(
+    location.pathname === '/exercises' ? tabs.public : tabs.personal
+  )
+  const [items, setItems] = useState([])
+  const [categories, setCategories] = useState([])
+  const [currentCategory, setCurrentCategory] = useState()
   const { logout } = useAuth()
 
   useEffect(() => {
-    fetchWithAuth(endpoint, logout, { query: { filter: activeTab } }).then(
-      (res) => {
-        res.result ? setItems(res.result) : setItems([])
+    if (location.pathname === '/exercises' && !currentCategory) return
+
+    const query = { filter: activeTab }
+    if (location.pathname === '/exercises') {
+      query.categoryId = currentCategory
+    }
+
+    fetchWithAuth(endpoint, logout, { query }).then((res) => {
+      if (res.error) {
+        console.error('Request failed:', res.error)
+        setItems([])
+        return
       }
-    )
-  }, [activeTab, endpoint, logout])
+
+      if (res.result?.error) {
+        console.error('Server returned error:', res.result.error.message)
+        setItems([])
+        return
+      }
+
+      setItems(res.result)
+    })
+  }, [activeTab, endpoint, logout, currentCategory, location.pathname])
+
+  useEffect(() => {
+    if (location.pathname !== '/exercises') return
+
+    fetchWithAuth('/categories', logout).then((res) => {
+      if (res.error || res.result?.error) {
+        console.error(
+          'Failed to fetch categories:',
+          res.error || res.result?.error
+        )
+        return
+      }
+      setCategories(res.result)
+      setCurrentCategory(res.result[0]?.id)
+    })
+  }, [location.pathname, logout])
 
   return (
     <CardProvider activeTab={activeTab} endpoint={endpoint}>
       <PageContainer heading={heading}>
-        <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-        {items?.length > 0 ? (
+        <Tabs
+          currentPath={location.pathname}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
+        {location.pathname === '/exercises' && (
+          <CategorySelect
+            categories={categories}
+            setCurrentCategory={setCurrentCategory}
+          />
+        )}
+        {items?.length ? (
           <Cards items={items} />
         ) : (
-          <p className="text-center">{`No ${activeTab} ${heading.toLowerCase()} available...`}</p>
+          <p className="text-center">
+            No {activeTab} {heading.toLowerCase()} available...
+          </p>
         )}
       </PageContainer>
     </CardProvider>
