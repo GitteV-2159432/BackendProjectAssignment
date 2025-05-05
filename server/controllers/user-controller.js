@@ -1,6 +1,7 @@
 import { sanitizeBooleanQueryParam, sanitizeObjectIdQueryParam } from '../middleware/sanitization/query-param-sanitization.js'
 import userService from '../services/user-service.js'
 import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
 
 
 // GET /api/users
@@ -67,11 +68,17 @@ const updateUser = async (req, res) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
-    passwordHash: req.body.passwordHash,
-    type: req.body.type,
   })
 
-  
+  if(req.body.password){
+    const password = req.body.password
+    const hashedPassword = await bcrypt.hash(password, 12)
+    updatedUser.passwordHash = hashedPassword
+  }
+  if(req.body.type){
+    updatedUser.type = req.body.type
+  }
+
   return res.json(updatedUser)
 }
 
