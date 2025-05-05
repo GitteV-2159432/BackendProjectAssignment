@@ -20,7 +20,7 @@ const Account = () => {
       if (user) {
         setFirstName(user.firstName || '')
         setLastName(user.lastName || '')
-        setEmail(user.email || '')  
+        setEmail(user.email || '')
       }
     }
     fetchUser()
@@ -46,30 +46,34 @@ const Account = () => {
       lastName,
       email,
     }
-  
+
     if (password) {
       updatedData.password = password
     }
 
-    const { result, error } = await fetchWithAuth(`/users/${user._id}`, logout, {
-      method: 'PATCH',
-      body: updatedData,
-    })
-  
+    const { result, error } = await fetchWithAuth(
+      `/users/${user._id}`,
+      logout,
+      {
+        method: 'PATCH',
+        body: updatedData,
+      }
+    )
+
     if (error) {
       console.error('Failed to update user:', error)
       alert('Error updating account')
       return
     }
-  
+
     alert('Account updated successfully!')
     navigate('/')
   }
 
   return (
     <div className={styles.accountContainer}>
-          <TopBar />
-      <h1>Account</h1>
+      <TopBar />
+      <h1 className={styles.heading}>Account</h1>
       <div className={styles.contentWrapper}>
         <form onSubmit={handleSubmit}>
           <div className={styles.inputRow}>

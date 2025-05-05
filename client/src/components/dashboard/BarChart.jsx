@@ -46,7 +46,7 @@ const BarChart = () => {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         aspectRatio: 5 / 6,
         plugins: {
           legend: {
@@ -73,7 +73,6 @@ const BarChart = () => {
               color: '#FAF9F6',
               font: {
                 size: 14,
-                style: 'Work_Sans',
               },
             },
           },
@@ -90,7 +89,6 @@ const BarChart = () => {
               color: '#FAF9F6',
               font: {
                 size: 14,
-                style: 'Work_Sans',
               },
             },
           },

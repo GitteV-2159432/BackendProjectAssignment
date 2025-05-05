@@ -1,101 +1,101 @@
 .accountContainer {
-    margin-left: 1.25rem;
-    margin-right: 1.25rem;
-    margin-top: 0rem;
-    width: 100%;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+  margin-top: 0rem;
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-h1 {
-    color: var(--pink-color);
-    font-family: var(--font-secondary);
-    font-weight: 600;
-    font-size: 8rem;
-    line-height: 1;
-    margin: 0 0 2rem;
-    text-align: center;
+.heading {
+  color: var(--pink-color);
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  font-size: 8rem;
+  line-height: 1;
+  margin: 0 0 2rem;
+  text-align: center;
 }
 
 .contentWrapper {
-    align-self: center;
-    min-width: 400px;
-    max-width: 800px;
-    justify-content: center;
+  align-self: center;
+  min-width: 400px;
+  max-width: 800px;
+  justify-content: center;
 }
 
 form {
-    background-color: var(--dark_2-color);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+  background-color: var(--dark_2-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .sectionTitle {
-    color: var(--pink-color);
-    font-family: var(--font-primary);
-    font-weight: 600;
-    font-size: 2rem;
-    line-height: 1;
-    margin: 1rem 0.5rem;
-    text-align: center;
+  color: var(--pink-color);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 1;
+  margin: 1rem 0.5rem;
+  text-align: center;
 }
 
 .inputRow {
-    display: flex;
-    gap: 2rem;
+  display: flex;
+  gap: 2rem;
 }
 
 .inputRow input {
-    flex: 1;
+  flex: 1;
 }
 
 label {
-    color: var(--text-white);
-    font-weight: 700;
-    font-family: var(--font-secondary);
-    font-size: 1rem;
-    display: block;
-    margin-bottom: 0.5rem;
+  color: var(--text-white);
+  font-weight: 700;
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    background-color: rgba(var(--off-white-rgb), 0.25);
-    border: none;
-    border-radius: 1rem;
-    padding: 0.5rem 1rem;
-    color: var(--off-white-color);
-    font-family: var(--font-primary);
-    font-size: 0.875rem;
-    width: 100%;
-    margin-bottom: 0.5rem;
+input[type='text'],
+input[type='email'],
+input[type='password'] {
+  background-color: rgba(var(--off-white-rgb), 0.25);
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  color: var(--off-white-color);
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
 }
 
 input::placeholder {
-    color: rgba(var(--off-white-rgb), 0.6);
+  color: rgba(var(--off-white-rgb), 0.6);
 }
 
-button[type="submit"] {
-    background-color: var(--pink_2-color);
-    color: var(--darkest-color);
-    font-family: var(--font-primary);
-    font-weight: 700;
-    font-size: 1.125rem;
-    border-radius: 9999px;
-    padding: 0.75rem 2.5rem;
-    cursor: pointer;
-    width: 150px;
-    margin: 0 auto;
-    display: block;
+button[type='submit'] {
+  background-color: var(--pink_2-color);
+  color: var(--darkest-color);
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1.125rem;
+  border-radius: 9999px;
+  padding: 0.75rem 2.5rem;
+  cursor: pointer;
+  width: 150px;
+  margin: 0 auto;
+  display: block;
 }
 
-button[type="submit"]:hover {
-    background-color: var(--pink-color);
+button[type='submit']:hover {
+  background-color: var(--pink-color);
 }
