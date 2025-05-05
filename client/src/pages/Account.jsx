@@ -63,12 +63,12 @@ const Account = () => {
     }
   
     alert('Account updated successfully!')
-    navigate('/')
+    navigate('/dashboard')
   }
 
   return (
     <div className={styles.accountContainer}>
-          <TopBar />
+      <TopBar />
       <h1>Account</h1>
       <div className={styles.contentWrapper}>
         <form onSubmit={handleSubmit}>

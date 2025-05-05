@@ -29,10 +29,12 @@
 
 .headline {
   color: var(--pink-color);
+  font-family: var(--font-primary);
   font-weight: 800;
   font-size: 4.5rem;
   line-height: 1.1;
   margin: 0 0 2rem;
+  text-align: left;
 }
 
 .subheadline {

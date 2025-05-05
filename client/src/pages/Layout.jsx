@@ -3,15 +3,10 @@ import Navbar from '../components/navbar/NavBar.jsx'
 
 const Layout = () => {
   return (
-    <div className="flex h-screen">
-      <Navbar />
-      <div className="flex flex-col flex-grow">
-        <main className="flex-grow overflow-auto">
-          <Outlet />
-        </main>
-      </div>
-    </div>
-  )
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
+        <Navbar />
+        <Outlet />
+    </div>  
+);
 }
-
 export default Layout
