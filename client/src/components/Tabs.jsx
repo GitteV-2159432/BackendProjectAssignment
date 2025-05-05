@@ -9,7 +9,7 @@ const Tabs = ({ currentPath, activeTab, setActiveTab }) => {
     }`
 
   return (
-    <div className="flex justify-center mb-5 space-x-4">
+    <div className="flex justify-center space-x-4">
       {currentPath !== '/exercises' && (
         <button
           onClick={() => setActiveTab(tabs.personal)}

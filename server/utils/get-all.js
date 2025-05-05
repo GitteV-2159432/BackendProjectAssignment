@@ -51,10 +51,22 @@ const mapModelDTO = async (documents, modelName, userId) => {
   })
 }
 
-const mapPlanDTO = async (documents, userId) => {
+const mapPlanDTO = async (documents, isPublic, userId) => {
   const activePlanId = (await planService.getActive(userId))._id
 
-  return documents.map((doc) => {
+  let plans = documents
+
+  if (isPublic) {
+    plans = await mapModelDTO(documents, 'plans', userId)
+    return plans.map((doc) => {
+      return {
+        ...doc,
+        isActive: doc._id.equals(activePlanId),
+      }
+    })
+  }
+
+  return plans.map((doc) => {
     return {
       ...doc._doc,
       isActive: doc._id.equals(activePlanId),

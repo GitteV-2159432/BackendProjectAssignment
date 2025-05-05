@@ -53,7 +53,7 @@ const CardOverlay = ({ isActive, bookmarked, onClose }) => {
             )}
 
             {/* unbookmark exercise, workout or plan */}
-            {activeTab === tabs.public && bookmarked && (
+            {bookmarked && (
               <CardOverlayItem
                 icon={<BookmarkRemoveIcon />}
                 label={`Remove bookmark`}

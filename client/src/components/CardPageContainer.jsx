@@ -63,21 +63,23 @@ const CardPageContainer = ({ heading, endpoint }) => {
   return (
     <CardProvider activeTab={activeTab} endpoint={endpoint}>
       <PageContainer heading={heading}>
-        <Tabs
-          currentPath={location.pathname}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-        />
-        {location.pathname === '/exercises' && (
-          <CategorySelect
-            categories={categories}
-            setCurrentCategory={setCurrentCategory}
+        <div className="flex flex-row justify-center mb-5 gap-4">
+          <Tabs
+            currentPath={location.pathname}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
           />
-        )}
+          {location.pathname === '/exercises' && (
+            <CategorySelect
+              categories={categories}
+              setCurrentCategory={setCurrentCategory}
+            />
+          )}
+        </div>
         {items?.length ? (
           <Cards items={items} />
         ) : (
-          <p className="text-center">
+          <p className="text-center text-sm text-[#FAF9F6]">
             No {activeTab} {heading.toLowerCase()} available...
           </p>
         )}

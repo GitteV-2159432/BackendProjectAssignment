@@ -3,22 +3,14 @@ import {
   sanitizeDayQueryParam,
 } from '../middleware/sanitization/query-param-sanitization.js'
 import planService from '../services/plan-service.js'
-import {
-  getQueryFromFilterParameters,
-  mapModelDTO,
-  mapPlanDTO,
-} from '../utils/get-all.js'
+import { getQueryFromFilterParameters, mapPlanDTO } from '../utils/get-all.js'
 
 const getPlans = async (req, res) => {
   const filter = sanitizeStringQueryParam(req.query.filter)
   const query = await getQueryFromFilterParameters(filter, req.userObjectId)
 
   let plans = await planService.getAll(query, { name: 1 })
-  if (filter === 'public') {
-    plans = await mapModelDTO(plans, 'plans', req.userObjectId)
-  }
-
-  plans = await mapPlanDTO(plans, req.userObjectId)
+  plans = await mapPlanDTO(plans, filter === 'public', req.userObjectId)
 
   return res.json(plans)
 }
