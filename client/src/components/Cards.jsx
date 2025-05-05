@@ -2,7 +2,7 @@ import Card from './Card.jsx'
 
 const Cards = ({ items }) => {
   return (
-    <ul className="flex gap-6">
+    <ul className="flex flex-wrap gap-6">
       {items &&
         items.map((item) => {
           return (

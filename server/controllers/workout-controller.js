@@ -1,5 +1,6 @@
 import workoutService from '../services/workout-service.js'
-import { getQueryFromFilterParameters } from '../utils/get-all.js'
+import { getQueryFromFilterParameters, mapModelDTO } from '../utils/get-all.js'
+import { sanitizeStringQueryParam } from '../middleware/sanitization/query-param-sanitization.js'
 
 const getWorkouts = async (req, res) => {
   const filter = sanitizeStringQueryParam(req.query.filter)

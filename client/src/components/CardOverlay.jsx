@@ -16,8 +16,7 @@ const CardOverlay = ({ isActive, bookmarked, onClose }) => {
 
   return (
     <>
-      <div className="absolute bg-[#070707] opacity-70 w-full h-full top-0 right-0"></div>
-      <div className="absolute bg-[#FDCFF3] w-3/5 h-full top-0 right-0">
+      <div className="absolute bg-[#FDCFF3] w-full h-full top-0 right-0">
         <div>
           <button
             onClick={onClose}

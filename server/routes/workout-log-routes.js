@@ -12,12 +12,7 @@ import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
 
 const router = express.Router()
 
-router.get(
-  '/weekly-count',
-  userIdToObjectId,
-  [validateObjectId('workoutId'), validate],
-  getPastProgress
-)
+router.get('/weekly-count', userIdToObjectId, getPastProgress)
 
 router.get(
   '/latest-log',

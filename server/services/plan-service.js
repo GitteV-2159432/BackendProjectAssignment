@@ -3,6 +3,7 @@ import createGenericService from './components/generic-service.js'
 import createBookmarkService from './bookmark-service.js'
 import userService from './user-service.js'
 import workoutService from './workout-service.js'
+import exerciseService from './exercise-service.js'
 import HttpError from '../utils/http-error.js'
 import mongoose from 'mongoose'
 
@@ -112,7 +113,7 @@ planService.removeWorkout = async (planId, workoutId, day) => {
 
 planService.getTodaysWorkouts = async (userId) => {
   const activePlan = await planService.getById(await getActivePlanId(userId))
-  console.log(activePlan)
+
   const dayIndex = new Date().getDay() - 1
 
   const day = [
@@ -125,13 +126,38 @@ planService.getTodaysWorkouts = async (userId) => {
     'sunday',
   ][dayIndex]
 
-  return activePlan !== null
-    ? await workoutService.getAll({
-        _id: {
-          $in: activePlan.workouts[day],
-        },
-      })
-    : []
+  if (activePlan === null) {
+    return []
+  }
+
+  const workouts = await workoutService.getAll({
+    _id: {
+      $in: activePlan.workouts[day],
+    },
+  })
+
+  let result = []
+
+  for (let i = 0; i < workouts.length; i++) {
+    const workout = workouts[i]
+
+    result[i] = { ...workout._doc }
+    result[i].exercises = []
+
+    for (let j = 0; j < workout.exercises.length; j++) {
+      const exercise = workout.exercises[j]
+      const fullExercise = await exerciseService.getById(exercise.exerciseId)
+
+      result[i].exercises[j] = {
+        ...fullExercise._doc,
+        sets: exercise.sets,
+        restSecondsBetweenSets: exercise.restSecondsBetweenSets,
+        notes: exercise.notes,
+      }
+    }
+  }
+
+  return result
 }
 
 export default planService
