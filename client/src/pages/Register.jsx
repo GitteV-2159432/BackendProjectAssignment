@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../components/icons/Logo.jsx'
 import TopBar from '../components/TopBar.jsx'
-import '../styles/auth.css'
+import styles from '../styles/Auth.module.css'
 
 const Register = () => {
   const [firstName, setFirstName] = useState('')
@@ -43,34 +43,34 @@ const Register = () => {
   }
 
   return (
-    <div className="auth-container">
+    <div className={styles.authContainer}>
       <TopBar />
-      <main className="main-content">
-        <div className="logo-wrapper">
+      <main className={styles.mainContent}>
+        <div className={styles.logoWrapper}>
           <Logo />
         </div>
-        <div className="content-wrapper">
+        <div className={styles.contentWrapper}>
           <form onSubmit={handleRegister}>
             <h1>Register</h1>
-            <div className="input-row">
-              <input
-                id="firstName"
-                name="firstName"
-                type="text"
-                placeholder="First Name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                required
-              />
-              <input
-                id="lastName"
-                name="lastName"
-                type="text"
-                placeholder="Last Name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                required
-              />
+            <div className={styles.inputRow}>
+            <input
+              id="firstName"
+              name="firstName"
+              type="text"
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+            <input
+              id="lastName"
+              name="lastName"
+              type="text"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
             </div>
             <input
               id="email"
@@ -81,25 +81,25 @@ const Register = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <div className="input-row">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
+            <div className={styles.inputRow}>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
             </div>
             <button type="submit">Sign Up</button>
           </form>

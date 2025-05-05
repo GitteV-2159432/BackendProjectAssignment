@@ -15,8 +15,10 @@
  * @example
  * const { result, error } = await fetchWithAuth('/workouts', logout, {
  *   method: 'POST',
- *   body: { name: 'New Workout' },
- *   query: { public: true }
+ *   body: {
+ *     name: 'New Workout'
+ *     isPublic: true
+ *  },
  * });
  */
 const fetchWithAuth = async (
