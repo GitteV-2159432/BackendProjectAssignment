@@ -1,31 +1,23 @@
 import {
-  sanitizeBooleanQueryParam,
   sanitizeObjectIdQueryParam,
+  sanitizeStringQueryParam,
 } from '../middleware/sanitization/query-param-sanitization.js'
 import exerciseService from '../services/exercise-service.js'
-import userService from '../services/user-service.js'
-import HttpError from '../utils/http-error.js'
-import mongoose from 'mongoose'
+import { getQueryFromFilterParameters } from '../utils/get-all.js'
 
 const getExercises = async (req, res) => {
   const categoryId = sanitizeObjectIdQueryParam(req.query.categoryId)
-  const bookmark = sanitizeBooleanQueryParam(req.query.bookmark)
+  const filter = sanitizeStringQueryParam(req.query.filter)
 
-  const filter = {}
+  const query = await getQueryFromFilterParameters(
+    filter,
+    req.userObjectId,
+    'exercises'
+  )
 
-  filter.category = new mongoose.Types.ObjectId(categoryId)
+  query.category = categoryId
 
-  if (bookmark) {
-    filter._id = {
-      $in: (await userService.getById(req.userObjectId)).bookmarks.plans,
-    }
-  } else {
-    filter._id = {
-      $nin: (await userService.getById(req.userObjectId)).bookmarks.plans,
-    }
-  }
-
-  return res.json(await exerciseService.getAll(filter))
+  return res.json(await exerciseService.getAll(query))
 }
 
 const getExercise = async (req, res) => {
@@ -72,10 +64,10 @@ const updateExercise = async (req, res) => {
 }
 
 export {
-  getExercises,
-  getExercise,
   bookmarkExercise,
-  unbookmarkExercise,
   deleteExercise,
+  getExercise,
+  getExercises,
+  unbookmarkExercise,
   updateExercise,
 }

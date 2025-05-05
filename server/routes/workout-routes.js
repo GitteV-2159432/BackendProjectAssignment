@@ -12,14 +12,14 @@ import {
   patchWorkout,
   unbookmarkWorkout,
 } from '../controllers/workout-controller.js'
-import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
 import validateObjectId from '../middleware/validation/object-id-validation.js'
+import { validateGetAllFilterQueryParam } from '../middleware/validation/query-param-validation.js'
+import userIdToObjectId from '../middleware/validation/user-id-to-object-id.js'
 import validate from '../middleware/validation/validation.js'
 import validateCreate from '../middleware/validation/workout-and-plan/create-validation.js'
+import validateExercise from '../middleware/validation/workout-and-plan/exercise-validation.js'
 import validateUpdate from '../middleware/validation/workout-and-plan/update-validation.js'
 import workoutService from '../services/workout-service.js'
-import validateExercise from '../middleware/validation/workout-and-plan/exercise-validation.js'
-import { validateGetAllFilterQueryParam } from '../middleware/validation/query-param-validation.js'
 
 const router = express.Router()
 
@@ -34,16 +34,10 @@ const checkObjectPermission = (readAccess = false) => {
   }
 }
 
-router.get(
-  '/',
-  userIdToObjectId,
-  [validateGetAllFilterQueryParam(), validate],
-  getWorkouts
-)
+router.get('/', [validateGetAllFilterQueryParam(), validate], getWorkouts)
 
 router.get(
   '/:id',
-  userIdToObjectId,
   [validateObjectId('id'), validate],
   checkObjectPermission(true),
   getWorkout
@@ -53,7 +47,6 @@ router.post('/', userIdToObjectId, [...validateCreate(), validate], addWorkout)
 
 router.patch(
   '/:id',
-  userIdToObjectId,
   [...validateUpdate(), validate],
   checkObjectPermission(),
   patchWorkout
@@ -61,7 +54,6 @@ router.patch(
 
 router.delete(
   '/:id',
-  userIdToObjectId,
   [validateObjectId('id'), validate],
   checkObjectPermission(),
   deleteWorkout
@@ -69,7 +61,6 @@ router.delete(
 
 router.post(
   '/:id/bookmark',
-  userIdToObjectId,
   [validateObjectId('id'), validate],
   checkObjectPermission(true),
   bookmarkWorkout
@@ -77,7 +68,6 @@ router.post(
 
 router.delete(
   '/:id/bookmark',
-  userIdToObjectId,
   [validateObjectId('id'), validate],
   checkObjectPermission(true),
   unbookmarkWorkout
@@ -85,7 +75,6 @@ router.delete(
 
 router.get(
   '/:id/exercises',
-  userIdToObjectId,
   [validateObjectId('id'), validate],
   checkObjectPermission(true),
   getWorkoutExercises
@@ -93,7 +82,6 @@ router.get(
 
 router.post(
   '/:id/exercises',
-  userIdToObjectId,
   [...validateExercise(), validate],
   checkObjectPermission(),
   addWorkoutExercises
@@ -101,7 +89,6 @@ router.post(
 
 router.delete(
   '/:id/exercises/:idDel',
-  userIdToObjectId,
   [validateObjectId('id'), validateObjectId('idDel'), validate],
   checkObjectPermission(),
   deleteWorkoutExercise

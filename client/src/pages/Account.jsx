@@ -67,7 +67,7 @@ const Account = () => {
     }
 
     alert('Account updated successfully!')
-    navigate('/')
+    navigate('/dashboard')
   }
 
   return (

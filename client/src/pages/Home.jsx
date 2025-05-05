@@ -5,11 +5,8 @@ import useAuth from '../context/useAuth.js'
 import TopBar from '../components/TopBar.jsx'
 
 const Home = () => {
-    const { token, logout } = useAuth()
-
     return (
         <div className={styles.homeContainer}>
-            
             <TopBar />
             <main className={styles.mainContent}>
                 <div className={styles.logoWrapper}>
