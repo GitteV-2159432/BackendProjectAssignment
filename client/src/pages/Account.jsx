@@ -1,4 +1,4 @@
-import PageContainer from '../components/PageContainer'
+import TopBar from '../components/TopBar.jsx'
 import styles from '../styles/Account.module.css'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -68,6 +68,7 @@ const Account = () => {
 
   return (
     <div className={styles.accountContainer}>
+          <TopBar />
       <h1>Account</h1>
       <div className={styles.contentWrapper}>
         <form onSubmit={handleSubmit}>

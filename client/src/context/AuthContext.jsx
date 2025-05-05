@@ -6,7 +6,7 @@ import { jwtDecode } from 'jwt-decode'
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem('token') || null)
+  const [token, setToken] = useState(sessionStorage.getItem('token') || null)
   const [userId, setUserId] = useState(null)
 
   useEffect(() => {
@@ -19,16 +19,16 @@ export const AuthProvider = ({ children }) => {
   }, [token])
 
   const login = (token) => {
-    localStorage.setItem('token', token)
+    sessionStorage.setItem('token', token)
     setToken(token)
-    console.log('Token set in localStorage:', token)
+    console.log('Token set in sessionStorage:', token)
   }
 
   const logout = () => {
-    localStorage.removeItem('token')
+    sessionStorage.removeItem('token')
     setToken(null)
     setUserId(null)
-    console.log('Token removed from localStorage')
+    console.log('Token removed from sessionStorage')
   }
 
   const getUser = async () => {

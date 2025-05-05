@@ -1,21 +1,38 @@
+import { useState } from 'react'
+import CardOverlay from './CardOverlay.jsx'
 import MoreIcon from './icons/MoreIcon.jsx'
 
-const Card = ({ name, description, onMoreButtonClicked }) => {
+const Card = ({ name, description, isActive, bookmarked }) => {
+  const [displayOverlay, setDisplayOverlay] = useState(false)
+
   return (
-    <div className="relative w-[320px] h-[320px] p-4 m-1 bg-[#40434E] rounded-md">
-      <button
-        onClick={onMoreButtonClicked}
-        className="absolute flex items-center justify-center w-8 h-8 m-2 top-2 right-2"
-      >
-        <MoreIcon />
-      </button>
-      <div className="flex flex-col justify-between h-full">
-        <div>
-          <h2 className="text-xl font-semibold">{name}</h2>
-          <p>{description || 'No description...'}</p>
+    <li className="relative w-[300px] h-[150px] flex-shrink-0 flex-grow-0 rounded-2xl overflow-hidden">
+      <div className="relative w-full h-full px-5 py-3.5 bg-[#40434E]">
+        <button
+          onClick={() => setDisplayOverlay(true)}
+          className="absolute w-8 h-8 top-1 right-1 flex items-center justify-center rounded-full hover:bg-[#C297B840]"
+        >
+          <MoreIcon />
+        </button>
+        <div className="flex flex-col justify-between h-full text-[#FAF9F6]">
+          <div>
+            <h2 className="text-xl font-[Work_Sans] font-semibold leading-tight break-words w-11/12">
+              {name}
+            </h2>
+            <p className="text-base mt-2">
+              {description || 'No description...'}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+      {displayOverlay && (
+        <CardOverlay
+          isActive={isActive}
+          bookmarked={bookmarked}
+          onClose={() => setDisplayOverlay(false)}
+        />
+      )}
+    </li>
   )
 }
 

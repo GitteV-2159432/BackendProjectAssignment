@@ -11,6 +11,7 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const navigate = useNavigate()
+  const token = sessionStorage.getItem('token')
 
   const handleRegister = async (e) => {
     e.preventDefault()
@@ -24,7 +25,7 @@ const Register = () => {
       const res = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName,lastName, email, password }),
+        body: JSON.stringify({ firstName, lastName, email, password }),
       })
 
       const data = await res.json()
@@ -103,7 +104,6 @@ const Register = () => {
             <button type="submit">Sign Up</button>
           </form>
         </div>
-
       </main>
     </div>
   )
