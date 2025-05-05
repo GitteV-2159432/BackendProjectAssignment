@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react'
-import useAuth from '../context/useAuth.js'
-import fetchWithAuth from '../utils/fetchWithAuth.js'
 import PageContainer from '../components/PageContainer.jsx'
+import SectionContainer from '../components/SectionContainer.jsx'
+import Workouts from '../components/dashboard/Workouts.jsx'
+import BarChart from '../components/dashboard/BarChart.jsx'
 
 const Dashboard = () => {
-  const [todaysWorkouts, setTodaysWorkouts] = useState()
-  const { logout } = useAuth()
-
-  useEffect(() => {
-    fetchWithAuth('/plans/active/workouts/today', logout).then((res) => {
-      res.result ? setTodaysWorkouts(res.result) : setTodaysWorkouts([])
-      console.log(res.result)
-    })
-  }, [logout])
-
   return (
     <PageContainer heading={'Dashboard'}>
-      <h2 className="font-[Abril_Fatface] text-xl">Todays Workout</h2>
+      <div className="flex flex-row flex-wrap justify-around gap-16">
+        <SectionContainer heading={'Todays Session'}>
+          <button className="rounded-full px-3 py-2 mb-6 w-80 bg-[#FDCFF3] hover:bg-[#C297B8] text-[#070707] font-medium transition-colors duration-200">
+            Start now
+          </button>
+          <Workouts />
+        </SectionContainer>
+        <SectionContainer heading={'Weekly Workout Frequency'}>
+          <BarChart />
+        </SectionContainer>
+      </div>
     </PageContainer>
   )
 }

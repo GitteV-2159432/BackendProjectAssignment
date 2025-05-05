@@ -3,7 +3,7 @@ import {
   sanitizeStringQueryParam,
 } from '../middleware/sanitization/query-param-sanitization.js'
 import exerciseService from '../services/exercise-service.js'
-import { getQueryFromFilterParameters } from '../utils/get-all.js'
+import { getQueryFromFilterParameters, mapModelDTO } from '../utils/get-all.js'
 
 const getExercises = async (req, res) => {
   const categoryId = sanitizeObjectIdQueryParam(req.query.categoryId)
@@ -17,7 +17,12 @@ const getExercises = async (req, res) => {
 
   query.category = categoryId
 
-  return res.json(await exerciseService.getAll(query))
+  let exercises = await exerciseService.getAll(query, { name: 1 })
+  if (filter === 'public') {
+    exercises = await mapModelDTO(exercises, 'exercises', req.userObjectId)
+  }
+
+  return res.json(exercises)
 }
 
 const getExercise = async (req, res) => {

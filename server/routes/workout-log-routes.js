@@ -11,11 +11,7 @@ import createValidation from '../middleware/validation/workout-log/create-valida
 
 const router = express.Router()
 
-router.get(
-  '/weekly-count',
-  [validateObjectId('workoutId'), validate],
-  getPastProgress
-)
+router.get('/weekly-count', getPastProgress)
 
 router.get(
   '/latest-log',
