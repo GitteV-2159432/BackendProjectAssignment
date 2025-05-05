@@ -36,16 +36,19 @@ form {
     gap: 1.25rem;
 }
 
-.formLink {
-    color: var(--pink_2-color);
-    font-size: 0.875rem;
-    text-decoration: none;
-    align-self: center;
+.sectionTitle {
+    color: var(--pink-color);
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 1;
+    margin: 1rem 0.5rem;
+    text-align: center;
 }
 
 .inputRow {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .inputRow input {
@@ -58,7 +61,7 @@ label {
     font-family: var(--font-secondary);
     font-size: 1rem;
     display: block;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
 }
 
 input[type="text"],
