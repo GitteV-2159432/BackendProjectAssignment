@@ -10,6 +10,7 @@ const Workouts = () => {
   useEffect(() => {
     fetchWithAuth('/plans/active/workouts/today', logout).then((res) => {
       res.result ? setTodaysWorkouts(res.result) : setTodaysWorkouts([])
+      console.log('Fetched workouts:', res.result)
     })
   }, [logout])
 
