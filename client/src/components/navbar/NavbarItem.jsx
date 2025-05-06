@@ -6,6 +6,7 @@ const NavbarItem = ({ title, icon, to }) => {
       {({ isActive }) => (
         <div className="flex flex-col items-center gap-1">
           <div
+            aria-hidden="true"
             className={`px-4.5 py-1 rounded-full 
               ${isActive ? 'bg-[#C297B8]/50' : ''}`}
           >
