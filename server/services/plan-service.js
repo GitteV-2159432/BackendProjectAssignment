@@ -11,7 +11,12 @@ const planService = createGenericService(Plan)
 const bookmarkService = createBookmarkService(Plan)
 
 const getActivePlanId = async (userId) => {
-  return (await userService.getById(userId)).activePlan
+  const activePlanId = (await userService.getById(userId)).activePlan
+  if (!activePlanId) {
+    throw new HttpError(409, `You don't have an active plan at the moment.`)
+  }
+
+  return activePlanId
 }
 
 planService.getActive = async (userId) => {
