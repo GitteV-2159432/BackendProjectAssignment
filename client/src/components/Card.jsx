@@ -2,6 +2,7 @@ import { useState } from 'react'
 import CardOverlay from './CardOverlay.jsx'
 import MoreIcon from './icons/MoreIcon.jsx'
 import BookmarkAddedIcon from './icons/BookmarkAddedIcon.jsx'
+import { useCard } from '../context/CardContext.jsx'
 
 const Card = ({
   id,
@@ -13,6 +14,8 @@ const Card = ({
   displayOverlay,
   setOverlayCardId,
 }) => {
+  const { endpoint } = useCard()
+
   return (
     <li
       className={`relative w-[250px] h-[160px] flex-shrink-0 flex-grow-0 rounded-2xl overflow-hidden ${
@@ -21,7 +24,11 @@ const Card = ({
     >
       <div className="relative w-full h-full px-5 py-3.5 bg-[#40434E]">
         {bookmarked && (
-          <div className="absolute left-3.5 top-3">
+          <div
+            role="img"
+            aria-label="Bookmarked"
+            className="absolute left-3.5 top-3"
+          >
             <BookmarkAddedIcon />
           </div>
         )}
@@ -58,6 +65,10 @@ const Card = ({
         </div>
         <button
           onClick={() => setOverlayCardId(id)}
+          aria-label={`Display more actions for the ${endpoint.substring(
+            0,
+            endpoint.length - 1
+          )} ${name}.`}
           className="absolute w-8 h-8 top-1 right-1 flex items-center justify-center rounded-full hover:bg-[#C297B840]"
         >
           <MoreIcon />

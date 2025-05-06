@@ -20,6 +20,7 @@ const CardOverlay = ({ isActive, bookmarked, onClose }) => {
         <div>
           <button
             onClick={onClose}
+            aria-label="Hide actions."
             className="absolute w-8 h-8 top-1 right-1 flex items-center justify-center rounded-full hover:bg-[#C297B8]"
           >
             <CloseIcon />

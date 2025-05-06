@@ -5,6 +5,7 @@ import fetchWithAuth from '../../utils/fetchWithAuth.js'
 
 const BarChart = () => {
   const [data, setData] = useState({})
+  const [chartDescription, setChartDescription] = useState('')
 
   const { logout } = useAuth()
   const canvasRef = useRef(null)
@@ -19,6 +20,14 @@ const BarChart = () => {
   useEffect(() => {
     if (!canvasRef.current) return
 
+    let description =
+      'Bar chart showing how many workout sessions occurred within the past four calendar weeks per week. '
+    for (const week in data) {
+      description += `In week ${week} the user completed ${data[week]} workouts. `
+    }
+
+    setChartDescription(description)
+
     // cleanup previous chart
     if (chartRef.current) {
       chartRef.current.destroy()
@@ -32,15 +41,7 @@ const BarChart = () => {
           {
             label: 'Workout frequency',
             data: Object.values(data),
-            backgroundColor: Object.values(data).map((value) => {
-              if (value === 1) return '#ab3535'
-              if (value === 2) return '#b84d27'
-              if (value === 3) return '#c77f2c'
-              if (value === 4) return '#bdb83c'
-              if (value === 5) return '#719c54'
-              if (value === 6) return '#44662c'
-              if (value === 7) return '#1d4718'
-            }),
+            backgroundColor: '#C297B8',
           },
         ],
       },
@@ -98,7 +99,16 @@ const BarChart = () => {
   }, [data])
 
   return (
-    <canvas ref={canvasRef} className="bg-[#40434E] p-5 rounded-2xl"></canvas>
+    <>
+      <canvas
+        ref={canvasRef}
+        className="bg-[#40434E] p-5 rounded-2xl"
+        aria-describedby="workout-chart-desc"
+      ></canvas>
+      <p id="workout-chart-desc" className="sr-only">
+        {chartDescription}
+      </p>
+    </>
   )
 }
 

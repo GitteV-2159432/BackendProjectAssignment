@@ -53,6 +53,11 @@ const fetchWithAuth = async (
     }
 
     const result = await response.json()
+
+    if (!response.ok) {
+      return { error: result.error.message }
+    }
+
     return { result }
   } catch (error) {
     return { error }
