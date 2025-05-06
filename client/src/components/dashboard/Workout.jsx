@@ -9,15 +9,23 @@ const Workout = ({ workout }) => {
   useEffect(() => {}, [])
 
   return (
-    <li className="bg-[#40434E] rounded-2xl">
+    <li className="bg-[#40434E] rounded-2xl list-none w-full">
       <div className="px-5 py-3.5">
-        <h3 className="text-lg p-0">{workout.name}</h3>
+        <h3
+          className={`text-lg p-0 ${
+            workout.exercises.length === 0 ? 'text-center' : ''
+          }`}
+        >
+          {workout.name}
+        </h3>
 
-        <Exercises
-          exercises={workout.exercises}
-          expanded={expanded}
-          setNeedsExpansion={setNeedsExpansion}
-        />
+        {workout.exercises.length > 0 && (
+          <Exercises
+            exercises={workout.exercises}
+            expanded={expanded}
+            setNeedsExpansion={setNeedsExpansion}
+          />
+        )}
       </div>
 
       {needsExpansion && (

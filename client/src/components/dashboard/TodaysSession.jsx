@@ -34,6 +34,9 @@ const TodaysSession = () => {
           </Link>
         </div>
       )}
+      {!message && todaysWorkouts.length === 0 && (
+        <Workout workout={{ name: 'Rest Day', exercises: [] }} />
+      )}
       {todaysWorkouts.length > 0 && (
         <>
           <button className="rounded-full px-3 py-2 mb-6 w-80 bg-[#FDCFF3] hover:bg-[#C297B8] text-[#070707] font-medium transition-colors duration-200">
