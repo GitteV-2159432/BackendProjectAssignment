@@ -35,8 +35,7 @@ form {
 
 .sectionTitle {
   color: var(--pink-color);
-  font-family: var(--font-primary);
-  font-weight: 600;
+  font-family: var(--font-secondary);
   font-size: 2rem;
   line-height: 1;
   margin: 1rem 0.5rem;
