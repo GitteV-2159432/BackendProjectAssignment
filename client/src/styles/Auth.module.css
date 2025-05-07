@@ -65,6 +65,15 @@ form p {
   align-self: center;
 }
 
+.errorMessage {
+  background-color: #ee477f;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ff0059;
+  font-weight: 500;
+}
+
 .inputRow {
   display: flex;
   gap: 1rem;

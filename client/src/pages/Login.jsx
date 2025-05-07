@@ -7,11 +7,17 @@ import styles from '../styles/Auth.module.css'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
   const { login } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setError('')
+    if (!email || !password) {
+      setError('Please fill in all fields')
+      return
+    }
 
     const res = await fetch('http://localhost:5000/api/auth/login', {
       method: 'POST',
@@ -24,7 +30,7 @@ const Login = () => {
       login(data.token)
       navigate('/dashboard')
     } else {
-      alert(data.message)
+      setError(data.message || 'Login failed')
     }
   }
 
@@ -38,6 +44,12 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <h1>Login</h1>
             <p className={styles.subheading}>Welcome back! Please log in.</p>
+            {error && (
+              <div className={styles.errorMessage}>
+                <p>{error}</p>
+              </div>
+            )}
+            
             <div>
             <label htmlFor="email">E-mail address</label>
             <input
