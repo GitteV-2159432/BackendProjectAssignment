@@ -34,12 +34,7 @@ const checkObjectPermission = (readAccess = false) => {
   }
 }
 
-router.get(
-  '/',
-  userIdToObjectId,
-  [validateGetAllFilterQueryParam(), validate],
-  getWorkouts
-)
+router.get('/', [validateGetAllFilterQueryParam(), validate], getWorkouts)
 
 router.get(
   '/:id',

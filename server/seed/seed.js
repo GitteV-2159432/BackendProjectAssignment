@@ -249,7 +249,7 @@ const seedData = async () => {
           notes: 'Stay tight from head to heels.',
         },
       ],
-      isPublic: false,
+      isPublic: true,
     },
     {
       userId: elias._id,
@@ -296,7 +296,7 @@ const seedData = async () => {
           notes: 'Controlled movement both up and down.',
         },
       ],
-      isPublic: false,
+      isPublic: true,
     },
     {
       userId: gitte._id,
@@ -382,7 +382,7 @@ const seedData = async () => {
           notes: 'Elbow to hip crunch motion.',
         },
       ],
-      isPublic: false,
+      isPublic: true,
     },
     {
       userId: arne._id,
@@ -1049,10 +1049,10 @@ const seedData = async () => {
       name: 'Core Intensive',
       description: 'Target abdominal and core stabilizing muscles.',
       workouts: {
-        tuesday: [workouts[27]._id, workouts[9]._id, workouts[31]._id],
         monday: [workouts[28]._id, workouts[21]._id, workouts[38]._id],
+        wednesday: [workouts[27]._id, workouts[9]._id, workouts[31]._id],
+        thursday: [workouts[2]._id, workouts[6]._id, workouts[38]._id],
         saturday: [workouts[2]._id, workouts[1]._id],
-        friday: [workouts[2]._id, workouts[6]._id, workouts[38]._id],
       },
       isPublic: false,
     },
@@ -1182,12 +1182,13 @@ const seedData = async () => {
           getEx('arms', 'Shoulder Press (Dumbbell)')._id,
         ],
         'bookmarks.workouts': [
-          workouts[0]._id,
+          workouts[3]._id,
           workouts[5]._id,
-          workouts[12]._id,
+          workouts[9]._id,
+          workouts[24]._id,
         ],
-        'bookmarks.plans': [plans[0]._id, plans[4]._id],
-        activePlan: plans[8]._id,
+        'bookmarks.plans': [plans[1]._id, plans[6]._id, plans[11]._id],
+        activePlan: plans[4]._id,
       },
     }
   )

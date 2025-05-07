@@ -63,12 +63,13 @@ const CardPageContainer = ({ heading, endpoint }) => {
   return (
     <CardProvider activeTab={activeTab} endpoint={endpoint}>
       <PageContainer heading={heading}>
-        <div className="flex flex-row justify-center gap-4 mb-5">
+        <div className="relative mb-6">
           <Tabs
             currentPath={location.pathname}
             activeTab={activeTab}
             setActiveTab={setActiveTab}
           />
+
           {location.pathname === '/exercises' && (
             <CategorySelect
               categories={categories}

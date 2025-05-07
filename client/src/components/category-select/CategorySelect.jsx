@@ -6,7 +6,7 @@ const CategorySelect = ({ categories, setCurrentCategory }) => {
   }
 
   return (
-    <>
+    <div className="abolute right-0">
       <label htmlFor="exerciseCategorySelect">Exercise category</label>
       <select
         id="exerciseCategorySelect"
@@ -20,7 +20,7 @@ const CategorySelect = ({ categories, setCurrentCategory }) => {
               return <SelectOption key={cat.id} id={cat.id} name={cat.name} />
             })}
       </select>
-    </>
+    </div>
   )
 }
 
