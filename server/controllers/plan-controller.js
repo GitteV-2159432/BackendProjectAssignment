@@ -7,7 +7,11 @@ import { getQueryFromFilterParameters, mapPlanDTO } from '../utils/get-all.js'
 
 const getPlans = async (req, res) => {
   const filter = sanitizeStringQueryParam(req.query.filter)
-  const query = await getQueryFromFilterParameters(filter, req.userObjectId)
+  const query = await getQueryFromFilterParameters(
+    filter,
+    req.userObjectId,
+    'plans'
+  )
 
   let plans = await planService.getAll(query, { name: 1 })
   plans = await mapPlanDTO(plans, filter === 'public', req.userObjectId)
