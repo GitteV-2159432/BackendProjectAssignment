@@ -128,7 +128,7 @@ const Account = () => {
                 placeholder="New Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                autoComplete="current-password"
+                autoComplete="new-password"
               />
             </div>
             <div>
@@ -140,11 +140,13 @@ const Account = () => {
                 placeholder="Confirm New Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                autoComplete="new-password"
+                autoComplete="confrim-new"
               />
             </div>
           </div>
-          <button type="submit">Save</button>
+          <button type="submit" aria-label="Save account information">
+            Save
+          </button>
         </form>
       </div>
     </div>
