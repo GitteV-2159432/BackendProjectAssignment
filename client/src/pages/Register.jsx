@@ -11,7 +11,6 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const navigate = useNavigate()
-  const token = sessionStorage.getItem('token')
 
   const handleRegister = async (e) => {
     e.preventDefault()
@@ -53,25 +52,30 @@ const Register = () => {
           <form onSubmit={handleRegister}>
             <h1>Register</h1>
             <div className={styles.inputRow}>
-            <input
-              id="firstName"
-              name="firstName"
-              type="text"
-              placeholder="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-            />
-            <input
-              id="lastName"
-              name="lastName"
-              type="text"
-              placeholder="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-            />
+              <label htmlFor="firstName">First Name</label>
+              <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                autoComplete="given-name"
+                required
+              />
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                autoComplete="family-name"
+                required
+              />
             </div>
+            <label htmlFor="email">Email address</label>
             <input
               id="email"
               name="email"
@@ -79,39 +83,45 @@ const Register = () => {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
               required
             />
             <div className={styles.inputRow}>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <input
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="new-password"
+                required
+              />
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                autoComplete="new-password"
+                required
+              />
             </div>
             <button type="submit">Sign Up</button>
+            <p>
+              Already have an account?{' '}
+              <Link className={styles.formLink} to="/login">
+                Sign in
+              </Link>
+            </p>
           </form>
         </div>
       </main>
     </div>
   )
 }
-/*
-<label htmlFor="firstName">First Name</label>
-<label htmlFor="lastName">Last Name</label>
-<label htmlFor="email">E-mail</label>
-<label htmlFor="Password">Password</label> 
-*/
+
 export default Register

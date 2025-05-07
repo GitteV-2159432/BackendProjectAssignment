@@ -34,8 +34,6 @@ const fetchWithAuth = async (
     endpoint +
     (queryString ? `?${queryString}` : '')
 
-  console.log(url)
-
   try {
     const response = await fetch(url, {
       method,

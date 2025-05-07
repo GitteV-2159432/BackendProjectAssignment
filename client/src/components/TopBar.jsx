@@ -1,5 +1,5 @@
-import useAuth from '../context/useAuth.js'
 import { Link } from 'react-router-dom'
+import useAuth from '../context/useAuth.js'
 import styles from '../styles/TopBar.module.css'
 
 const TopBar = () => {

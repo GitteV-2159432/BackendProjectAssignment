@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import Exercise from './Exercise'
 
 const Exercises = ({ exercises, expanded, setNeedsExpansion }) => {
