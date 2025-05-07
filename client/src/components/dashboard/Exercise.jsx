@@ -7,7 +7,6 @@ const Exercise = ({ exercise }) => {
   return (
     <li
       role="checkbox"
-      aria-checked={checked}
       tabIndex={0}
       className="flex items-start gap-2 mt-1 hover:cursor-pointer"
       onClick={() => setChecked((prev) => !prev)}
