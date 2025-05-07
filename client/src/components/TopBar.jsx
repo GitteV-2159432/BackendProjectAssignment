@@ -1,5 +1,5 @@
 import useAuth from '../context/useAuth.js'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styles from '../styles/TopBar.module.css'
 
 const TopBar = () => {
