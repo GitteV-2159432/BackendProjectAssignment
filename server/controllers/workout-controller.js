@@ -8,7 +8,7 @@ const getWorkouts = async (req, res) => {
 
   let workouts = await workoutService.getAll(query)
   if (filter === 'public') {
-    workouts = await mapModelDTO(workouts, 'plans', req.userObjectId)
+    workouts = await mapModelDTO(workouts, 'workouts', req.userObjectId)
   }
 
   return res.json(workouts)
