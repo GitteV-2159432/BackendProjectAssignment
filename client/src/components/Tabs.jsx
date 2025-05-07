@@ -33,7 +33,7 @@ const Tabs = ({ currentPath, activeTab, setActiveTab }) => {
       <button
         onClick={() => setActiveTab(tabs.public)}
         className={tabStyle(tabs.public)}
-        aria-label={`Display ublic ${currentPath.substring(1)}, ${
+        aria-label={`Display public ${currentPath.substring(1)}, ${
           activeTab === tabs.public ? 'active' : ''
         }`}
       >
