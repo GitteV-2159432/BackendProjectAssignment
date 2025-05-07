@@ -1,15 +1,15 @@
+import { useCard } from '../context/CardContext'
+import endpoints from '../enums/endpoints'
+import tabs from '../enums/tabs'
 import CardOverlayItem from './CardOverlayItem'
-import CloseIcon from './icons/CloseIcon'
 import AddIcon from './icons/AddIcon'
-import ToggleOnIcon from './icons/ToggleOnIcon'
-import ToggleOffIcon from './icons/ToggleOffIcon'
 import BookmarkAddIcon from './icons/BookmarkAddIcon'
 import BookmarkRemoveIcon from './icons/BookmarkRemoveIcon'
+import CloseIcon from './icons/CloseIcon'
 import DeleteIcon from './icons/DeleteIcon'
 import EditIcon from './icons/EditIcon'
-import { useCard } from '../context/CardContext'
-import tabs from '../enums/tabs'
-import endpoints from '../enums/endpoints'
+import ToggleOffIcon from './icons/ToggleOffIcon'
+import ToggleOnIcon from './icons/ToggleOnIcon'
 
 const CardOverlay = ({ isActive, bookmarked, onClose }) => {
   const { activeTab, endpoint, higherLevelEndpoint } = useCard()

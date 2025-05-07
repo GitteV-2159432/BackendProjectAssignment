@@ -1,7 +1,6 @@
-import { createContext, useState, useEffect } from 'react'
-import fetchWithAuth from '../utils/fetchWithAuth.js'
 import { jwtDecode } from 'jwt-decode'
-
+import { createContext, useEffect, useState } from 'react'
+import fetchWithAuth from '../utils/fetchWithAuth.js'
 
 const AuthContext = createContext()
 
