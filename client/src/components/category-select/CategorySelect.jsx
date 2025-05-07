@@ -14,9 +14,11 @@ const CategorySelect = ({ categories, setCurrentCategory }) => {
         onChange={handleChange}
       >
         {categories &&
-          categories.map((cat) => {
-            return <SelectOption key={cat.id} id={cat.id} name={cat.name} />
-          })}
+          categories
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((cat) => {
+              return <SelectOption key={cat.id} id={cat.id} name={cat.name} />
+            })}
       </select>
     </>
   )

@@ -14,6 +14,9 @@ const Tabs = ({ currentPath, activeTab, setActiveTab }) => {
         <button
           onClick={() => setActiveTab(tabs.personal)}
           className={tabStyle(tabs.personal)}
+          aria-label={`Display personal ${currentPath.substring(1)}, ${
+            activeTab === tabs.personal ? 'active' : ''
+          }`}
         >
           Personal
         </button>
@@ -21,12 +24,18 @@ const Tabs = ({ currentPath, activeTab, setActiveTab }) => {
       <button
         onClick={() => setActiveTab(tabs.bookmarked)}
         className={tabStyle(tabs.bookmarked)}
+        aria-label={`Display bookmarked ${currentPath.substring(1)}, ${
+          activeTab === tabs.bookmarked ? 'active' : ''
+        }`}
       >
         Bookmarks
       </button>
       <button
         onClick={() => setActiveTab(tabs.public)}
         className={tabStyle(tabs.public)}
+        aria-label={`Display public ${currentPath.substring(1)}, ${
+          activeTab === tabs.public ? 'active' : ''
+        }`}
       >
         Public
       </button>

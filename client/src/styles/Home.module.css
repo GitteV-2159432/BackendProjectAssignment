@@ -9,14 +9,15 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
   text-align: left;
   gap: 5rem;
 }
 
 .logoWrapper {
-  width: 500px;
+  width: 350px;
   height: 350px;
+  margin-right: 70px;
 }
 
 .contentWrapper {

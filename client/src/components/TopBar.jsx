@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import useAuth from '../context/useAuth.js'
 import styles from '../styles/TopBar.module.css'
 
 const TopBar = () => {
   const { token, logout } = useAuth()
+  const navigate = useNavigate()
+
   return (
     <header className={styles.topBar}>
       <div className={styles.topButtons}>
@@ -13,12 +15,18 @@ const TopBar = () => {
           </button>
         ) : (
           <>
-            <Link to="/login" className={styles.signInLink}>
+            <button
+              onClick={() => navigate('/login')}
+              className={styles.signInLink}
+            >
               Sign in
-            </Link>
-            <Link to="/register" className={styles.signUpBtn}>
+            </button>
+            <button
+              onClick={() => navigate('/register')}
+              className={styles.signUpBtn}
+            >
               Sign up
-            </Link>
+            </button>
           </>
         )}
       </div>

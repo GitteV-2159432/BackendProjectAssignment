@@ -20,8 +20,14 @@ const Card = ({
       className={`relative w-[250px] h-[160px] flex-shrink-0 flex-grow-0 rounded-2xl overflow-hidden ${
         isActive ? 'border-2 border-[#C297B8]' : ''
       }`}
+      tabIndex={0}
     >
       <div className="relative w-full h-full px-5 py-3.5 bg-[#40434E]">
+        {isActive && (
+          <p id="card_active_desc" className="sr-only">
+            active plan
+          </p>
+        )}
         {bookmarked && (
           <div
             role="img"

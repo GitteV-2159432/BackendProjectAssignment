@@ -15,7 +15,7 @@
 }
 
 .logoWrapper {
-  width: 300px;
+  width: 150px;
   height: 150px;
 }
 
@@ -43,7 +43,7 @@ form h1 {
   text-align: center;
 }
 
-form h2 {
+.subheading {
   color: var(--off-white-color);
   font-family: var(--font-primary);
   font-weight: 700;
@@ -75,14 +75,14 @@ form p {
   flex: 1;
 }
 
-/*label {
-    color: var(--text-white);
-    font-weight: 700;
-    font-family: var(--font-secondary);
-    font-size: 1rem;
-    display: block;
-    margin-bottom: 0.25rem;
-  }*/
+/* label {
+  color: var(--text-white);
+  font-weight: 700;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 0.25rem;
+} */
 
 input[type='text'],
 input[type='email'],

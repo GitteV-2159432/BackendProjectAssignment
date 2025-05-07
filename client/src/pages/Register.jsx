@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../components/icons/Logo.jsx'
-import TopBar from '../components/TopBar.jsx'
 import styles from '../styles/Auth.module.css'
 
 const Register = () => {
@@ -43,7 +42,6 @@ const Register = () => {
 
   return (
     <div className={styles.authContainer}>
-      <TopBar />
       <main className={styles.mainContent}>
         <div className={styles.logoWrapper}>
           <Logo />

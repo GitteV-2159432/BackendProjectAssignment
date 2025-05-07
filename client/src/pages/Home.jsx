@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Logo from '../components/icons/Logo.jsx'
 import TopBar from '../components/TopBar.jsx'
 import styles from '../styles/Home.module.css'
 
 const Home = () => {
+  const navigate = useNavigate()
+
   return (
     <div className={styles.homeContainer}>
       <TopBar />
@@ -23,9 +25,12 @@ const Home = () => {
           </p>
           <div className={styles.ctaGroup}>
             <p className={styles.ctaText}>GET STARTED FOR FREE!</p>
-            <Link to="/register" className={styles.signUpBtn}>
+            <button
+              onClick={() => navigate('/register')}
+              className={styles.signUpBtn}
+            >
               Sign up
-            </Link>
+            </button>
           </div>
         </div>
       </main>

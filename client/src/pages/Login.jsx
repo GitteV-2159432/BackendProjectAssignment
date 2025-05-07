@@ -37,7 +37,7 @@ const Login = () => {
         <div className={styles.contentWrapper}>
           <form onSubmit={handleSubmit}>
             <h1>Login</h1>
-            <h2>Welcome back! Please log in.</h2>
+            <p className={styles.subheading}>Welcome back! Please log in.</p>
             <label htmlFor="email">Email address</label>
             <input
               id="email"
@@ -63,7 +63,11 @@ const Login = () => {
             <button type="submit">Sign in</button>
             <p>
               Don't have an account?{' '}
-              <Link className={styles.formLink} to="/register">
+              <Link
+                className={styles.formLink}
+                to="/register"
+                aria-label="Sign up for new account"
+              >
                 Sign up
               </Link>
             </p>

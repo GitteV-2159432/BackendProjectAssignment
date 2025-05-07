@@ -10,8 +10,7 @@
 .heading {
   color: var(--pink-color);
   font-family: var(--font-secondary);
-  font-weight: 600;
-  font-size: 8rem;
+  font-size: 4.5rem;
   line-height: 1;
   margin: 0 0 2rem;
   text-align: center;
