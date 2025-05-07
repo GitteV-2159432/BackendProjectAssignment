@@ -15,7 +15,7 @@ const Tabs = ({ currentPath, activeTab, setActiveTab }) => {
           onClick={() => setActiveTab(tabs.personal)}
           className={tabStyle(tabs.personal)}
           aria-label={`Display personal ${currentPath.substring(1)}, ${
-            activeTab === tabs.personal ? 'active' : 'not active'
+            activeTab === tabs.personal ? 'active' : ''
           }`}
         >
           Personal
@@ -25,7 +25,7 @@ const Tabs = ({ currentPath, activeTab, setActiveTab }) => {
         onClick={() => setActiveTab(tabs.bookmarked)}
         className={tabStyle(tabs.bookmarked)}
         aria-label={`Display bookmarked ${currentPath.substring(1)}, ${
-          activeTab === tabs.bookmarked ? 'active' : 'not active'
+          activeTab === tabs.bookmarked ? 'active' : ''
         }`}
       >
         Bookmarks
@@ -34,7 +34,7 @@ const Tabs = ({ currentPath, activeTab, setActiveTab }) => {
         onClick={() => setActiveTab(tabs.public)}
         className={tabStyle(tabs.public)}
         aria-label={`Display ublic ${currentPath.substring(1)}, ${
-          activeTab === tabs.public ? 'active' : 'not active'
+          activeTab === tabs.public ? 'active' : ''
         }`}
       >
         Public
