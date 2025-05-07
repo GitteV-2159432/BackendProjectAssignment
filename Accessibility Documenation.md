@@ -63,6 +63,7 @@ Accessibility was considered from early development. Testing with WAVE and Voice
 # Challenges Gitte and Francis faced while doing the screenreader
 
 - get into using screenreader again
+- what tags are the right one, eg. h2 or p
 
 # What we did
 
