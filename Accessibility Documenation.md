@@ -70,6 +70,7 @@ Accessibility was considered from early development. Testing with WAVE and Voice
 - added description to logo
 - changed links to buttons so it's clearer for user
 - checked / unchecked status for checkbox
+- added aria labels to buttons
 
 # What we checked / what we paid attention to
 
