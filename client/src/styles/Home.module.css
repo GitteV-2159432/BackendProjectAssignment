@@ -1,4 +1,4 @@
-.homeContainer { 
+.homeContainer {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -15,8 +15,8 @@
 }
 
 .logoWrapper {
-  width: 500px;
-  height: 350px;
+  width: 300px;
+  height: 300px;
 }
 
 .contentWrapper {
