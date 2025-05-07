@@ -75,14 +75,14 @@ form p {
   flex: 1;
 }
 
-label {
+/* label {
   color: var(--text-white);
   font-weight: 700;
-  font-family: var(--font-secondary);
+  font-family: var(--font-primary);
   font-size: 1rem;
   display: block;
   margin-bottom: 0.25rem;
-}
+} */
 
 input[type='text'],
 input[type='email'],
