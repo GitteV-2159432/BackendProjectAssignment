@@ -1,6 +1,6 @@
 const Logo = () => {
   return (
-    <div aria-describedby="logo-desc">
+    <div role="img" aria-describedby="logo-desc">
       <svg
         width="100%"
         height="100%"
