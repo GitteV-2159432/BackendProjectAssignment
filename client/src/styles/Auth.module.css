@@ -61,7 +61,7 @@ form p {
 
 .formLink {
   color: var(--pink_2-color);
-  font-size: 0.875rem;
+  font-size: 1rem;
   text-decoration: none;
   align-self: center;
 }
@@ -74,15 +74,6 @@ form p {
 .inputRow input {
   flex: 1;
 }
-
-/* label {
-  color: var(--text-white);
-  font-weight: 700;
-  font-family: var(--font-primary);
-  font-size: 1rem;
-  display: block;
-  margin-bottom: 0.25rem;
-} */
 
 input[type='text'],
 input[type='email'],

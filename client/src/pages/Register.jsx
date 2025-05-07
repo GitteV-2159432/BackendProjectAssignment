@@ -50,6 +50,7 @@ const Register = () => {
           <form onSubmit={handleRegister}>
             <h1>Register</h1>
             <div className={styles.inputRow}>
+              <div>
               <label htmlFor="firstName">First Name</label>
               <input
                 id="firstName"
@@ -61,6 +62,8 @@ const Register = () => {
                 autoComplete="given-name"
                 required
               />
+              </div>
+              <div>
               <label htmlFor="lastName">Last Name</label>
               <input
                 id="lastName"
@@ -72,7 +75,9 @@ const Register = () => {
                 autoComplete="family-name"
                 required
               />
+              </div>
             </div>
+            <div>
             <label htmlFor="email">Email address</label>
             <input
               id="email"
@@ -84,7 +89,9 @@ const Register = () => {
               autoComplete="email"
               required
             />
+            </div>
             <div className={styles.inputRow}>
+              <div>
               <label htmlFor="password">Password</label>
               <input
                 id="password"
@@ -96,6 +103,8 @@ const Register = () => {
                 autoComplete="new-password"
                 required
               />
+              </div>
+              <div>
               <label htmlFor="confirmPassword">Confirm Password</label>
               <input
                 id="confirmPassword"
@@ -107,6 +116,7 @@ const Register = () => {
                 autoComplete="new-password"
                 required
               />
+              </div>
             </div>
             <button type="submit">Sign Up</button>
             <p>

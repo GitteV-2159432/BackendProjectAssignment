@@ -38,7 +38,8 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <h1>Login</h1>
             <p className={styles.subheading}>Welcome back! Please log in.</p>
-            <label htmlFor="email">Email address</label>
+            <div>
+            <label htmlFor="email">E-mail address</label>
             <input
               id="email"
               name="email"
@@ -49,6 +50,8 @@ const Login = () => {
               autoComplete="email"
               required
             />
+            </div>
+            <div>
             <label htmlFor="password">Password</label>
             <input
               id="password"
@@ -60,6 +63,7 @@ const Login = () => {
               autoComplete="current-password"
               required
             />
+            </div>
             <button type="submit">Sign in</button>
             <p>
               Don't have an account?{' '}
