@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import useAuth from '../../context/useAuth.js'
 import fetchWithAuth from '../../utils/fetchWithAuth.js'
-import { Link, useNavigate } from 'react-router-dom'
 import Workouts from './Workouts.jsx'
 import Workout from './Workout.jsx'
 
@@ -27,7 +27,7 @@ const TodaysSession = () => {
     <>
       {message && (
         <div className="flex flex-col justify-center">
-          <p className="text-sm text-center mb-6">{message}</p>
+          <p className="mb-6 text-sm text-center">{message}</p>
           <button
             onClick={() => navigate('/plans')}
             className="text-center rounded-full px-3 py-2 mb-6 mx-auto w-40 bg-[#FDCFF3] hover:bg-[#C297B8] text-[#070707] font-medium transition-colors duration-200"

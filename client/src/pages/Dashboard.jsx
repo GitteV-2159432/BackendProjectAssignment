@@ -1,7 +1,7 @@
 import PageContainer from '../components/PageContainer.jsx'
 import SectionContainer from '../components/SectionContainer.jsx'
-import TodaysSession from '../components/dashboard/TodaysSession.jsx'
 import BarChart from '../components/dashboard/BarChart.jsx'
+import TodaysSession from '../components/dashboard/TodaysSession.jsx'
 
 const Dashboard = () => {
   return (

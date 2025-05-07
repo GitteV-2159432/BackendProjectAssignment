@@ -1,8 +1,7 @@
-import { useState } from 'react'
-import CardOverlay from './CardOverlay.jsx'
-import MoreIcon from './icons/MoreIcon.jsx'
-import BookmarkAddedIcon from './icons/BookmarkAddedIcon.jsx'
 import { useCard } from '../context/CardContext.jsx'
+import CardOverlay from './CardOverlay.jsx'
+import BookmarkAddedIcon from './icons/BookmarkAddedIcon.jsx'
+import MoreIcon from './icons/MoreIcon.jsx'
 
 const Card = ({
   id,
@@ -48,15 +47,15 @@ const Card = ({
               {name}
             </h2>
             {!equipment && (
-              <p className="text-sm mt-2">
+              <p className="mt-2 text-sm">
                 {description || 'No description...'}
               </p>
             )}
             {equipment && equipment.length === 0 && (
-              <p className="text-sm mt-2">{'No equipment needed...'}</p>
+              <p className="mt-2 text-sm">{'No equipment needed...'}</p>
             )}
             {equipment && equipment.length > 0 && (
-              <div className="text-sm mt-2">
+              <div className="mt-2 text-sm">
                 <span>Equipment</span>
                 <ul className="list-disc list-inside">
                   {equipment.map((eq) => (

@@ -1,34 +1,33 @@
 .topBar {
-    display: flex;
-    justify-content: flex-end;
-    padding: 1.5rem 2.5rem 0rem;
-    width: 100%;
-    align-items: center;
-    box-sizing: border-box;
-  }
-  
-  .topButtons {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-  
-  .signInLink{
-    color: var(--pink_2-color);
-    font-size: 0.875rem;
-    text-decoration: none;
-    align-self: center;
-  }
-  
-  .signUpBtn {
-    background-color: var(--pink_2-color);
-    color: var(--darkest-color);
-    border-radius: 9999px;
-    padding: 0.5rem 1.25rem;
-    white-space: nowrap;
-  }
-  
-  .signUpBtn:hover {
-    background-color: var(--pink-color);
-  }
-  
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.5rem 2.5rem 0rem;
+  width: 100%;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.topButtons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.signInLink {
+  color: var(--pink_2-color);
+  font-size: 0.875rem;
+  text-decoration: none;
+  align-self: center;
+}
+
+.signUpBtn {
+  background-color: var(--pink_2-color);
+  color: var(--darkest-color);
+  border-radius: 9999px;
+  padding: 0.5rem 1.25rem;
+  white-space: nowrap;
+}
+
+.signUpBtn:hover {
+  background-color: var(--pink-color);
+}

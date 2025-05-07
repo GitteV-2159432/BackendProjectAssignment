@@ -3,12 +3,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../components/icons/Logo.jsx'
 import useAuth from '../context/useAuth.js'
 import styles from '../styles/Auth.module.css'
-import TopBar from '../components/TopBar.jsx'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { login, token } = useAuth()
+  const { login } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
@@ -31,7 +30,6 @@ const Login = () => {
 
   return (
     <div className={styles.authContainer}>
-      <TopBar />
       <main className={styles.mainContent}>
         <div className={styles.logoWrapper}>
           <Logo />
@@ -40,6 +38,7 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <h1>Login</h1>
             <p className={styles.subheading}>Welcome back! Please log in.</p>
+            <label htmlFor="email">Email address</label>
             <input
               id="email"
               name="email"
@@ -47,7 +46,10 @@ const Login = () => {
               placeholder="E-mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+              required
             />
+            <label htmlFor="password">Password</label>
             <input
               id="password"
               name="password"
@@ -55,6 +57,8 @@ const Login = () => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+              required
             />
             <button type="submit">Sign in</button>
             <p>
@@ -73,10 +77,5 @@ const Login = () => {
     </div>
   )
 }
-
-/**
- * <label htmlFor="email">E-mail</label>
- * <label htmlFor="password">Password</label>
- */
 
 export default Login

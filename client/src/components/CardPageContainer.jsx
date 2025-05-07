@@ -63,7 +63,7 @@ const CardPageContainer = ({ heading, endpoint }) => {
   return (
     <CardProvider activeTab={activeTab} endpoint={endpoint}>
       <PageContainer heading={heading}>
-        <div className="flex flex-row justify-center mb-5 gap-4">
+        <div className="flex flex-row justify-center gap-4 mb-5">
           <Tabs
             currentPath={location.pathname}
             activeTab={activeTab}

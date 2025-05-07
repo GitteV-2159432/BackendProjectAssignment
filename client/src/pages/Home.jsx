@@ -1,7 +1,7 @@
-import styles from '../styles/Home.module.css'
-import Logo from '../components/icons/Logo.jsx'
 import { useNavigate } from 'react-router-dom'
+import Logo from '../components/icons/Logo.jsx'
 import TopBar from '../components/TopBar.jsx'
+import styles from '../styles/Home.module.css'
 
 const Home = () => {
   const navigate = useNavigate()

@@ -1,8 +1,8 @@
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import TopBar from '../components/TopBar.jsx'
-import styles from '../styles/Account.module.css'
-import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import useAuth from '../context/useAuth.js'
+import styles from '../styles/Account.module.css'
 import fetchWithAuth from '../utils/fetchWithAuth.js'
 
 const Account = () => {
@@ -86,6 +86,8 @@ const Account = () => {
                 placeholder={firstName}
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
+                autoComplete="given-name"
+                required
               />
             </div>
             <div>
@@ -97,6 +99,8 @@ const Account = () => {
                 placeholder={lastName}
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
+                autoComplete="family-name"
+                required
               />
             </div>
           </div>
@@ -109,12 +113,14 @@ const Account = () => {
               placeholder={email}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+              required
             />
           </div>
           <h2 className={styles.sectionTitle}>Change Password</h2>
           <div className={styles.inputRow}>
             <div>
-              <label htmlFor="Password">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 id="password"
                 name="password"
@@ -122,6 +128,7 @@ const Account = () => {
                 placeholder="New Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
               />
             </div>
             <div>
@@ -133,6 +140,7 @@ const Account = () => {
                 placeholder="Confirm New Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                autoComplete="new-password"
               />
             </div>
           </div>
