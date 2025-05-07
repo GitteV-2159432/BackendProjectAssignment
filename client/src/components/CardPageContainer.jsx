@@ -63,7 +63,7 @@ const CardPageContainer = ({ heading, endpoint }) => {
   return (
     <CardProvider activeTab={activeTab} endpoint={endpoint}>
       <PageContainer heading={heading}>
-        <div className="relative mb-6">
+        <div className="lg:relative md:flex md:flex-col mb-6">
           <Tabs
             currentPath={location.pathname}
             activeTab={activeTab}
@@ -71,10 +71,12 @@ const CardPageContainer = ({ heading, endpoint }) => {
           />
 
           {location.pathname === '/exercises' && (
-            <CategorySelect
-              categories={categories}
-              setCurrentCategory={setCurrentCategory}
-            />
+            <div className="md:flex md:justify-center md:mt-6 lg:mt-0 lg:absolute lg:top-0 lg:right-0 lg:mr-16">
+              <CategorySelect
+                categories={categories}
+                setCurrentCategory={setCurrentCategory}
+              />
+            </div>
           )}
         </div>
         {items?.length ? (
