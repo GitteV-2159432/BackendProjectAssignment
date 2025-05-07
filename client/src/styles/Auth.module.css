@@ -61,7 +61,7 @@ form p {
 
 .formLink {
   color: var(--pink_2-color);
-  font-size: 0.875rem;
+  font-size: 1rem;
   text-decoration: none;
   align-self: center;
 }
