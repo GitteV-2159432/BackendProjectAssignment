@@ -23,7 +23,7 @@ const Card = ({
       }`}
     >
       <div
-        aria-label={`${isActive ? 'active plan' : ''}`}
+        aria-label={`${isActive ? 'active plan' : 'hiiii'}`}
         className="relative w-full h-full px-5 py-3.5 bg-[#40434E]"
       >
         {bookmarked && (
