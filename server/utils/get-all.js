@@ -21,6 +21,8 @@ const getQueryFromFilterParameters = async (
     return query
   }
 
+  console.log('User id', userId)
+
   switch (filter) {
     case 'personal':
       query.userId = userId
