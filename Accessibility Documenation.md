@@ -40,12 +40,11 @@ Structure by feature/component:
 
 ### Evaluation Tool: Lighthouse??
 
-
 # Screen Reader Testing
 
 ### NVDA
 
-Tested: 
+Tested:
 
 # Team Responsibilities
 
@@ -60,3 +59,17 @@ Tested:
 # Conclusion
 
 Accessibility was considered from early development. Testing with WAVE and VoiceOver helped improve usability for screen reader users. This will influence our future projects.
+
+# Challenges Gitte and Francis faced while doing the screenreader
+
+- get into using screenreader again
+
+# What we did
+
+- added description to logo
+- changed links to buttons so it's clearer for user
+
+# What we checked / what we paid attention to
+
+- language specified in html
+-

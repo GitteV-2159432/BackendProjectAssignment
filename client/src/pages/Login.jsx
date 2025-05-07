@@ -39,7 +39,7 @@ const Login = () => {
         <div className={styles.contentWrapper}>
           <form onSubmit={handleSubmit}>
             <h1>Login</h1>
-            <h2>Welcome back! Please log in.</h2>
+            <p className={styles.subheading}>Welcome back! Please log in.</p>
             <input
               id="email"
               name="email"
@@ -57,7 +57,16 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <button type="submit">Sign in</button>
-            <p>Don't have an account? <Link className={styles.formLink} to="/register">Sign up</Link></p>
+            <p>
+              Don't have an account?{' '}
+              <Link
+                className={styles.formLink}
+                to="/register"
+                aria-label="Sign up for new account"
+              >
+                Sign up
+              </Link>
+            </p>
           </form>
         </div>
       </main>

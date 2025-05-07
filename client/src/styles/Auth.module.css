@@ -43,7 +43,7 @@ form h1 {
   text-align: center;
 }
 
-form h2 {
+.subheading {
   color: var(--off-white-color);
   font-family: var(--font-primary);
   font-weight: 700;
