@@ -25,7 +25,10 @@ const Home = () => {
           </p>
           <div className={styles.ctaGroup}>
             <p className={styles.ctaText}>GET STARTED FOR FREE!</p>
-            <button onClick={'/register'} className={styles.signUpBtn}>
+            <button
+              onClick={() => navigate('/register')}
+              className={styles.signUpBtn}
+            >
               Sign up
             </button>
           </div>
