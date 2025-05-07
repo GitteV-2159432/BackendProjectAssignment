@@ -9,6 +9,7 @@ const Exercise = ({ exercise }) => {
       className="flex items-start gap-2 mt-1 hover:cursor-pointer"
       onClick={() => setChecked((prev) => !prev)}
       tabIndex={0}
+      aria-checked={checked}
     >
       <CheckBoxIcon checked={checked} />
       <span>{exercise.name}</span>
