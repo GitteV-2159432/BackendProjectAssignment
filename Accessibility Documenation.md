@@ -62,7 +62,7 @@ Structure by feature/component:
 
 ## Video Demo
 
-[Demonstration Video](https://memory.toys/classic/easy/)
+[Demonstration Video](https://kaltura.hamk.fi/media/keyboard+navigation+%26+screenreader+demonstration/0_5tn2pxym)
 
 ## Conclusion
 
