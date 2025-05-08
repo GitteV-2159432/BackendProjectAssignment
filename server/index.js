@@ -1,14 +1,14 @@
-import express from 'express'
+import cors from 'cors'
 import { configDotenv } from 'dotenv'
+import express from 'express'
+import mongoSanitize from 'mongo-sanitize'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import cors from 'cors'
-import mongoSanitize from 'mongo-sanitize'
 
-import router from './routes/index.js'
 import connectDB from './config/db.js'
 import passport from './config/passportConfig.js'
 import errorHandler from './middleware/error-handler.js'
+import router from './routes/index.js'
 
 configDotenv()
 

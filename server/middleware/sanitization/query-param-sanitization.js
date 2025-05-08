@@ -18,7 +18,7 @@ const sanitizeDayQueryParam = (value) => {
 
 export {
   sanitizeBooleanQueryParam,
-  sanitizeStringQueryParam,
-  sanitizeObjectIdQueryParam,
   sanitizeDayQueryParam,
+  sanitizeObjectIdQueryParam,
+  sanitizeStringQueryParam,
 }

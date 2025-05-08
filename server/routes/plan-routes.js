@@ -1,26 +1,26 @@
 import express from 'express'
 import {
   addPlan,
+  addWorkouts,
+  bookmarkPlan,
   deletePlan,
+  getActivePlan,
   getPlan,
   getPlans,
-  updatePlan,
-  getActivePlan,
-  setActivePlan,
-  removeActivePlan,
-  bookmarkPlan,
-  unbookmarkPlan,
-  getWorkouts,
-  addWorkouts,
-  removeWorkout,
   getTodaysWorkouts,
+  getWorkouts,
+  removeActivePlan,
+  removeWorkout,
+  setActivePlan,
+  unbookmarkPlan,
+  updatePlan,
 } from '../controllers/plan-controller.js'
 import validateObjectId from '../middleware/validation/object-id-validation.js'
-import validate from '../middleware/validation/validation.js'
 import {
   validateDayQueryParam,
   validateGetAllFilterQueryParam,
 } from '../middleware/validation/query-param-validation.js'
+import validate from '../middleware/validation/validation.js'
 import validateCreate from '../middleware/validation/workout-and-plan/create-validation.js'
 import validateUpdate from '../middleware/validation/workout-and-plan/update-validation.js'
 import planService from '../services/plan-service.js'

@@ -1,10 +1,10 @@
 import Category from '../models/Category.js'
 import Exercise from '../models/Exercise.js'
 import Muscle from '../models/Muscle.js'
-import fetchFromWger from '../utils/wger-fetcher.js'
-import createGenericService from './components/generic-service.js'
-import createBookmarkService from './bookmark-service.js'
 import HttpError from '../utils/http-error.js'
+import fetchFromWger from '../utils/wger-fetcher.js'
+import createBookmarkService from './bookmark-service.js'
+import createGenericService from './components/generic-service.js'
 
 const exerciseService = createGenericService(Exercise)
 const bookmarkService = createBookmarkService(Exercise)

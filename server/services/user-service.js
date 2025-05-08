@@ -1,6 +1,6 @@
 import User from '../models/User.js'
-import createGenericService from './components/generic-service.js'
 import HttpError from '../utils/http-error.js'
+import createGenericService from './components/generic-service.js'
 
 const userService = createGenericService(User)
 

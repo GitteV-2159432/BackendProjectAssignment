@@ -1,22 +1,25 @@
-import { sanitizeBooleanQueryParam, sanitizeObjectIdQueryParam } from '../middleware/sanitization/query-param-sanitization.js'
-import userService from '../services/user-service.js'
-import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
-
+import userService from '../services/user-service.js'
 
 // GET /api/users
-const getUsers = async (req, res) => {  
-  //Check if the user is an admin 
+const getUsers = async (req, res) => {
+  //Check if the user is an admin
   await userService.checkPermission(req.userObjectId)
 
   //Return only certain information of the user
-  return res.json(await userService.getAll({}, {},  {
-    firstName: 1,
-    lastName: 1,
-    email: 1,
-    type: 1,
-    bookmarks: 1,
-  }))
+  return res.json(
+    await userService.getAll(
+      {},
+      {},
+      {
+        firstName: 1,
+        lastName: 1,
+        email: 1,
+        type: 1,
+        bookmarks: 1,
+      }
+    )
+  )
 }
 
 // GET /api/users/:id
@@ -25,7 +28,7 @@ const getUser = async (req, res) => {
   await userService.checkPermission(req.userObjectId, req.params.id)
 
   //return only certain information of the user
-  if(req.userObjectId.equals(req.params.id)){
+  if (req.userObjectId.equals(req.params.id)) {
     const user = await userService.getById(req.params.id, {
       firstName: 1,
       lastName: 1,
@@ -35,7 +38,7 @@ const getUser = async (req, res) => {
       bookmarks: 1,
     })
     return res.json(user)
-  } else{
+  } else {
     const user = await userService.getById(req.params.id, {
       firstName: 1,
       lastName: 1,
@@ -58,7 +61,6 @@ const deleteUser = async (req, res) => {
   return res.status(204).send()
 }
 
-
 // PATCH /api/users/:id
 const updateUser = async (req, res) => {
   //Check if the user is an admin or the user is the same as the one being updated
@@ -70,16 +72,16 @@ const updateUser = async (req, res) => {
     email: req.body.email,
   })
 
-  if(req.body.password){
+  if (req.body.password) {
     const password = req.body.password
     const hashedPassword = await bcrypt.hash(password, 12)
     updatedUser.passwordHash = hashedPassword
   }
-  if(req.body.type){
+  if (req.body.type) {
     updatedUser.type = req.body.type
   }
 
   return res.json(updatedUser)
 }
 
-export { getUsers, getUser, deleteUser, updateUser }
+export { deleteUser, getUser, getUsers, updateUser }
