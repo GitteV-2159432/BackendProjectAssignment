@@ -15,7 +15,8 @@ const CategorySelect = ({ categories, setCurrentCategory }) => {
       </label>
       <select
         id="exerciseCategorySelect"
-        className="bg-[#070707] border-2 border-[#FAF9F666] rounded-full px-4 py-2 text-[#FAF9F6] text-sm"
+        name="exerciseCategory"
+        className="bg-[#070707] border-2 border-[#FAF9F666] rounded-full px-4 py-2 text-[#FAF9F6] text-sm focus:outline-2 focus:outline-[#C297B8]"
         onChange={handleChange}
       >
         {categories &&

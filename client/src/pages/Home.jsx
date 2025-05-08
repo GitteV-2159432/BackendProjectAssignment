@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div className={styles.homeContainer}>
       <TopBar />
-      <main className={styles.mainContent}>
+      <main role="main" className={styles.mainContent}>
         <div className={styles.logoWrapper}>
           <Logo />
         </div>
@@ -28,6 +28,7 @@ const Home = () => {
             <button
               onClick={() => navigate('/register')}
               className={styles.signUpBtn}
+              aria-label="Sign up and create your workout account"
             >
               Sign up
             </button>

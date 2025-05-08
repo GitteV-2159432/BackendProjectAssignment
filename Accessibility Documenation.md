@@ -17,19 +17,19 @@ Structure by feature/component:
 ### Tab Component
 
 - Used `role="tablist"` and `role="tab"` appropriately
-- Used `aria-selected` and `aria-controls` to indicate active tab
+- Used `aria-selected` and `aria-controls` to indicate active tab and link cards to active tab
 - Enabled keyboard navigation using arrow keys and `Enter`
 
 ### Cards (Plans, Workouts, Exercises)
 
 - Provided readable and structured headings (`<h2>` for names)
-- Used descriptive `alt` text or `aria-label` on icons like the bookmark or "more" button
+- Used descriptive `aria-label` on icons like the bookmark or "more" button
 - Ensured proper focus for screen readers and tab navigation
 
 ### Forms
 
 - Associated labels with inputs using `<label htmlFor="">` and `id`
-- **Provided meaningful error messages and `aria-describedby` for validation**
+- Provided meaningful error messages
 - Ensured submit buttons are reachable and operable via keyboard
 
 ## Testing Tools Used

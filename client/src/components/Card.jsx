@@ -21,6 +21,8 @@ const Card = ({
         isActive ? 'border-2 border-[#C297B8]' : ''
       }`}
       tabIndex={0}
+      aria-labelledby={`card-title-${id}`}
+      role="region"
     >
       <div className="relative w-full h-full px-5 py-3.5 bg-[#40434E]">
         {isActive && (
@@ -31,7 +33,7 @@ const Card = ({
         {bookmarked && (
           <div
             role="img"
-            aria-label="Bookmarked"
+            aria-label="This item is bookmarked."
             className="absolute left-3.5 top-3"
           >
             <BookmarkAddedIcon />
@@ -40,6 +42,8 @@ const Card = ({
         <div className="flex flex-col justify-between h-full text-[#FAF9F6]">
           <div>
             <h2
+              id={`card-title-${id}`}
+              aria-level={2}
               className={`text-lg font-[Work_Sans] font-semibold leading-tight break-words w-[185px] ${
                 bookmarked ? 'ml-6' : ''
               }`}
@@ -47,7 +51,7 @@ const Card = ({
               {name}
             </h2>
             {!equipment && (
-              <p className="mt-2 text-sm">
+              <p className="mt-2 text-sm" id={`card-desc-${id}`}>
                 {description || 'No description...'}
               </p>
             )}
@@ -55,11 +59,18 @@ const Card = ({
               <p className="mt-2 text-sm">{'No equipment needed...'}</p>
             )}
             {equipment && equipment.length > 0 && (
-              <div className="mt-2 text-sm">
+              <div
+                className="mt-2 text-sm"
+                aria-labelledby={`equipment-for-${id}`}
+              >
                 <span>Equipment</span>
                 <ul className="list-disc list-inside">
                   {equipment.map((eq) => (
-                    <li key={eq} className="ml-1">
+                    <li
+                      key={eq}
+                      className="ml-1"
+                      aria-label={`Equipment item: ${eq}`}
+                    >
                       {eq}
                     </li>
                   ))}

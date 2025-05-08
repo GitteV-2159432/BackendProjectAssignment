@@ -63,7 +63,7 @@ const CardPageContainer = ({ heading, endpoint }) => {
   return (
     <CardProvider activeTab={activeTab} endpoint={endpoint}>
       <PageContainer heading={heading}>
-        <div className="lg:relative md:flex md:flex-col mb-6">
+        <div className="mb-6 lg:relative md:flex md:flex-col">
           <Tabs
             currentPath={location.pathname}
             activeTab={activeTab}
@@ -79,13 +79,20 @@ const CardPageContainer = ({ heading, endpoint }) => {
             </div>
           )}
         </div>
-        {items?.length ? (
-          <Cards items={items} />
-        ) : (
-          <p className="text-center text-sm text-[#FAF9F6]">
-            No {activeTab} {heading.toLowerCase()} available...
-          </p>
-        )}
+        <div
+          id={`tabpanel-${activeTab}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${activeTab}`}
+          tabIndex={0}
+        >
+          {items?.length ? (
+            <Cards items={items} />
+          ) : (
+            <p className="text-center text-sm text-[#FAF9F6]">
+              No {activeTab} {heading.toLowerCase()} available...
+            </p>
+          )}
+        </div>
       </PageContainer>
     </CardProvider>
   )

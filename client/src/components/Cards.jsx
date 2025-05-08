@@ -6,7 +6,10 @@ const Cards = ({ items }) => {
 
   return (
     <div className="flex justify-center">
-      <ul className="flex flex-wrap justify-center gap-6 max-w-[1096px]">
+      <ul
+        aria-live="polite"
+        className="flex flex-wrap justify-center gap-6 max-w-[1096px]"
+      >
         {items &&
           items.map((item) => {
             return (

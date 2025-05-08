@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import TopBar from '../components/TopBar.jsx'
 import useAuth from '../context/useAuth.js'
 import styles from '../styles/Account.module.css'
@@ -12,7 +11,8 @@ const Account = () => {
   const { getUser, logout } = useAuth()
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const navigate = useNavigate()
+  const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -28,15 +28,17 @@ const Account = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setSuccessMessage('')
+    setErrorMessage('')
 
     if (password !== confirmPassword) {
-      alert('Passwords do not match!')
+      setErrorMessage('Passwords do not match.')
       return
     }
 
     const user = await getUser()
     if (!user || !user._id) {
-      alert('Failed to retrieve user ID')
+      setErrorMessage('Failed to retrieve user ID.')
       logout()
       return
     }
@@ -61,13 +63,11 @@ const Account = () => {
     )
 
     if (error) {
-      console.error('Failed to update user:', error)
-      alert('Error updating account')
+      setErrorMessage('Error updating account.')
       return
     }
 
-    alert('Account updated successfully!')
-    navigate('/dashboard')
+    setSuccessMessage('Account updated successfully!')
   }
 
   return (
@@ -75,7 +75,26 @@ const Account = () => {
       <TopBar />
       <h1 className={styles.heading}>Account</h1>
       <div className={styles.contentWrapper}>
-        <form onSubmit={handleSubmit}>
+        {errorMessage && (
+          <div
+            role="alert"
+            className="px-4 py-2 mb-4 text-red-600 bg-red-100 rounded"
+          >
+            {errorMessage}
+          </div>
+        )}
+
+        {successMessage && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="px-4 py-2 mb-4 text-green-700 bg-green-100 rounded"
+          >
+            {successMessage}
+          </div>
+        )}
+
+        <form role="form" onSubmit={handleSubmit}>
           <div className={styles.inputRow}>
             <div>
               <label htmlFor="firstName">First Name</label>
@@ -140,7 +159,7 @@ const Account = () => {
                 placeholder="Confirm New Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                autoComplete="confrim-new"
+                autoComplete="new-password"
               />
             </div>
           </div>

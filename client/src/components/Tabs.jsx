@@ -9,33 +9,36 @@ const Tabs = ({ currentPath, activeTab, setActiveTab }) => {
     }`
 
   return (
-    <div className="flex justify-center space-x-4">
+    <div role="tablist" className="flex justify-center space-x-4">
       {currentPath !== '/exercises' && (
         <button
+          id="tab-personal"
           onClick={() => setActiveTab(tabs.personal)}
           className={tabStyle(tabs.personal)}
-          aria-label={`Display personal ${currentPath.substring(1)}, ${
-            activeTab === tabs.personal ? 'active' : ''
-          }`}
+          role="tab"
+          aria-selected={activeTab === tabs.personal}
+          aria-controls="tabpanel-personal"
         >
           Personal
         </button>
       )}
       <button
+        id="tab-bookmarks"
         onClick={() => setActiveTab(tabs.bookmarked)}
         className={tabStyle(tabs.bookmarked)}
-        aria-label={`Display bookmarked ${currentPath.substring(1)}, ${
-          activeTab === tabs.bookmarked ? 'active' : ''
-        }`}
+        role="tab"
+        aria-selected={activeTab === tabs.bookmarked}
+        aria-controls="tabpanel-bookmarks"
       >
         Bookmarks
       </button>
       <button
+        id="tab-public"
         onClick={() => setActiveTab(tabs.public)}
         className={tabStyle(tabs.public)}
-        aria-label={`Display public ${currentPath.substring(1)}, ${
-          activeTab === tabs.public ? 'active' : ''
-        }`}
+        role="tab"
+        aria-selected={activeTab === tabs.public}
+        aria-controls="tabpanel-public"
       >
         Public
       </button>

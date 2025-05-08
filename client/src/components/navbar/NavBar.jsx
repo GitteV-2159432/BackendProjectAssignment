@@ -16,7 +16,10 @@ const navItems = [
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 overflow-y-auto h-screen w-26 p-2 bg-[#40434E]/50 flex flex-col items-center z-50">
+    <nav
+      className="fixed top-0 left-0 overflow-y-auto h-screen w-26 p-2 bg-[#40434E]/50 flex flex-col items-center z-50"
+      aria-label="Primary navigation"
+    >
       <div className="mb-10">
         <Logo />
       </div>

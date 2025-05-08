@@ -52,7 +52,11 @@ const Register = () => {
           <form onSubmit={handleRegister}>
             <h1>Register</h1>
             {error && (
-              <div className={styles.errorMessage}>
+              <div
+                role="alert"
+                aria-live="assertive"
+                className={styles.errorMessage}
+              >
                 <p>{error}</p>
               </div>
             )}

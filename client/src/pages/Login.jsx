@@ -45,36 +45,40 @@ const Login = () => {
             <h1>Login</h1>
             <p className={styles.subheading}>Welcome back! Please log in.</p>
             {error && (
-              <div className={styles.errorMessage}>
+              <div
+                role="alert"
+                aria-live="assertive"
+                className={styles.errorMessage}
+              >
                 <p>{error}</p>
               </div>
             )}
-            
+
             <div>
-            <label htmlFor="email">E-mail address</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="E-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
-              required
-            />
+              <label htmlFor="email">E-mail address</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="E-mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
+                required
+              />
             </div>
             <div>
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
-              required
-            />
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+                required
+              />
             </div>
             <button type="submit">Sign in</button>
             <p>

@@ -7,8 +7,8 @@ const TopBar = () => {
   const navigate = useNavigate()
 
   return (
-    <header className={styles.topBar}>
-      <div className={styles.topButtons}>
+    <header className={styles.topBar} role="banner">
+      <nav className={styles.topButtons} aria-label="User authentication">
         {token ? (
           <button className={styles.signUpBtn} onClick={logout}>
             Log out
@@ -29,7 +29,7 @@ const TopBar = () => {
             </button>
           </>
         )}
-      </div>
+      </nav>
     </header>
   )
 }
