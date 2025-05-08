@@ -1,11 +1,11 @@
+import mongoose from 'mongoose'
 import Plan from '../models/Plan.js'
-import createGenericService from './components/generic-service.js'
+import HttpError from '../utils/http-error.js'
 import createBookmarkService from './bookmark-service.js'
+import createGenericService from './components/generic-service.js'
+import exerciseService from './exercise-service.js'
 import userService from './user-service.js'
 import workoutService from './workout-service.js'
-import exerciseService from './exercise-service.js'
-import HttpError from '../utils/http-error.js'
-import mongoose from 'mongoose'
 
 const planService = createGenericService(Plan)
 const bookmarkService = createBookmarkService(Plan)

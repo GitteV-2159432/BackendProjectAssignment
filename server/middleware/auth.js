@@ -1,5 +1,5 @@
 import jsonwebtoken from 'jsonwebtoken'
-const { verify } = jsonwebtoken 
+const { verify } = jsonwebtoken
 
 const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization
@@ -17,4 +17,3 @@ const authMiddleware = (req, res, next) => {
 }
 
 export default authMiddleware
-

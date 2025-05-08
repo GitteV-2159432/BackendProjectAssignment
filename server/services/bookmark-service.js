@@ -1,6 +1,6 @@
+import HttpError from '../utils/http-error.js'
 import createGenericService from './components/generic-service.js'
 import userService from './user-service.js'
-import HttpError from '../utils/http-error.js'
 
 const createBookmarkService = (Model) => {
   const modelName = Model.modelName || 'Document'

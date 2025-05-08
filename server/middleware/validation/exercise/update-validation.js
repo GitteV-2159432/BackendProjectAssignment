@@ -7,7 +7,7 @@ const validateUpdate = () => {
     validateString('name', 64, true),
     validateString('description', 256, false),
     validateObjectId('category'),
-    validateObjectId('muscles',  { required: false }),
+    validateObjectId('muscles', { required: false }),
     validateObjectId('muscles_secondary', { required: false }),
     validateString('equipment', 64, false),
     validateString('images', 1028, false),

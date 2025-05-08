@@ -1,15 +1,11 @@
-import mongoose from 'mongoose'
 import { check } from 'express-validator'
+import mongoose from 'mongoose'
 
 const validateObjectId = (idName, { required = true } = {}) => {
-  const validator = check(idName)
-    .trim()
-    .escape()
+  const validator = check(idName).trim().escape()
 
   if (required) {
-    validator.notEmpty()
-      .withMessage(`${idName} can't be empty.`)
-      .bail()
+    validator.notEmpty().withMessage(`${idName} can't be empty.`).bail()
   } else {
     validator.optional({ checkFalsy: true })
   }

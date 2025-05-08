@@ -1,6 +1,6 @@
 import {
-  sanitizeStringQueryParam,
   sanitizeDayQueryParam,
+  sanitizeStringQueryParam,
 } from '../middleware/sanitization/query-param-sanitization.js'
 import planService from '../services/plan-service.js'
 import { getQueryFromFilterParameters, mapPlanDTO } from '../utils/get-all.js'
@@ -113,18 +113,18 @@ const getTodaysWorkouts = async (req, res) => {
 }
 
 export {
-  getPlans,
-  getPlan,
   addPlan,
-  updatePlan,
+  addWorkouts,
+  bookmarkPlan,
   deletePlan,
   getActivePlan,
-  setActivePlan,
-  removeActivePlan,
-  bookmarkPlan,
-  unbookmarkPlan,
-  getWorkouts,
-  addWorkouts,
-  removeWorkout,
+  getPlan,
+  getPlans,
   getTodaysWorkouts,
+  getWorkouts,
+  removeActivePlan,
+  removeWorkout,
+  setActivePlan,
+  unbookmarkPlan,
+  updatePlan,
 }

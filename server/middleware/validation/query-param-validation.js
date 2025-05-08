@@ -77,7 +77,7 @@ const validateGetAllExercisesQueryParams = () => {
 }
 
 export {
-  validateGetAllFilterQueryParam,
   validateDayQueryParam,
   validateGetAllExercisesQueryParams,
+  validateGetAllFilterQueryParam,
 }

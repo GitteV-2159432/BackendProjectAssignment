@@ -1,7 +1,9 @@
 # 🏋️ Workout Tracker + Exercise API
+
 A full-stack Node.js project for tracking workouts and building custom workouts. Users can log workouts, browse exercises via the Wger API, and manage personalized or public workout plans. Includes a REST API to fetch workout data and an admin panel to manage public workouts.
 
 Features
+
 - User authentication (role-based)
 - Log and track workouts
 - Browse exercises using the Wger public API
@@ -10,6 +12,7 @@ Features
 - Admin interface for managing public workouts and users
 
 Tech stack:
+
 - React for the frontend
 - Vite
 - MongoDB
@@ -22,7 +25,7 @@ Tech stack:
 ```sh
 cd server
 npm install
-npm run seed 
+npm run seed
 npm run dev
 ```
 
