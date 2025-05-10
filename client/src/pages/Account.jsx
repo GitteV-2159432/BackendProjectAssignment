@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import MessageContainer from '../components/MessageContainer.jsx'
 import TopBar from '../components/TopBar.jsx'
 import useAuth from '../context/useAuth.js'
 import styles from '../styles/Account.module.css'
@@ -76,25 +77,14 @@ const Account = () => {
       <h1 className={styles.heading}>Account</h1>
       <div className={styles.contentWrapper}>
         {errorMessage && (
-          <div
-            role="alert"
-            className="px-4 py-2 mb-4 text-red-600 bg-red-100 rounded"
-          >
-            {errorMessage}
-          </div>
+          <MessageContainer role={'alert'} message={errorMessage} />
         )}
 
         {successMessage && (
-          <div
-            role="status"
-            aria-live="polite"
-            className="px-4 py-2 mb-4 text-green-700 bg-green-100 rounded"
-          >
-            {successMessage}
-          </div>
+          <MessageContainer role={'status'} message={successMessage} />
         )}
 
-        <form role="form" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className={styles.inputRow}>
             <div>
               <label htmlFor="firstName">First Name</label>

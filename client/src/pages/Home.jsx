@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div className={styles.homeContainer}>
       <TopBar />
-      <main role="main" className={styles.mainContent}>
+      <main className={styles.mainContent}>
         <div className={styles.logoWrapper}>
           <Logo />
         </div>

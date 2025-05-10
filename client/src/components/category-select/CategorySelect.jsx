@@ -16,7 +16,7 @@ const CategorySelect = ({ categories, setCurrentCategory }) => {
       <select
         id="exerciseCategorySelect"
         name="exerciseCategory"
-        className="bg-[#070707] border-2 border-[#FAF9F666] rounded-full px-4 py-2 text-[#FAF9F6] text-sm focus:outline-2 focus:outline-[#C297B8]"
+        className="bg-[#070707] border-2 border-[#FAF9F666] rounded-full px-4 py-2 text-[#FAF9F6] text-sm"
         onChange={handleChange}
       >
         {categories &&

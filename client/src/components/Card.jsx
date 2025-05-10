@@ -63,14 +63,10 @@ const Card = ({
                 className="mt-2 text-sm"
                 aria-labelledby={`equipment-for-${id}`}
               >
-                <span>Equipment</span>
+                <span id={`equipment-for-${id}`}>Equipment</span>
                 <ul className="list-disc list-inside">
                   {equipment.map((eq) => (
-                    <li
-                      key={eq}
-                      className="ml-1"
-                      aria-label={`Equipment item: ${eq}`}
-                    >
+                    <li key={eq} className="ml-1">
                       {eq}
                     </li>
                   ))}

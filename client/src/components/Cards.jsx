@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import Card from './Card.jsx'
 
-const Cards = ({ items }) => {
+const Cards = ({ items, announce }) => {
   const [overlayCardId, setOverlayCardId] = useState(null)
 
   return (
     <div className="flex justify-center">
       <ul
-        aria-live="polite"
+        aria-live={announce ? 'polite' : undefined}
         className="flex flex-wrap justify-center gap-6 max-w-[1096px]"
       >
         {items &&

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../components/icons/Logo.jsx'
+import MessageContainer from '../components/MessageContainer.jsx'
 import styles from '../styles/Auth.module.css'
 
 const Register = () => {
@@ -51,15 +52,7 @@ const Register = () => {
         <div className={styles.contentWrapper}>
           <form onSubmit={handleRegister}>
             <h1>Register</h1>
-            {error && (
-              <div
-                role="alert"
-                aria-live="assertive"
-                className={styles.errorMessage}
-              >
-                <p>{error}</p>
-              </div>
-            )}
+            {error && <MessageContainer role={'alert'} message={error} />}
             <div className={styles.inputRow}>
               <div>
                 <label htmlFor="firstName">First Name</label>

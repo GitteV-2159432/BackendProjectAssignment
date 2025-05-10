@@ -11,13 +11,20 @@ import CategorySelect from './category-select/CategorySelect.jsx'
 
 const CardPageContainer = ({ heading, endpoint }) => {
   const location = useLocation()
+
   const [activeTab, setActiveTab] = useState(
     location.pathname === '/exercises' ? tabs.public : tabs.personal
   )
   const [items, setItems] = useState([])
   const [categories, setCategories] = useState([])
   const [currentCategory, setCurrentCategory] = useState()
+  const [hasInteracted, setHasInteracted] = useState(false)
+
   const { logout } = useAuth()
+
+  useEffect(() => {
+    setHasInteracted(true)
+  }, [activeTab, currentCategory])
 
   useEffect(() => {
     if (location.pathname === '/exercises' && !currentCategory) return
@@ -86,7 +93,7 @@ const CardPageContainer = ({ heading, endpoint }) => {
           tabIndex={0}
         >
           {items?.length ? (
-            <Cards items={items} />
+            <Cards items={items} announce={hasInteracted} />
           ) : (
             <p className="text-center text-sm text-[#FAF9F6]">
               No {activeTab} {heading.toLowerCase()} available...
